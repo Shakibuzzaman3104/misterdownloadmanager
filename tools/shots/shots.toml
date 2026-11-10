@@ -51,10 +51,10 @@ id = "main-window"
 page = "getting-started.md"
 under = "The main window"
 take = "@main"
-# Flat at 930 x 470: the sidebar is 220 wide, the header 64 tall under the 20 px menu bar, its
+# Flat, in the picture's pixels: the sidebar is 220 wide, the header runs from 50 to 114, its
 # buttons end left of Add URL. 1 right of the menu bar's last menu, 2 in the sidebar's empty
 # part, 3 left of the header's buttons, 4 in the list's empty part.
-marks = [{ at = "MenuItem:Help", side = "right" }, { at = [100, 400, 20, 20], side = "center" }, { at = [540, 36, 10, 24], side = "left" }, { at = "List:Downloads", side = "center" }]
+marks = [{ at = "MenuItem:Help", side = "right" }, { at = [100, 400, 20, 20], side = "center" }, { at = [540, 70, 10, 24], side = "left" }, { at = "List:Downloads", side = "center" }]
 alt = "The main window: the menu bar, the sidebar on the left, the view's title and buttons at the top, and the download list"
 caption = "1 the menu bar, 2 the sidebar, 3 the buttons, 4 the download list."
 
@@ -339,9 +339,9 @@ id = "list-columns"
 page = "download-list.md"
 under = "Columns"
 take = "@main"
-# Flat: the list starts right of the 220 px sidebar, under the menu bar and the 64 px header.
-crop = [220, 84, 0, 0]
-alt = "The download list with its columns: Source, File Name, Q, Size, Status, Time left, Transfer rate and more"
+# Flat: the list starts right of the 220 px sidebar and under the header, which ends at 114.
+crop = [220, 114, 0, 0]
+alt = "The download list with its columns: File Name, Size, Status, Time left and Transfer rate"
 caption = "Click a column title to sort; its funnel filters."
 
 [[shot]]
@@ -350,9 +350,9 @@ page = "download-list.md"
 under = "Categories"
 take = "@main"
 # Flat's sidebar, under the menu bar.
-crop = [0, 20, 220, 0]
-alt = "The sidebar: Library with All Downloads, Downloading, Waiting, Stopped and Finished; Categories with one per file type; and Queues"
-caption = "Library, Categories and Queues."
+crop = [0, 50, 220, 0]
+alt = "The sidebar: Library with All Downloads, Downloading, Waiting, Stopped and Finished, and Categories with one per file type"
+caption = "Library and Categories; Queues follow below."
 
 [[shot]]
 id = "category-properties"

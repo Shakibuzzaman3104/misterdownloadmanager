@@ -15,7 +15,7 @@ and its open branches), the details panel, and the category or queue you were lo
 
 ## Columns
 
-![The download list with its columns: Source, File Name, Q, Size, Status, Time left, Transfer rate and more](images/help/list-columns.webp)
+![The download list with its columns: File Name, Size, Status, Time left and Transfer rate](images/help/list-columns.webp)
 *Click a column title to sort; its funnel filters.*
 
 | Column | What it shows |
@@ -62,8 +62,8 @@ A filtered column's funnel turns blue. To remove every filter, right-click a col
 
 The sidebar on the left has three sections:
 
-![The sidebar: Library with All Downloads, Downloading, Waiting, Stopped and Finished; Categories with one per file type; and Queues](images/help/list-categories.webp)
-*Library, Categories and Queues.*
+![The sidebar: Library with All Downloads, Downloading, Waiting, Stopped and Finished, and Categories with one per file type](images/help/list-categories.webp)
+*Library and Categories; Queues follow below.*
 
 - **Library** — **All Downloads** (everything), **Downloading** (running now), **Waiting** (waiting
   their turn to start), **Stopped** (stopped, or ended with an error) and
