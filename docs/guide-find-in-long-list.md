@@ -37,7 +37,7 @@ A filtered column's funnel turns blue. Right-click a column title and choose **C
 
 ## Narrow it down with categories and sorting
 
-- Click **Unfinished** or **Finished** in the categories, or a category such as **Video**, to see only those downloads.
+- Click **Downloading**, **Stopped** or **Finished** in the sidebar, or a category such as **Video**, to see only those downloads.
 - Click a column title to sort: **Added** for the newest, **Size** for the biggest, **File Name** for A to Z. Click again to reverse.
 - With the list selected, type the first letters of a name to jump straight to it.
 

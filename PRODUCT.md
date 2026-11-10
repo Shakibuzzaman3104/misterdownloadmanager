@@ -20,16 +20,19 @@ while using the app, and contributors (code, translations, bug reports) arriving
 ## Product Purpose
 
 Mister Download Manager (MDM) is a free, open-source (GPL-3.0) download manager for Windows and Linux,
-laid out the way IDM users expect: same windows, menus and workflow, rebuilt from scratch in
-Rust. The website's job is to get the right visitor to download it with confidence, then to
-help them use it (help pages, FAQ, tutorials).
+working the way IDM users expect: the same menus, dialogs and workflow, rebuilt from scratch in
+Rust, in a clean, flat main window (the Flat theme, the default). The layout IDM users know, with
+its toolbar and Categories tree, is one setting away (View → Theme → Classic). The website's job
+is to get the right visitor to download it with confidence, then to help them use it (help
+pages, FAQ, tutorials).
 
-Success: an IDM user recognizes the window, believes it is faster and genuinely free, and
+Success: an IDM user recognizes how it works, believes it is faster and genuinely free, and
 downloads it; a user with a question finds the answer in the help.
 
 ## Positioning
 
-IDM's window, but faster and free. The layout is the one the visitor already knows; the speed
+IDM's workflow, but faster, free and modern. The menus, dialogs and habits are the ones the
+visitor already knows, in a cleaner window, with IDM's own layout kept as the Classic theme; the speed
 is measured, not claimed (a public, reproducible benchmark against IDM 6.42); the price is
 nothing, with no ads, no trial and no sign-up. Torrents and video downloads are built in, and
 the app speaks 86 languages.
@@ -71,7 +74,8 @@ maker (Tonec), or as a crack or copy of it.
 
 ## Product Principles
 
-1. Familiar first: the visitor should recognize the window before reading a word.
+1. Familiar first: the visitor should recognize how it works before reading a word, and find
+   the layout they know (Classic) without searching for it.
 2. Prove, don't claim: every speed statement points to the benchmark; every image is the real app.
 3. Free means free: no dark patterns, no upsell, no data collection beyond the visit counter.
 4. Every language is first-class: no page reads as a translation of an English layout.

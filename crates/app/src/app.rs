@@ -30,6 +30,9 @@ use mdm_ipc as ipc;
 #[derive(Clone, Copy, PartialEq, Eq, Debug, serde::Serialize, serde::Deserialize)]
 pub(crate) enum View {
     All,
+    Downloading,
+    Waiting,
+    Stopped,
     Cat(Category),
     Unfinished(Option<Category>),
     Finished(Option<Category>),
@@ -343,6 +346,8 @@ enum Popup {
     QueueDrop(bool),
     /// The Add Torrent button's drop-down arrow.
     TorrentDrop,
+    /// The Flat Add URL split button.
+    AddUrlDrop,
     /// Right-click on the drop target.
     DropTarget,
     /// Categories right-click: the node's view (None: the "Queues" root).
@@ -1052,6 +1057,7 @@ impl App {
         let [all_open, unfinished_open, finished_open, queues_open] = settings.branches;
         let known = |c: Option<Category>| c.is_none_or(|c| Category::all().contains(&c));
         let view = match settings.view {
+            Some(v @ (View::All | View::Downloading | View::Waiting | View::Stopped)) => v,
             Some(View::Queue(q)) if q < queues.len() => View::Queue(q),
             Some(v @ View::Cat(c)) if known(Some(c)) => v,
             Some(v @ (View::Unfinished(c) | View::Finished(c))) if known(c) => v,
@@ -1445,6 +1451,14 @@ impl App {
                     .as_ref()
                     .map_or(String::new(), |t| model::rate(t.up_speed)),
             ],
+            progress: match it.size {
+                Some(size)
+                    if size > 0 && !matches!(it.status, Status::Complete) && it.downloaded > 0 =>
+                {
+                    Some((it.downloaded as f32 / size as f32).clamp(0.0, 1.0))
+                }
+                _ => None,
+            },
         }
     }
 
@@ -1480,6 +1494,9 @@ impl App {
         let in_cat = |c: Option<Category>| c.is_none_or(|c| i.category == c);
         match view {
             View::All => true,
+            View::Downloading => i.status == Status::Downloading,
+            View::Waiting => i.status == Status::Queued,
+            View::Stopped => matches!(i.status, Status::Stopped | Status::Error),
             View::Cat(c) => i.category == c,
             View::Unfinished(c) => i.status != Status::Complete && in_cat(c),
             View::Finished(c) => i.status == Status::Complete && in_cat(c),
@@ -5878,6 +5895,8 @@ impl App {
         let on = |id: &str| chosen == id;
         // i18n: View → Theme: MDM's own look, the default (IDM's layout, Windows 11's controls)
         items.push(Radio("Classic", Cmd::Theme("classic"), true, on("classic")));
+        // i18n: View → Theme: a style theme's name (minimal and flat, like a phone's apps)
+        items.push(Radio("Flat", Cmd::Theme("flat"), true, on("flat")));
         // i18n: View → Theme: the system's own colours (its accent colour, its high contrast)
         items.push(Radio("Native", Cmd::Theme("native"), true, on("native")));
         // i18n: View → Theme: black and white with strong edges, for low vision
@@ -6551,6 +6570,245 @@ impl App {
         }
     }
 
+    fn flat_chrome(
+        &mut self,
+        ui: &mut Ui,
+        o: Pos2,
+        w: f32,
+        h: f32,
+        buttons: &[(Icon, &str, bool, Cmd)],
+        chosen: &mut Option<(Cmd, Option<u64>)>,
+    ) -> egui::Rect {
+        use crate::flat::{self, HeaderEvent, InspectorEvent, SidebarEvent};
+        let ctx = ui.ctx().clone();
+        let top = o.y + chrome::MENU_H;
+        let mut views = vec![
+            View::All,
+            View::Downloading,
+            View::Waiting,
+            View::Stopped,
+            View::Finished(None),
+        ];
+        let mut rows = Vec::new();
+        let library = [
+            ("All Downloads", IconKey::Themed("cat-all", "folder")),
+            (
+                "Downloading",
+                IconKey::Themed("st-downloading", "folder_go"),
+            ),
+            ("Waiting", IconKey::Themed("st-queued", "folder")),
+            ("Stopped", IconKey::Themed("st-paused", "folder")),
+            ("Finished", IconKey::Themed("st-complete", "folder")),
+        ];
+        for (k, (name, icon)) in library.into_iter().enumerate() {
+            let view = views[k];
+            rows.push(flat::Row {
+                // i18n: sidebar section containing the download status filters
+                heading: (k == 0).then(|| crate::i18n::t("Library").to_owned()),
+                label: crate::i18n::t(name).to_owned(),
+                icon,
+                count: Some(self.items.iter().filter(|i| self.in_view(view, i)).count()),
+                selected: view == self.view,
+            });
+        }
+        for (k, c) in Category::named().into_iter().enumerate() {
+            let view = View::Cat(c);
+            views.push(view);
+            rows.push(flat::Row {
+                heading: (k == 0).then(|| crate::i18n::t("Categories").to_owned()),
+                label: crate::i18n::t(&c.label()).to_owned(),
+                icon: category_icon(c),
+                count: None,
+                selected: view == self.view,
+            });
+        }
+        for (k, q) in self.queues.iter().enumerate() {
+            let view = View::Queue(k);
+            views.push(view);
+            rows.push(flat::Row {
+                heading: (k == 0).then(|| crate::i18n::t("Queues").to_owned()),
+                label: q.name.clone(),
+                icon: IconKey::Themed("cat-queues", "page_white_stack"),
+                count: None,
+                selected: view == self.view,
+            });
+        }
+        let title = views
+            .iter()
+            .position(|v| *v == self.view)
+            .map(|k| rows[k].label.clone())
+            .unwrap_or_else(|| match self.view {
+                View::Unfinished(_) => crate::i18n::t("Unfinished").to_owned(),
+                View::Finished(_) => crate::i18n::t("Finished").to_owned(),
+                _ => crate::i18n::t("All Downloads").to_owned(),
+            });
+        let free = self.popup.is_none()
+            && self.open_menu.is_none()
+            && ctx.memory(|m| m.focused().is_none());
+        let left = if self.show_categories {
+            let cat_w = (self.settings.categories_width as f32)
+                .clamp(220.0, 320.0)
+                .min((w - 320.0).max(220.0));
+            let split = winui::rect(egui::Rect::from_min_max(
+                pos2(o.x + cat_w - 2.0, top),
+                pos2(o.x + cat_w + 2.0, o.y + h),
+            ));
+            let sr = ui.interact(
+                split,
+                egui::Id::unique("flat-cat-splitter"),
+                winui::pointer_drag(),
+            );
+            if sr.hovered() || sr.dragged() {
+                ctx.set_cursor_icon(egui::CursorIcon::ResizeHorizontal);
+            }
+            if sr.dragged()
+                && let Some(p) = sr.interact_pointer_pos()
+            {
+                self.settings.categories_width =
+                    (winui::mx(p.x) - o.x).round().clamp(220.0, 320.0) as u32;
+            }
+            if sr.drag_stopped() {
+                self.dirty = true;
+            }
+            if free
+                && ctx.input_mut(|i| {
+                    i.consume_key(egui::Modifiers::NONE, egui::Key::Tab)
+                        || i.consume_key(egui::Modifiers::SHIFT, egui::Key::Tab)
+                })
+            {
+                self.tree_keys = !self.tree_keys;
+                self.list.set_keys(!self.tree_keys);
+                crate::chrome::show_cues(&ctx);
+            }
+            let mut ev = flat::sidebar(
+                ui,
+                &mut self.icons,
+                egui::Rect::from_min_max(pos2(o.x, top), pos2(o.x + cat_w, o.y + h)),
+                &rows,
+                free && self.tree_keys,
+            );
+            if free && self.tree_keys {
+                let at = views.iter().position(|v| *v == self.view).unwrap_or(0);
+                let key = |k| ctx.input_mut(|i| i.consume_key(egui::Modifiers::NONE, k));
+                let to = if key(egui::Key::ArrowDown) {
+                    Some((at + 1).min(views.len() - 1))
+                } else if key(egui::Key::ArrowUp) {
+                    Some(at.saturating_sub(1))
+                } else if key(egui::Key::Home) {
+                    Some(0)
+                } else if key(egui::Key::End) {
+                    Some(views.len() - 1)
+                } else {
+                    None
+                };
+                if let Some(k) = to {
+                    ev = Some(SidebarEvent::Select(k));
+                }
+            }
+            if let Some(ev) = ev {
+                self.tree_keys = true;
+                self.list.set_keys(false);
+                match ev {
+                    SidebarEvent::Select(k) => self.view = views[k],
+                    SidebarEvent::Context(k, at) => {
+                        self.open_popup(Popup::Node(Some(views[k])), at)
+                    }
+                }
+            }
+            cat_w
+        } else {
+            0.0
+        };
+        let queue = if let View::Queue(q) = self.view {
+            self.queues.get(q).map(|v| (q, v.running, v.files_at_once))
+        } else {
+            None
+        };
+        let subtitle = queue.map(|(_, running, n)| {
+            if running {
+                // i18n: a running queue's concurrent download limit
+                crate::i18n::fmt(
+                    crate::i18n::t("Running, {n} at a time"),
+                    &[("n", &n.to_string())],
+                )
+            } else {
+                crate::i18n::t("Stopped").to_owned()
+            }
+        });
+        let indexes: Vec<usize> = if queue.is_some() {
+            vec![5, 6, 8, 7]
+        } else {
+            vec![2, 3, 4, 5, 6, 8, 7]
+        };
+        let actions: Vec<flat::HeaderButton> = indexes
+            .iter()
+            .map(|&i| flat::HeaderButton {
+                icon: buttons[i].0,
+                label: buttons[i].1,
+                enabled: buttons[i].2,
+            })
+            .collect();
+        let header = egui::Rect::from_min_max(pos2(o.x + left, top), pos2(o.x + w, top + 64.0));
+        if let Some(ev) = flat::header(
+            ui,
+            header,
+            &title,
+            subtitle.as_deref(),
+            &actions,
+            queue.map(|q| q.1),
+        ) {
+            match ev {
+                HeaderEvent::Action(k) => *chosen = Some((buttons[indexes[k]].3, None)),
+                HeaderEvent::Add => *chosen = Some((Cmd::AddUrl, None)),
+                HeaderEvent::AddDrop(at) => self.open_popup(Popup::AddUrlDrop, at),
+                HeaderEvent::Queue(k) => {
+                    if let Some((q, _, _)) = queue {
+                        *chosen = Some((
+                            if k == 0 {
+                                Cmd::StartQueue(q)
+                            } else {
+                                Cmd::StopQueue(q)
+                            },
+                            None,
+                        ));
+                    }
+                }
+                HeaderEvent::QueueDrop(start, at) => self.open_popup(Popup::QueueDrop(start), at),
+                HeaderEvent::Inspector => {
+                    self.settings.show_inspector = !self.settings.show_inspector;
+                    self.dirty = true;
+                }
+            }
+        }
+        let selected = self.selection.ids().first().copied();
+        let show = self.settings.show_inspector && w >= 900.0 && selected.is_some();
+        let right = o.x + w - if show { 320.0 } else { 0.0 };
+        if show
+            && let Some(id) = selected
+            && let Some(item) = self.items.iter().find(|i| i.id == id)
+        {
+            let running = item.live.is_some();
+            let panel = egui::Rect::from_min_max(pos2(right, top + 64.0), pos2(o.x + w, o.y + h));
+            if let Some(ev) = flat::inspector(ui, &mut self.icons, panel, item) {
+                if !matches!(ev, InspectorEvent::Close) {
+                    self.selection.set(id);
+                }
+                match ev {
+                    InspectorEvent::Close => {
+                        self.settings.show_inspector = false;
+                        self.dirty = true;
+                    }
+                    InspectorEvent::Toggle => {
+                        *chosen = Some((if running { Cmd::Stop } else { Cmd::Resume }, Some(id)))
+                    }
+                    InspectorEvent::Folder => *chosen = Some((Cmd::OpenFolder, Some(id))),
+                    InspectorEvent::Delete => *chosen = Some((Cmd::Remove, Some(id))),
+                }
+            }
+        }
+        egui::Rect::from_min_max(pos2(o.x + left, top + 64.0), pos2(right, o.y + h - 26.0))
+    }
+
     fn paint(&mut self, ui: &mut Ui) {
         let ctx = ui.ctx().clone();
         let full = ui.max_rect();
@@ -6735,142 +6993,148 @@ impl App {
                 Cmd::StopQueue(0),
             ),
         ];
-        let tb: Vec<(Icon, &str, bool)> = buttons.iter().map(|(i, l, e, _)| (*i, *l, *e)).collect();
-        match chrome::toolbar(ui, o, w, &tb) {
-            Some(ToolbarEvent::Click(k)) => chosen = Some((buttons[k].3, None)),
-            Some(ToolbarEvent::Drop(k, at)) => match buttons[k].0 {
-                Icon::AddTorrent => self.open_popup(Popup::TorrentDrop, at),
-                icon => self.open_popup(Popup::QueueDrop(matches!(icon, Icon::StartQueue)), at),
-            },
-            None => {}
-        }
+        let is_flat = crate::theme::current().controls.layout == crate::palette::MainLayout::Flat;
+        let outer = if is_flat {
+            self.flat_chrome(ui, o, w, h, &buttons, &mut chosen)
+        } else {
+            let tb: Vec<(Icon, &str, bool)> =
+                buttons.iter().map(|(i, l, e, _)| (*i, *l, *e)).collect();
+            match chrome::toolbar(ui, o, w, &tb) {
+                Some(ToolbarEvent::Click(k)) => chosen = Some((buttons[k].3, None)),
+                Some(ToolbarEvent::Drop(k, at)) => match buttons[k].0 {
+                    Icon::AddTorrent => self.open_popup(Popup::TorrentDrop, at),
+                    icon => self.open_popup(Popup::QueueDrop(matches!(icon, Icon::StartQueue)), at),
+                },
+                None => {}
+            }
 
-        // Categories pane.
-        let list_left = if self.show_categories {
-            let rows = self.tree_rows();
-            let tree: Vec<TreeRow<'_>> = rows.iter().map(|(r, ..)| r.clone()).collect();
-            // The splitter: the 4 px gap between the pane and the list, dragged sideways.
-            let max_w = (w * 0.6).max(100.0);
-            let cat_w = (self.settings.categories_width as f32).clamp(100.0, max_w);
-            let right = o.x + 6.0 + cat_w;
-            let split = winui::rect(egui::Rect::from_min_max(
-                pos2(right, o.y + chrome::MENU_H + chrome::pane_top()),
-                pos2(right + 4.0, o.y + h - STRIP_H - 5.0),
-            ));
-            let sr = ui.interact(
-                split,
-                egui::Id::unique("cat-splitter"),
-                winui::pointer_drag(),
-            );
-            if sr.hovered() || sr.dragged() {
-                ctx.set_cursor_icon(egui::CursorIcon::ResizeHorizontal);
-            }
-            if sr.dragged()
-                && let Some(p) = sr.interact_pointer_pos()
-            {
-                // The pointer stays on the splitter's middle (the pane's width from its leading
-                // edge: the right in RTL).
-                let nw = (winui::mx(p.x) - o.x - 6.0 - 2.0)
-                    .round()
-                    .clamp(100.0, max_w);
-                self.settings.categories_width = nw as u32;
-            }
-            if sr.drag_stopped() {
-                self.dirty = true;
-            }
-            // The tree's keys while it has them (Tab moves between it and the list): Up / Down
-            // through the nodes, Left / Right close and open a branch, Home / End.
-            let free = self.popup.is_none()
-                && self.open_menu.is_none()
-                && ctx.memory(|m| m.focused().is_none());
-            if free
-                && ctx.input_mut(|i| {
-                    i.consume_key(egui::Modifiers::NONE, egui::Key::Tab)
-                        || i.consume_key(egui::Modifiers::SHIFT, egui::Key::Tab)
-                })
-            {
-                self.tree_keys = !self.tree_keys;
-                self.list.set_keys(!self.tree_keys);
-                crate::chrome::show_cues(&ctx);
-            }
-            let mut tree_event = None;
-            if free && self.tree_keys {
-                let at = rows
-                    .iter()
-                    .position(|(_, v, _)| *v == Some(self.view))
-                    .unwrap_or(0);
-                let with_view: Vec<usize> =
-                    (0..rows.len()).filter(|k| rows[*k].1.is_some()).collect();
-                let pos = with_view.iter().position(|k| *k == at).unwrap_or(0);
-                let key = |k| ctx.input_mut(|i| i.consume_key(egui::Modifiers::NONE, k));
-                let to = if key(egui::Key::ArrowDown) {
-                    with_view.get(pos + 1).copied()
-                } else if key(egui::Key::ArrowUp) {
-                    pos.checked_sub(1).and_then(|p| with_view.get(p).copied())
-                } else if key(egui::Key::Home) {
-                    with_view.first().copied()
-                } else if key(egui::Key::End) {
-                    with_view.last().copied()
-                } else {
-                    None
-                };
-                if let Some(k) = to {
-                    tree_event = Some(TreeEvent::Select(k));
+            // Categories pane.
+            let list_left = if self.show_categories {
+                let rows = self.tree_rows();
+                let tree: Vec<TreeRow<'_>> = rows.iter().map(|(r, ..)| r.clone()).collect();
+                // The splitter: the 4 px gap between the pane and the list, dragged sideways.
+                let max_w = (w * 0.6).max(100.0);
+                let cat_w = (self.settings.categories_width as f32).clamp(100.0, max_w);
+                let right = o.x + 6.0 + cat_w;
+                let split = winui::rect(egui::Rect::from_min_max(
+                    pos2(right, o.y + chrome::MENU_H + chrome::pane_top()),
+                    pos2(right + 4.0, o.y + h - STRIP_H - 5.0),
+                ));
+                let sr = ui.interact(
+                    split,
+                    egui::Id::unique("cat-splitter"),
+                    winui::pointer_drag(),
+                );
+                if sr.hovered() || sr.dragged() {
+                    ctx.set_cursor_icon(egui::CursorIcon::ResizeHorizontal);
                 }
-                let open = rows[at].0.expander;
-                let (left, right) = if winui::rtl() {
-                    (egui::Key::ArrowRight, egui::Key::ArrowLeft)
-                } else {
-                    (egui::Key::ArrowLeft, egui::Key::ArrowRight)
-                };
-                if (open == Some(true) && key(left)) || (open == Some(false) && key(right)) {
-                    tree_event = Some(TreeEvent::Toggle(at));
+                if sr.dragged()
+                    && let Some(p) = sr.interact_pointer_pos()
+                {
+                    // The pointer stays on the splitter's middle (the pane's width from its leading
+                    // edge: the right in RTL).
+                    let nw = (winui::mx(p.x) - o.x - 6.0 - 2.0)
+                        .round()
+                        .clamp(100.0, max_w);
+                    self.settings.categories_width = nw as u32;
                 }
-            }
-            if let Some(ev) = chrome::categories(
-                ui,
-                &mut self.icons,
-                o,
-                o.y + h - STRIP_H,
-                right,
-                &tree,
-                self.tree_keys && free,
-            )
-            .or(tree_event)
-            {
-                // A click in the tree gives it the keys.
-                self.tree_keys = true;
-                self.list.set_keys(false);
-                match ev {
-                    TreeEvent::Close => self.show_categories = false,
-                    TreeEvent::Select(k) => match rows[k].1 {
-                        Some(v) => self.view = v,
-                        None => self.toggle(rows[k].2),
-                    },
-                    TreeEvent::Toggle(k) => self.toggle(rows[k].2),
-                    TreeEvent::Context(k, at) => {
-                        // Leaves and nodes with a view; "Queues" (a branch without one) has
-                        // the queue menu, all greyed.
-                        let node = rows[k].1;
-                        if node.is_some() || rows[k].2 == Branch::Queues {
-                            self.open_popup(Popup::Node(node), at);
+                if sr.drag_stopped() {
+                    self.dirty = true;
+                }
+                // The tree's keys while it has them (Tab moves between it and the list): Up / Down
+                // through the nodes, Left / Right close and open a branch, Home / End.
+                let free = self.popup.is_none()
+                    && self.open_menu.is_none()
+                    && ctx.memory(|m| m.focused().is_none());
+                if free
+                    && ctx.input_mut(|i| {
+                        i.consume_key(egui::Modifiers::NONE, egui::Key::Tab)
+                            || i.consume_key(egui::Modifiers::SHIFT, egui::Key::Tab)
+                    })
+                {
+                    self.tree_keys = !self.tree_keys;
+                    self.list.set_keys(!self.tree_keys);
+                    crate::chrome::show_cues(&ctx);
+                }
+                let mut tree_event = None;
+                if free && self.tree_keys {
+                    let at = rows
+                        .iter()
+                        .position(|(_, v, _)| *v == Some(self.view))
+                        .unwrap_or(0);
+                    let with_view: Vec<usize> =
+                        (0..rows.len()).filter(|k| rows[*k].1.is_some()).collect();
+                    let pos = with_view.iter().position(|k| *k == at).unwrap_or(0);
+                    let key = |k| ctx.input_mut(|i| i.consume_key(egui::Modifiers::NONE, k));
+                    let to = if key(egui::Key::ArrowDown) {
+                        with_view.get(pos + 1).copied()
+                    } else if key(egui::Key::ArrowUp) {
+                        pos.checked_sub(1).and_then(|p| with_view.get(p).copied())
+                    } else if key(egui::Key::Home) {
+                        with_view.first().copied()
+                    } else if key(egui::Key::End) {
+                        with_view.last().copied()
+                    } else {
+                        None
+                    };
+                    if let Some(k) = to {
+                        tree_event = Some(TreeEvent::Select(k));
+                    }
+                    let open = rows[at].0.expander;
+                    let (left, right) = if winui::rtl() {
+                        (egui::Key::ArrowRight, egui::Key::ArrowLeft)
+                    } else {
+                        (egui::Key::ArrowLeft, egui::Key::ArrowRight)
+                    };
+                    if (open == Some(true) && key(left)) || (open == Some(false) && key(right)) {
+                        tree_event = Some(TreeEvent::Toggle(at));
+                    }
+                }
+                if let Some(ev) = chrome::categories(
+                    ui,
+                    &mut self.icons,
+                    o,
+                    o.y + h - STRIP_H,
+                    right,
+                    &tree,
+                    self.tree_keys && free,
+                )
+                .or(tree_event)
+                {
+                    // A click in the tree gives it the keys.
+                    self.tree_keys = true;
+                    self.list.set_keys(false);
+                    match ev {
+                        TreeEvent::Close => self.show_categories = false,
+                        TreeEvent::Select(k) => match rows[k].1 {
+                            Some(v) => self.view = v,
+                            None => self.toggle(rows[k].2),
+                        },
+                        TreeEvent::Toggle(k) => self.toggle(rows[k].2),
+                        TreeEvent::Context(k, at) => {
+                            // Leaves and nodes with a view; "Queues" (a branch without one) has
+                            // the queue menu, all greyed.
+                            let node = rows[k].1;
+                            if node.is_some() || rows[k].2 == Branch::Queues {
+                                self.open_popup(Popup::Node(node), at);
+                            }
                         }
                     }
                 }
-            }
-            6.0 + cat_w + 4.0
-        } else {
-            6.0
-        };
+                6.0 + cat_w + 4.0
+            } else {
+                6.0
+            };
 
+            egui::Rect::from_min_max(
+                pos2(o.x + list_left, o.y + chrome::MENU_H + chrome::pane_top()),
+                pos2(o.x + w - 7.0, o.y + h - STRIP_H - 4.0),
+            )
+        };
         // Download list.
         let (ids, rows) = self.list_rows();
         self.selection.retain(&ids);
         let (selected, focus) = self.selection.rows(&ids);
-        let outer = egui::Rect::from_min_max(
-            pos2(o.x + list_left, o.y + chrome::MENU_H + chrome::pane_top()),
-            pos2(o.x + w - 7.0, o.y + h - STRIP_H - 4.0),
-        );
         self.list.menu_open = self.popup.is_some() || self.open_menu.is_some();
         // Another node shows from its top (its rows aren't the last one's).
         if self.list_view != self.view {
@@ -6935,7 +7199,25 @@ impl App {
         {
             chosen = Some((cmd, None));
         }
-        self.status_strip(ui, o, w, h, ids.len());
+        if is_flat {
+            let mut left = crate::i18n::tn(ids.len() as u64, "{n} download", "{n} downloads");
+            let selected = self.selection.ids().len() as u64;
+            if selected > 1 {
+                left += "   ";
+                left += &crate::i18n::tn(selected, "{n} selected", "{n} selected");
+            }
+            crate::flat::status(
+                ui,
+                egui::Rect::from_min_max(
+                    pos2(outer.left(), outer.bottom()),
+                    pos2(outer.right(), o.y + h),
+                ),
+                &left,
+                self.activity().as_deref(),
+            );
+        } else {
+            self.status_strip(ui, o, w, h, ids.len());
+        }
         if let Some((i, pos)) = r.context {
             self.open_popup(Popup::Item(i.map(|i| ids[i])), pos);
         }
@@ -6991,6 +7273,16 @@ impl App {
                 Popup::Item(id) => (self.item_entries(id), id),
                 Popup::QueueDrop(start) => (self.queue_drop(start), None),
                 Popup::TorrentDrop => (
+                    vec![
+                        MenuEntry::Item("Open &torrent file...", Cmd::OpenTorrentFile, true, false),
+                        MenuEntry::Item("Add &magnet link...", Cmd::AddMagnet, true, false),
+                        MenuEntry::Item("&RSS feeds...", Cmd::RssFeeds(false), true, false),
+                        MenuEntry::Sep,
+                        MenuEntry::Item("Torrent setti&ngs...", Cmd::TorrentSettings, true, false),
+                    ],
+                    None,
+                ),
+                Popup::AddUrlDrop => (
                     vec![
                         MenuEntry::Item("Open &torrent file...", Cmd::OpenTorrentFile, true, false),
                         MenuEntry::Item("Add &magnet link...", Cmd::AddMagnet, true, false),

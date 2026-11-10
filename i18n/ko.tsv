@@ -95,6 +95,14 @@
 #. {n} = a number (keep the braces as they are)
 #, machine
 @plural	{n} selected|{n} selected	{n}개 선택됨
+#. count in the Options window
+#. {n} = a number (keep the braces as they are)
+#, machine
+@plural	{n} site added from the file.|{n} sites added from the file.	{n}개 사이트를 파일에서 추가했습니다.
+#. count in the Options window
+#. {n} = a number (keep the braces as they are)
+#, machine
+@plural	{n} site saved to the file.|{n} sites saved to the file.	{n}개 사이트를 파일에 저장했습니다.
 #. count in the main window
 #. event log entry: trackers were added to the torrent
 #. {n} = a number (keep the braces as they are)
@@ -313,6 +321,9 @@
 #. text in a dialog box
 #, machine
 	Add to queue:	대기열에 추가:
+#. text in flat.rs
+#, machine
+	Add Torrent	토렌트 추가
 #. message or event log entry in the main window; window title in the Add torrent window
 #, machine
 	Add torrent	토렌트 추가
@@ -398,7 +409,7 @@
 #. remote control page (on a phone): tab: every download
 #, machine
 	All	모두
-#. item in the Categories tree in the main window
+#. item in the Categories tree in the main window; message or event log entry in the main window
 #, machine
 	All Downloads	모든 다운로드
 #. message or event log entry in the main window
@@ -756,7 +767,7 @@
 #. the headline of the window that offers the browser extension
 #, machine
 	Catch downloads from your browser	브라우저에서 다운로드 받기
-#. text in the main window (menus, toolbar, Categories pane)
+#. message or event log entry in the main window; text in the main window (menus, toolbar, Categories pane)
 #. title of the side pane that lists the categories
 #, machine
 	Categories	범주
@@ -906,7 +917,7 @@
 #. text in the Options window
 #, machine
 	Clock:	시계:
-#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
+#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; text in flat.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
 #. both verbs: Verify = check the file now; Close = close the window
 #. tooltip of the × that closes the Categories pane
 #. verb: closes this window
@@ -976,6 +987,9 @@
 #. tab title: connection settings
 #, machine
 	Connection	연결
+#. text in flat.rs
+#, machine
+	Connections	연결
 #. page title in the Options window
 #, machine
 	Connections and Limits	연결 및 제한
@@ -1296,7 +1310,7 @@
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Download...	다운로드...
-#. text in a download's progress window
+#. text in flat.rs; text in a download's progress window
 #. label before the amount received so far
 #. column title: bytes this connection received
 #, machine
@@ -1327,6 +1341,11 @@
 #. the trailing ... means it is still going on: keep it
 #, machine
 	Downloading and verifying yt-dlp...	yt-dlp 다운로드 및 확인 중...
+#. text in helpers.rs
+#. Video helpers: MDM's own yt-dlp is being downloaded
+#. the trailing ... means it is still going on: keep it
+#, machine
+	Downloading MDM's own copy...	MDM 자체 복사본 다운로드 중...
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. Check for updates, while Update now downloads; {percent} like "42%"
 #, machine
@@ -1515,9 +1534,13 @@
 #. Options → Accounts: a note that the debrid services' support (Real-Debrid, AllDebrid, Premiumize) is new and not yet tried with real paid accounts
 #, machine
 	Experimental: built from the services' public API documentation, not yet confirmed with real accounts.	실험적 기능: 서비스의 공개 API 설명서를 기반으로 빌드되었으며, 실제 계정으로는 아직 확인되지 않았습니다.
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Export	내보내기
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Export...	내보내기...
 #. text in the Options window
 #, machine
 	Extend the availability of Manifest 2 Chrome extensions	Manifest 2 Chrome 확장 프로그램의 사용 가능 기간 연장
@@ -1661,7 +1684,7 @@
 #. text in the Find window
 #, machine
 	Find:	찾기:
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are complete
 #. remote control page (on a phone): tab: downloads finished
 #, machine
@@ -1992,9 +2015,13 @@
 #. checkbox in the Options window
 #, machine
 	Ignore file modification time changes when resuming a download	다운로드 다시 시작 시 파일 수정 시간 변경 무시
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Import	가져오기
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Import...	가져오기...
 #. value in a column's filter list in the download list
 #, machine
 	In a queue	큐에 있음
@@ -2025,6 +2052,10 @@
 #. the torrent's identifier
 #, machine
 	Info hash	정보 해시
+#. text in flat.rs
+#. toolbar button that shows or hides the download inspector
+#, machine
+	Inspector	검사기
 #. text in extracting archives (a download's log, the Archive password window)
 #. in the "7-Zip needed" window, under why
 #, machine
@@ -2270,6 +2301,10 @@
 #. a country's name (where a download's server is)
 #, machine
 	Liberia	라이베리아
+#. message or event log entry in the main window
+#. sidebar section containing the download status filters
+#, machine
+	Library	라이브러리
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -3374,7 +3409,7 @@
 #. remote control page (on a phone): a download's state: added, waiting to start
 #, machine
 	Queued	대기 중
-#. item in the Categories tree in the main window; text in the Scheduler window
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in the Scheduler window
 #. plural noun: the download queues
 #, machine
 	Queues	대기열
@@ -3514,6 +3549,10 @@
 #. window title in rssdlg.rs
 #, machine
 	RSS feeds	RSS 피드
+#. message or event log entry in the main window
+#. {n} = a number (keep the braces as they are)
+#, machine
+	Running, {n} at a time	실행 중, 한 번에 {n}개
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -3588,7 +3627,7 @@
 #. text in a dialog box
 #, machine
 	Save As	다른 이름으로 저장
-#. text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
+#. text in flat.rs; text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
 #. tab title: where downloads are saved
 #, machine
 	Save to	저장 위치
@@ -3623,6 +3662,9 @@
 #. text in the Batch download window
 #, machine
 	Second file:	두 번째 파일:
+#. text in flat.rs
+#, machine
+	Segments	세그먼트
 #. text in a dialog box
 #. title of the folder picker
 #, machine
@@ -3951,6 +3993,9 @@
 #. a country's name (where a download's server is)
 #, machine
 	Spain	스페인
+#. text in flat.rs
+#, machine
+	Speed	속도
 #. text in a download's progress window; text in the tray icon's menu
 #. tab title: the tool that limits the download speed
 #, machine
@@ -4064,7 +4109,7 @@
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
 	Stop {queue}	{queue} 중지
-#. value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
+#. message or event log entry in the main window; value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
 #. a download's status (state it is in, not a command)
 #. a download's status (state it is in, not a command): stopped by the user
 #, machine
@@ -4330,7 +4375,7 @@
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be moved: {error}	파일을 이동할 수 없습니다. {error}
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be read: {error}	파일을 읽을 수 없습니다: {error}
@@ -4379,7 +4424,7 @@
 #. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	브라우저가 시작하는 도우미 프로그램이 없습니다.
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The list could not be saved: {error}	목록을 저장할 수 없습니다: {error}
@@ -4456,6 +4501,18 @@
 #. the Download video window: the site asked for a sign-in although yt-dlp had the cookies of the browser chosen in Options; {browser} = its name
 #, machine
 	The site wants you signed in, even with {browser}'s cookies. Sign in to it in {browser}, then look the page up again.	사이트에서 {browser}의 쿠키가 있어도 로그인해야 한다고 합니다. {browser}에서 로그인한 다음 페이지를 다시 찾아보세요.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though the browser's extension passed the page's cookies
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with your browser's cookies for this page. Try again later, or from another browser.	사이트의 봇 확인(Cloudflare)에서 브라우저의 페이지 쿠키를 사용했는데도 yt-dlp를 차단했습니다. 나중에 다시 시도하거나 다른 브라우저에서 시도해 보세요.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though it had the cookies of the browser chosen in Options; {browser} = its name
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with {browser}'s cookies. Use the Download video button over the video in {browser}, or try the page again later.	사이트의 봇 확인(Cloudflare)에서 {browser}의 쿠키를 사용했는데도 yt-dlp를 차단했습니다. {browser}에서 동영상 위에 있는 동영상 다운로드 버튼을 사용하거나 나중에 페이지를 다시 시도해 보세요.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away and no browser cookies were used
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp. If the page opens in your browser, choose that browser in Options → Sites Logins → Cookies for video sites and look the page up again, or use the Download video button over the video.	사이트의 봇 확인(Cloudflare)에서 yt-dlp를 차단했습니다. 브라우저에서 페이지가 열리면 옵션 → 사이트 로그인 → 동영상 사이트 쿠키에서 해당 브라우저를 선택한 다음 페이지를 다시 조회하거나 동영상 위에 있는 동영상 다운로드 버튼을 사용하세요.
 #. text in crashui.rs
 #. crash report window: the symbols couldn't be downloaded; the report still works
 #, machine
@@ -4638,6 +4695,11 @@
 #. the Download video window: the video needs the user to be signed in
 #, machine
 	This video needs you to be signed in. Use the Download video button over it in your browser, which passes your sign-in on, or choose your browser in Options → Sites Logins → Cookies for video sites.	이 동영상을 보려면 로그인해야 합니다. 브라우저에서 동영상 위에 있는 동영상 다운로드 단추를 사용하면 로그인 정보가 전달됩니다. 또는 옵션 → 사이트 로그인 → 동영상 사이트용 쿠키에서 브라우저를 선택하세요.
+#. text in errors.rs
+#. a download's error: the address is a site's web page that needs a browser, not the file; {site} = the site's name (gofile)
+#. {site} = a web site's name such as "example.com" (keep the braces as they are)
+#, machine
+	this {site} link is a web page, not the file: open it in your browser and download from there	이 {site} 링크는 파일이 아닌 웹 페이지입니다. 브라우저에서 열어 다운로드하세요.
 #. text in whereis.rs
 #. where a download's server is, when a proxy carries it (the proxy's place not known)
 #, machine
@@ -4661,7 +4723,7 @@
 #. tooltip on the Scheduler's "Wake the computer to run this queue" while "Start download at" is off
 #, machine
 	Tick "Start download at" first: the computer is woken for the start time	먼저 "다운로드 시작 시간"을 선택하세요. 컴퓨터는 시작 시간을 위해 절전 모드에서 해제됩니다.
-#. text in a download's progress window; text in the Scheduler window
+#. text in flat.rs; text in a download's progress window; text in the Scheduler window
 #, machine
 	Time left	남은 시간
 #. text in countries.rs
@@ -4870,7 +4932,7 @@
 #. Link grabber button (IDM's): untick every link
 #, machine
 	Uncheck all	모두 선택 취소
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are not complete yet
 #. remote control page (on a phone): tab: downloads not finished yet
 #, machine
@@ -5356,6 +5418,10 @@
 #. {algorithm} = a checksum algorithm such as "SHA-256" (keep the braces as they are)
 #, machine
 	{file}: the file matches its checksum ({algorithm})	{file}: 파일이 체크섬({algorithm})과 일치합니다.
+#. text in flat.rs
+#. {size} = a file size such as "4.2 MB" (keep the braces as they are)
+#, machine
+	{got} of {size}	{size} 중 {got}
 #. text in a download's progress window
 #. {have} and {total} = numbers of pieces; {size} = one piece's size
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5575,7 +5641,7 @@ column	Share ratio	공유 비율
 #. noun: the file's size
 #, machine
 column	Size	크기
-#. column title in the download list in the download list
+#. column title in flat.rs; column title in the download list in the download list
 #. noun: where the download comes from (Web or Torrent)
 #, machine
 column	Source	원본
@@ -6286,6 +6352,10 @@ menu	Find Next (F3)	다음 찾기(F3)
 #, machine
 menu	First and last pieces first	처음과 마지막 조각 먼저
 #. menu command in the main window
+#. View → Theme: a style theme's name (minimal and flat, like a phone's apps)
+#, machine
+menu	Flat	플랫
+#. menu command in the main window
 #. noun: the list's font (submenu)
 #, machine
 menu	Font	글꼴
@@ -6555,7 +6625,7 @@ menubar	&View	&보기
 #. toolbar button in the main window
 #, machine
 toolbar	Add Torrent	토렌트 추가
-#. toolbar button in the main window
+#. toolbar button in the main window; toolbar button in flat.rs
 #, machine
 toolbar	Add URL	URL 추가
 #. toolbar button in the main window

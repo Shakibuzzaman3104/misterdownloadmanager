@@ -133,7 +133,7 @@ work, mode = sys.argv[1:3]
 dark = mode == "dark"
 cats = ["General", "Compressed", "Documents", "Music", "Programs", "Video", "Torrents"]
 dirs = [[c, f"{work}/Downloads" + ("" if c == "General" else f"/{c}")] for c in cats]
-settings = dict(language="en", language_asked=True, helpers_asked=True, extension_never_ask=True,
+settings = dict(language="en", theme="flat", language_asked=True, helpers_asked=True, extension_never_ask=True,
                 dark_mode_support=dark, always_dark=dark, update_check=False, torrent_incoming=False,
                 torrent_upnp=False, torrent_dht=False, torrent_lsd=False, torrent_stop_idle=True,
                 category_dirs=dirs)

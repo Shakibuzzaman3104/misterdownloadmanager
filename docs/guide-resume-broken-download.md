@@ -17,7 +17,7 @@ If it gives up and shows **Error**:
 
 MDM saves each download's progress as it goes, so a Windows crash, a power cut or closing MDM loses at most the last moments.
 
-1. Start MDM. The download is in the list under **Unfinished**.
+1. Start MDM. The download is in the list, under **Stopped** in the sidebar.
 2. Select it and click **Resume**.
 
 ## When the link has expired

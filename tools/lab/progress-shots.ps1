@@ -88,7 +88,7 @@ function Scenario([string]$name, [hashtable]$item, [int]$wait, [scriptblock]$pre
   $list = [ordered]@{
     next_id = 2; version = 2; items = @($item)
     settings = [ordered]@{
-      language = "en"; language_asked = $true; helpers_asked = $true; extension_never_ask = $true
+      language = "en"; theme = "flat"; language_asked = $true; helpers_asked = $true; extension_never_ask = $true
       dark_mode_support = [bool]$Dark; always_dark = [bool]$Dark; update_check = $false; category_dirs = $dirs
       # The torrent engine reaches the swarm on 127.0.0.1 and listens nowhere else (no firewall
       # prompt), as docs-shots.ps1 sets it.

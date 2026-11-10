@@ -5,11 +5,13 @@
 //! - [`Palette`]: one variant's colours (a theme has a light and a dark one; the mode picks
 //!   which), by role. Each role has a stable key (`"button.hot"`), which theme files use.
 //! - [`Metrics`]: the sizes a control painter owns (corner radii, border and focus widths, font
-//!   sizes, row heights). Where a window puts its controls stays the window's layout.
+//!   sizes, row heights). Where a window puts its controls stays the window's layout, except the
+//!   main window's, which [`Controls::layout`] chooses (Classic or Flat).
 //! - [`IconStyle`]: how the toolbar's and Options' outline icons are inked.
 //!
 //! [`CLASSIC`] is MDM's own look (IDM's classic layout, Windows 11 controls, accent #0078D4),
-//! written out with the exact values the painters had before themes: the default, unchanged.
+//! written out with the exact values the painters had before themes. Flat
+//! (`assets/themes/flat.toml`) is the default for new installs.
 
 use std::borrow::Cow;
 
@@ -162,6 +164,7 @@ palette! {
     reach_far: "reach.far", "A server far by its round trip (over 150 ms)" = rgb(0xff, 0x99, 0xa4), rgb(0xc4, 0x2b, 0x1c);
     flag_edge: "flag.edge", "The thin edge around a country's flag" = rgba(0x00, 0x00, 0x00, 40), rgba(0x00, 0x00, 0x00, 40);
     accent: "accent", "The accent: focus lines, open and default controls, filters, links' focus" = rgb(0x60, 0xcd, 0xff), rgb(0x00, 0x78, 0xd4);
+    accent_text: "accent.text", "Text on the accent" = grey(0xff), grey(0xff);
     focus_ring: "focus.ring", "The dotted keyboard focus rectangle" = grey(0xcc), grey(0x0d);
     // ---- selection ----
     selection: "selection", "A selection's fill: rows, a chosen day, selected text" = rgb(0x00, 0x78, 0xd4), rgb(0x00, 0x78, 0xd4);
@@ -412,10 +415,19 @@ impl IconStyle {
     }
 }
 
+/// Whether the main window uses the classic layout or the flat one.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum MainLayout {
+    Classic,
+    Flat,
+}
+
 /// How the shared painters draw each kind of control (#45): the classic look's are Windows 11's;
 /// the style themes pick their era's. Colours and sizes still come from the palette and metrics.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Controls {
+    /// The main window's layout.
+    pub layout: MainLayout,
     /// A focused text box: an accent line along its bottom (Windows 11), or its whole border in
     /// the accent (Windows 8, XP).
     pub field_focus: FieldFocus,
@@ -533,6 +545,7 @@ pub enum FocusLook {
 
 impl Controls {
     pub const CLASSIC: Self = Self {
+        layout: MainLayout::Classic,
         field_focus: FieldFocus::Line,
         check: CheckLook::Fluent,
         progress: ProgressLook::Line,
@@ -545,6 +558,8 @@ impl Controls {
     /// Sets the control with this key to the style named `value`; false when either is unknown.
     pub fn set(&mut self, key: &str, value: &str) -> bool {
         match (key, value) {
+            ("layout", "classic") => self.layout = MainLayout::Classic,
+            ("layout", "flat") => self.layout = MainLayout::Flat,
             ("field-focus", "line") => self.field_focus = FieldFocus::Line,
             ("field-focus", "border") => self.field_focus = FieldFocus::Border,
             ("field-focus", "ring") => self.field_focus = FieldFocus::Ring,
@@ -622,7 +637,10 @@ pub static CLASSIC: Theme = Theme {
 /// (written out above), then the ones shipped as theme files (`assets/themes/`, in the format
 /// users write, so they double as examples). Native follows the system and is made when chosen
 /// (`crate::native`).
-pub fn builtins() -> [&'static Theme; 8] {
+pub fn builtins() -> [&'static Theme; 9] {
+    static FLAT: std::sync::LazyLock<Theme> = std::sync::LazyLock::new(|| {
+        crate::themefile::builtin("flat", include_str!("../assets/themes/flat.toml"))
+    });
     static HIGH_CONTRAST: std::sync::LazyLock<Theme> = std::sync::LazyLock::new(|| {
         crate::themefile::builtin(
             "high-contrast",
@@ -650,6 +668,7 @@ pub fn builtins() -> [&'static Theme; 8] {
     });
     [
         &CLASSIC,
+        &FLAT,
         &HIGH_CONTRAST,
         &METRO,
         &ADWAITA,
@@ -846,6 +865,7 @@ mod tests {
                 "Metro",
                 include_str!("../assets/themes/metro.toml"),
             ),
+            ("flat", "Flat", include_str!("../assets/themes/flat.toml")),
             (
                 "adwaita",
                 "Adwaita",
@@ -872,17 +892,22 @@ mod tests {
             assert_eq!(l.theme.name, name);
             assert!(l.theme.dark.dark && !l.theme.light.dark);
         }
-        let metro = builtins()[2];
+        let metro = builtins()[3];
         assert_eq!(metro.icon_set.as_deref(), Some("metro"));
         assert_eq!(metro.controls.caption, CaptionLook::Metro);
         assert_eq!(metro.metrics.control_radius, 0.0);
-        let adwaita = builtins()[3];
+        let flat = builtins()[1];
+        assert_eq!(flat.controls.layout, MainLayout::Flat);
+        assert_eq!(flat.controls.caption, CaptionLook::System);
+        assert_eq!(flat.metrics.list_row, 40.0);
+        assert_eq!(flat.metrics.list_header, 32.0);
+        let adwaita = builtins()[4];
         assert_eq!(adwaita.icon_set.as_deref(), Some("adwaita"));
         assert_eq!(adwaita.controls.caption, CaptionLook::Adwaita);
         assert_eq!(adwaita.controls.focus, FocusLook::Ring);
         assert_eq!(adwaita.controls.check, CheckLook::Adwaita);
         assert_eq!(adwaita.controls.field_focus, FieldFocus::Ring);
-        let breeze = builtins()[4];
+        let breeze = builtins()[5];
         assert_eq!(breeze.icon_set.as_deref(), Some("breeze"));
         assert_eq!(breeze.controls.caption, CaptionLook::Breeze);
         assert_eq!(breeze.controls.focus, FocusLook::Frame);
@@ -892,7 +917,7 @@ mod tests {
         // The era themes: their own buttons, boxes, bars and title bars, and icon sets.
         for (i, id, button, check, progress, caption) in [
             (
-                5,
+                6,
                 "luna",
                 ButtonLook::Luna,
                 CheckLook::Luna,
@@ -900,7 +925,7 @@ mod tests {
                 CaptionLook::Luna,
             ),
             (
-                6,
+                7,
                 "aero",
                 ButtonLook::Aero,
                 CheckLook::Aero,
@@ -908,7 +933,7 @@ mod tests {
                 CaptionLook::Aero,
             ),
             (
-                7,
+                8,
                 "aqua",
                 ButtonLook::Aqua,
                 CheckLook::Aqua,
@@ -930,9 +955,9 @@ mod tests {
         }
         // Aqua's keyboard focus is a ring, as Mac OS X draws it; Luna's and Aero's Windows'
         // dotted rectangle.
-        assert_eq!(builtins()[7].controls.focus, FocusLook::Ring);
-        assert_eq!(builtins()[5].controls.focus, FocusLook::Dotted);
+        assert_eq!(builtins()[8].controls.focus, FocusLook::Ring);
         assert_eq!(builtins()[6].controls.focus, FocusLook::Dotted);
+        assert_eq!(builtins()[7].controls.focus, FocusLook::Dotted);
     }
 
     /// The classic look's dark secondary and error texts read on every dark surface they sit on

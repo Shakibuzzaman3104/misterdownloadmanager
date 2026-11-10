@@ -398,7 +398,7 @@
 #. remote control page (on a phone): tab: every download
 #, machine
 	All	Усі
-#. item in the Categories tree in the main window
+#. item in the Categories tree in the main window; message or event log entry in the main window
 #, machine
 	All Downloads	Усі завантаження
 #. message or event log entry in the main window
@@ -756,7 +756,7 @@
 #. the headline of the window that offers the browser extension
 #, machine
 	Catch downloads from your browser	Перехоплюйте завантаження з браузера
-#. text in the main window (menus, toolbar, Categories pane)
+#. message or event log entry in the main window; text in the main window (menus, toolbar, Categories pane)
 #. title of the side pane that lists the categories
 #, machine
 	Categories	Категорії
@@ -906,7 +906,7 @@
 #. text in the Options window
 #, machine
 	Clock:	Годинник:
-#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
+#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; text in flat.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
 #. both verbs: Verify = check the file now; Close = close the window
 #. tooltip of the × that closes the Categories pane
 #. verb: closes this window
@@ -1296,7 +1296,7 @@
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Download...	Завантажити...
-#. text in a download's progress window
+#. text in flat.rs; text in a download's progress window
 #. label before the amount received so far
 #. column title: bytes this connection received
 #, machine
@@ -1515,7 +1515,7 @@
 #. Options → Accounts: a note that the debrid services' support (Real-Debrid, AllDebrid, Premiumize) is new and not yet tried with real paid accounts
 #, machine
 	Experimental: built from the services' public API documentation, not yet confirmed with real accounts.	Експериментально: створено на основі публічної документації API служб, ще не підтверджено реальними обліковими записами.
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Export	Експорт
 #. text in the Options window
@@ -1661,7 +1661,7 @@
 #. text in the Find window
 #, machine
 	Find:	Знайти:
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are complete
 #. remote control page (on a phone): tab: downloads finished
 #, machine
@@ -1992,7 +1992,7 @@
 #. checkbox in the Options window
 #, machine
 	Ignore file modification time changes when resuming a download	Ігнорувати зміни часу модифікації файлу при відновленні завантаження
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Import	Імпорт
 #. value in a column's filter list in the download list
@@ -3374,7 +3374,7 @@
 #. remote control page (on a phone): a download's state: added, waiting to start
 #, machine
 	Queued	У черзі
-#. item in the Categories tree in the main window; text in the Scheduler window
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in the Scheduler window
 #. plural noun: the download queues
 #, machine
 	Queues	Черги
@@ -3588,7 +3588,7 @@
 #. text in a dialog box
 #, machine
 	Save As	Зберегти як
-#. text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
+#. text in flat.rs; text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
 #. tab title: where downloads are saved
 #, machine
 	Save to	Зберегти до
@@ -4064,7 +4064,7 @@
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
 	Stop {queue}	Зупинити {queue}
-#. value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
+#. message or event log entry in the main window; value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
 #. a download's status (state it is in, not a command)
 #. a download's status (state it is in, not a command): stopped by the user
 #, machine
@@ -4330,7 +4330,7 @@
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be moved: {error}	Не вдалося перемістити файл: {error}
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be read: {error}	Не вдалося прочитати файл: {error}
@@ -4379,7 +4379,7 @@
 #. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	Допоміжна програма, яку запускають браузери, відсутня
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The list could not be saved: {error}	Не вдалося зберегти список: {error}
@@ -4661,7 +4661,7 @@
 #. tooltip on the Scheduler's "Wake the computer to run this queue" while "Start download at" is off
 #, machine
 	Tick "Start download at" first: the computer is woken for the start time	Спочатку встановіть прапорець «Почати завантаження о»: комп’ютер буде розбуджено до часу початку
-#. text in a download's progress window; text in the Scheduler window
+#. text in flat.rs; text in a download's progress window; text in the Scheduler window
 #, machine
 	Time left	Залишилося часу
 #. text in countries.rs
@@ -4870,7 +4870,7 @@
 #. Link grabber button (IDM's): untick every link
 #, machine
 	Uncheck all	Зняти всі позначки
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are not complete yet
 #. remote control page (on a phone): tab: downloads not finished yet
 #, machine
@@ -5575,7 +5575,7 @@ column	Share ratio	Співвідношення роздачі
 #. noun: the file's size
 #, machine
 column	Size	Розмір
-#. column title in the download list in the download list
+#. column title in flat.rs; column title in the download list in the download list
 #. noun: where the download comes from (Web or Torrent)
 #, machine
 column	Source	Джерело
@@ -6555,7 +6555,7 @@ menubar	&View	&Вигляд
 #. toolbar button in the main window
 #, machine
 toolbar	Add Torrent	Додати торрент
-#. toolbar button in the main window
+#. toolbar button in the main window; toolbar button in flat.rs
 #, machine
 toolbar	Add URL	Додати URL
 #. toolbar button in the main window

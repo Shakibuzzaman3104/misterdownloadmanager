@@ -167,7 +167,7 @@ try {
     }
   Set-Content -Encoding utf8 "$work\data\downloads.json" (
     '{"next_id":1,"items":[],"version":2,"settings":{"language":' + (& $q $Lang) +
-    ',"language_asked":true,"helpers_asked":true,"extension_never_ask":true,"dark_mode_support":' + $dark.ToString().ToLower() +
+    ',"theme":"flat","language_asked":true,"helpers_asked":true,"extension_never_ask":true,"dark_mode_support":' + $dark.ToString().ToLower() +
     ',"always_dark":' + $dark.ToString().ToLower() +
     ',"update_check":false,"torrent_incoming":false,"torrent_upnp":false,"torrent_dht":false,"torrent_lsd":false,"torrent_stop_idle":true' +
     ',"category_dirs":[' + ($dirs -join ",") + ']' + $(if ($Settings) { ",$Settings" } else { "" }) + '}}')

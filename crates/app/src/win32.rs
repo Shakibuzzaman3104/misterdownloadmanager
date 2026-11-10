@@ -4576,6 +4576,7 @@ fn classic_font_file(family: &egui::FontFamily) -> Option<&'static str> {
             "tahoma" => Some("tahoma.ttf"),
             "tahoma-bold" => Some("tahomabd.ttf"),
             "arial-bold" => Some("arialbd.ttf"),
+            crate::theme::UI_BOLD => Some("segoeuib.ttf"),
             _ => None,
         },
     }

@@ -51,11 +51,12 @@ id = "main-window"
 page = "getting-started.md"
 under = "The main window"
 take = "@main"
-# The toolbar has no accessible names: a rectangle at its end. 1 right of the menu bar's last
-# menu, 2 right of the toolbar, 3 and 4 in the empty part of the categories and the list.
-marks = [{ at = "MenuItem:Help", side = "right" }, { at = [810, 60, 10, 50], side = "right" }, { at = "Tree:Categories", side = "center" }, { at = "List:Downloads", side = "center" }]
-alt = "The main window: the menu bar, the toolbar, the categories on the left and the download list on the right"
-caption = "1 the menu bar, 2 the toolbar, 3 the categories, 4 the download list."
+# Flat, in the picture's pixels: the sidebar is 220 wide, the header runs from 50 to 114, its
+# buttons end left of Add URL. 1 right of the menu bar's last menu, 2 in the sidebar's empty
+# part, 3 left of the header's buttons, 4 in the list's empty part.
+marks = [{ at = "MenuItem:Help", side = "right" }, { at = [100, 400, 20, 20], side = "center" }, { at = [540, 70, 10, 24], side = "left" }, { at = "List:Downloads", side = "center" }]
+alt = "The main window: the menu bar, the sidebar on the left, the view's title and buttons at the top, and the download list"
+caption = "1 the menu bar, 2 the sidebar, 3 the buttons, 4 the download list."
 
 [[shot]]
 id = "view-dark-mode"
@@ -73,8 +74,17 @@ page = "getting-started.md"
 under = "Themes"
 take = "@menu:menu:3:theme"
 crop = [145, 28, 366, 424]
-alt = "View → Theme open: Classic, Native, High contrast, Metro, Adwaita, Breeze, Luna, Aero and Aqua, and Open themes folder"
-caption = "View → Theme switches at once, keeping the layout."
+alt = "View → Theme open: Classic, Flat, Native, High contrast, Metro, Adwaita, Breeze, Luna, Aero and Aqua, and Open themes folder"
+caption = "View → Theme switches at once."
+
+[[shot]]
+id = "theme-flat"
+page = "getting-started.md"
+under = "Themes"
+take = "theme:flat+@main"
+crop = [0, 0, 560, 260]
+alt = "The main window's sidebar and header in the Flat theme"
+caption = "Flat"
 
 [[shot]]
 id = "theme-classic"
@@ -329,8 +339,9 @@ id = "list-columns"
 page = "download-list.md"
 under = "Columns"
 take = "@main"
-crop = [150, 120, 0, 345]
-alt = "The download list with its columns: Source, File Name, Q, Size, Status, Time left, Transfer rate and more"
+# Flat: the list starts right of the 220 px sidebar and under the header, which ends at 114.
+crop = [220, 114, 0, 0]
+alt = "The download list with its columns: File Name, Size, Status, Time left and Transfer rate"
 caption = "Click a column title to sort; its funnel filters."
 
 [[shot]]
@@ -338,9 +349,10 @@ id = "list-categories"
 page = "download-list.md"
 under = "Categories"
 take = "@main"
-crop = [0, 118, 151, 190]
-alt = "The Categories pane: All Downloads with a category per file type, Unfinished, Finished and Queues"
-caption = "All Downloads, Unfinished, Finished and Queues, each by category."
+# Flat's sidebar, under the menu bar.
+crop = [0, 50, 220, 0]
+alt = "The sidebar: Library with All Downloads, Downloading, Waiting, Stopped and Finished, and Categories with one per file type"
+caption = "Library and Categories; Queues follow below."
 
 [[shot]]
 id = "category-properties"
@@ -635,6 +647,15 @@ take = "theme:classic+@main"
 crop = [0, 0, 930, 300]
 alt = "The main window in the Classic theme"
 caption = "Classic"
+
+[[shot]]
+id = "site-theme-flat"
+page = "website/content/themes.toml"
+take = "theme:flat+@main"
+# The menus, the sidebar, the header and the list's rows: the theme's look.
+crop = [0, 0, 930, 300]
+alt = "The main window in the Flat theme"
+caption = "Flat"
 
 [[shot]]
 id = "site-theme-native"

@@ -95,6 +95,14 @@
 #. {n} = a number (keep the braces as they are)
 #, machine
 @plural	{n} selected|{n} selected	{n} seleccionat|{n} seleccionats
+#. count in the Options window
+#. {n} = a number (keep the braces as they are)
+#, machine
+@plural	{n} site added from the file.|{n} sites added from the file.	S'ha afegit {n} lloc des del fitxer.|S'han afegit {n} llocs des del fitxer.
+#. count in the Options window
+#. {n} = a number (keep the braces as they are)
+#, machine
+@plural	{n} site saved to the file.|{n} sites saved to the file.	S'ha desat {n} lloc al fitxer.|S'han desat {n} llocs al fitxer.
 #. count in the main window
 #. event log entry: trackers were added to the torrent
 #. {n} = a number (keep the braces as they are)
@@ -313,6 +321,9 @@
 #. text in a dialog box
 #, machine
 	Add to queue:	Afegeix a la cua:
+#. text in flat.rs
+#, machine
+	Add Torrent	Afegeix torrent
 #. message or event log entry in the main window; window title in the Add torrent window
 #, machine
 	Add torrent	Afegeix torrent
@@ -398,7 +409,7 @@
 #. remote control page (on a phone): tab: every download
 #, machine
 	All	Tot
-#. item in the Categories tree in the main window
+#. item in the Categories tree in the main window; message or event log entry in the main window
 #, machine
 	All Downloads	Totes les baixades
 #. message or event log entry in the main window
@@ -756,7 +767,7 @@
 #. the headline of the window that offers the browser extension
 #, machine
 	Catch downloads from your browser	Captura baixades del navegador
-#. text in the main window (menus, toolbar, Categories pane)
+#. message or event log entry in the main window; text in the main window (menus, toolbar, Categories pane)
 #. title of the side pane that lists the categories
 #, machine
 	Categories	Categories
@@ -906,7 +917,7 @@
 #. text in the Options window
 #, machine
 	Clock:	Rellotge:
-#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
+#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; text in flat.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
 #. both verbs: Verify = check the file now; Close = close the window
 #. tooltip of the × that closes the Categories pane
 #. verb: closes this window
@@ -976,6 +987,9 @@
 #. tab title: connection settings
 #, machine
 	Connection	Connexió
+#. text in flat.rs
+#, machine
+	Connections	Connexions
 #. page title in the Options window
 #, machine
 	Connections and Limits	Connexions i límits
@@ -1296,7 +1310,7 @@
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Download...	Baixa...
-#. text in a download's progress window
+#. text in flat.rs; text in a download's progress window
 #. label before the amount received so far
 #. column title: bytes this connection received
 #, machine
@@ -1327,6 +1341,11 @@
 #. the trailing ... means it is still going on: keep it
 #, machine
 	Downloading and verifying yt-dlp...	S'està baixant i verificant yt-dlp...
+#. text in helpers.rs
+#. Video helpers: MDM's own yt-dlp is being downloaded
+#. the trailing ... means it is still going on: keep it
+#, machine
+	Downloading MDM's own copy...	S'està baixant la còpia pròpia de MDM...
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. Check for updates, while Update now downloads; {percent} like "42%"
 #, machine
@@ -1515,9 +1534,13 @@
 #. Options → Accounts: a note that the debrid services' support (Real-Debrid, AllDebrid, Premiumize) is new and not yet tried with real paid accounts
 #, machine
 	Experimental: built from the services' public API documentation, not yet confirmed with real accounts.	Experimental: creat a partir de la documentació de l'API pública dels serveis, encara no s'ha confirmat amb comptes reals.
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Export	Exportació
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Export...	Exporta...
 #. text in the Options window
 #, machine
 	Extend the availability of Manifest 2 Chrome extensions	Amplia la disponibilitat de les extensions de Chrome de Manifest 2
@@ -1661,7 +1684,7 @@
 #. text in the Find window
 #, machine
 	Find:	Cerca:
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are complete
 #. remote control page (on a phone): tab: downloads finished
 #, machine
@@ -1992,9 +2015,13 @@
 #. checkbox in the Options window
 #, machine
 	Ignore file modification time changes when resuming a download	Ignora els canvis d'hora de modificació del fitxer en reprendre una baixada
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Import	Importa
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Import...	Importa...
 #. value in a column's filter list in the download list
 #, machine
 	In a queue	En una cua
@@ -2025,6 +2052,10 @@
 #. the torrent's identifier
 #, machine
 	Info hash	Hash d'informació
+#. text in flat.rs
+#. toolbar button that shows or hides the download inspector
+#, machine
+	Inspector	Inspector
 #. text in extracting archives (a download's log, the Archive password window)
 #. in the "7-Zip needed" window, under why
 #, machine
@@ -2270,6 +2301,10 @@
 #. a country's name (where a download's server is)
 #, machine
 	Liberia	Libèria
+#. message or event log entry in the main window
+#. sidebar section containing the download status filters
+#, machine
+	Library	Biblioteca
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -3374,7 +3409,7 @@
 #. remote control page (on a phone): a download's state: added, waiting to start
 #, machine
 	Queued	En cua
-#. item in the Categories tree in the main window; text in the Scheduler window
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in the Scheduler window
 #. plural noun: the download queues
 #, machine
 	Queues	Cues
@@ -3514,6 +3549,10 @@
 #. window title in rssdlg.rs
 #, machine
 	RSS feeds	Canals RSS
+#. message or event log entry in the main window
+#. {n} = a number (keep the braces as they are)
+#, machine
+	Running, {n} at a time	S'està executant, {n} alhora
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -3588,7 +3627,7 @@
 #. text in a dialog box
 #, machine
 	Save As	Desa com a
-#. text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
+#. text in flat.rs; text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
 #. tab title: where downloads are saved
 #, machine
 	Save to	Desa a
@@ -3623,6 +3662,9 @@
 #. text in the Batch download window
 #, machine
 	Second file:	Segon fitxer:
+#. text in flat.rs
+#, machine
+	Segments	Segments
 #. text in a dialog box
 #. title of the folder picker
 #, machine
@@ -3951,6 +3993,9 @@
 #. a country's name (where a download's server is)
 #, machine
 	Spain	Espanya
+#. text in flat.rs
+#, machine
+	Speed	Velocitat
 #. text in a download's progress window; text in the tray icon's menu
 #. tab title: the tool that limits the download speed
 #, machine
@@ -4064,7 +4109,7 @@
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
 	Stop {queue}	Atura {queue}
-#. value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
+#. message or event log entry in the main window; value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
 #. a download's status (state it is in, not a command)
 #. a download's status (state it is in, not a command): stopped by the user
 #, machine
@@ -4330,7 +4375,7 @@
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be moved: {error}	No s'ha pogut moure el fitxer: {error}
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be read: {error}	No s'ha pogut llegir el fitxer: {error}
@@ -4379,7 +4424,7 @@
 #. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	Falta el programa d'ajuda que inicien els navegadors
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The list could not be saved: {error}	No s'ha pogut desar la llista: {error}
@@ -4456,6 +4501,18 @@
 #. the Download video window: the site asked for a sign-in although yt-dlp had the cookies of the browser chosen in Options; {browser} = its name
 #, machine
 	The site wants you signed in, even with {browser}'s cookies. Sign in to it in {browser}, then look the page up again.	El lloc vol que inicieu la sessió, fins i tot amb les galetes de {browser}. Inicieu-hi la sessió a {browser} i torneu a cercar la pàgina.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though the browser's extension passed the page's cookies
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with your browser's cookies for this page. Try again later, or from another browser.	La comprovació de bots del lloc (Cloudflare) ha rebutjat yt-dlp, fins i tot amb les galetes del navegador per a aquesta pàgina. Torna-ho a provar més tard o des d'un altre navegador.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though it had the cookies of the browser chosen in Options; {browser} = its name
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with {browser}'s cookies. Use the Download video button over the video in {browser}, or try the page again later.	La comprovació de bots del lloc (Cloudflare) ha rebutjat yt-dlp, fins i tot amb les galetes de {browser}. Fes servir el botó Baixa vídeo sobre el vídeo a {browser} o torna a provar la pàgina més tard.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away and no browser cookies were used
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp. If the page opens in your browser, choose that browser in Options → Sites Logins → Cookies for video sites and look the page up again, or use the Download video button over the video.	La comprovació de bots del lloc (Cloudflare) ha rebutjat yt-dlp. Si la pàgina s'obre al navegador, tria aquest navegador a Opcions → Inicis de sessió de llocs → Galetes per a llocs de vídeo i torna a cercar la pàgina, o fes servir el botó Baixa vídeo sobre el vídeo.
 #. text in crashui.rs
 #. crash report window: the symbols couldn't be downloaded; the report still works
 #, machine
@@ -4638,6 +4695,11 @@
 #. the Download video window: the video needs the user to be signed in
 #, machine
 	This video needs you to be signed in. Use the Download video button over it in your browser, which passes your sign-in on, or choose your browser in Options → Sites Logins → Cookies for video sites.	Aquest vídeo requereix que iniciïs la sessió. Fes servir el botó Baixa el vídeo que hi ha a sobre del vídeo al navegador, que transmet les teves dades d'inici de sessió, o tria el navegador a Opcions → Inicis de sessió de llocs → Galetes per a llocs de vídeo.
+#. text in errors.rs
+#. a download's error: the address is a site's web page that needs a browser, not the file; {site} = the site's name (gofile)
+#. {site} = a web site's name such as "example.com" (keep the braces as they are)
+#, machine
+	this {site} link is a web page, not the file: open it in your browser and download from there	Aquest enllaç de {site} és una pàgina web, no el fitxer: obre-la al navegador i baixa'l des d'allà
 #. text in whereis.rs
 #. where a download's server is, when a proxy carries it (the proxy's place not known)
 #, machine
@@ -4661,7 +4723,7 @@
 #. tooltip on the Scheduler's "Wake the computer to run this queue" while "Start download at" is off
 #, machine
 	Tick "Start download at" first: the computer is woken for the start time	Marqueu primer «Inicia la baixada a»: l'ordinador s'activa per a l'hora d'inici
-#. text in a download's progress window; text in the Scheduler window
+#. text in flat.rs; text in a download's progress window; text in the Scheduler window
 #, machine
 	Time left	Temps restant
 #. text in countries.rs
@@ -4870,7 +4932,7 @@
 #. Link grabber button (IDM's): untick every link
 #, machine
 	Uncheck all	Desselecciona-ho tot
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are not complete yet
 #. remote control page (on a phone): tab: downloads not finished yet
 #, machine
@@ -5356,6 +5418,10 @@
 #. {algorithm} = a checksum algorithm such as "SHA-256" (keep the braces as they are)
 #, machine
 	{file}: the file matches its checksum ({algorithm})	{file}: el fitxer coincideix amb la seva suma de comprovació ({algorithm})
+#. text in flat.rs
+#. {size} = a file size such as "4.2 MB" (keep the braces as they are)
+#, machine
+	{got} of {size}	{got} de {size}
 #. text in a download's progress window
 #. {have} and {total} = numbers of pieces; {size} = one piece's size
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5575,7 +5641,7 @@ column	Share ratio	Relació de compartició
 #. noun: the file's size
 #, machine
 column	Size	Mida
-#. column title in the download list in the download list
+#. column title in flat.rs; column title in the download list in the download list
 #. noun: where the download comes from (Web or Torrent)
 #, machine
 column	Source	Origen
@@ -6286,6 +6352,10 @@ menu	Find Next (F3)	Cerca següent (F3)
 #, machine
 menu	First and last pieces first	Primeres i últimes peces primer
 #. menu command in the main window
+#. View → Theme: a style theme's name (minimal and flat, like a phone's apps)
+#, machine
+menu	Flat	Flat
+#. menu command in the main window
 #. noun: the list's font (submenu)
 #, machine
 menu	Font	Font
@@ -6555,7 +6625,7 @@ menubar	&View	&Visualitza
 #. toolbar button in the main window
 #, machine
 toolbar	Add Torrent	Afegeix torrent
-#. toolbar button in the main window
+#. toolbar button in the main window; toolbar button in flat.rs
 #, machine
 toolbar	Add URL	Afegeix URL
 #. toolbar button in the main window

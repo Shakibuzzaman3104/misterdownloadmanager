@@ -21,7 +21,7 @@ These pages explain each part of the program. The tutorials walk through the thi
 
 ## Organising
 
-- **[The download list](download-list.md)** — columns, filters, the categories tree, selecting many downloads, finding one, and deleting downloads with or without their files.
+- **[The download list](download-list.md)** — columns, filters, the sidebar, selecting many downloads, finding one, and deleting downloads with or without their files.
 - **[Queues and the Scheduler](queues-and-scheduler.md)** — run downloads a few at a time, start and stop them by the clock, and turn the computer off when they are done.
 
 ## Speed and connections

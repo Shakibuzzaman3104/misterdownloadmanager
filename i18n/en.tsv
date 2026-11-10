@@ -245,6 +245,8 @@
 	Add to queue	Add to queue
 #. text in a dialog box
 	Add to queue:	Add to queue:
+#. text in flat.rs
+	Add Torrent	Add Torrent
 #. message or event log entry in the main window; window title in the Add torrent window
 	Add torrent	Add torrent
 #. window title in the Add torrent window
@@ -309,7 +311,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): tab: every download
 	All	All
-#. item in the Categories tree in the main window
+#. item in the Categories tree in the main window; message or event log entry in the main window
 	All Downloads	All Downloads
 #. message or event log entry in the main window
 	All files	All files
@@ -573,7 +575,7 @@
 #. text in extension.rs
 #. the headline of the window that offers the browser extension
 	Catch downloads from your browser	Catch downloads from your browser
-#. text in the main window (menus, toolbar, Categories pane)
+#. message or event log entry in the main window; text in the main window (menus, toolbar, Categories pane)
 #. title of the side pane that lists the categories
 	Categories	Categories
 #. page title in the Options window
@@ -685,7 +687,7 @@
 	Client	Client
 #. text in the Options window
 	Clock:	Clock:
-#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
+#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; text in flat.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
 #. both verbs: Verify = check the file now; Close = close the window
 #. tooltip of the × that closes the Categories pane
 #. verb: closes this window
@@ -738,6 +740,8 @@
 #. text in the Options window
 #. tab title: connection settings
 	Connection	Connection
+#. text in flat.rs
+	Connections	Connections
 #. page title in the Options window
 	Connections and Limits	Connections and Limits
 #. text in the Options window
@@ -970,7 +974,7 @@
 #. RSS feeds window: add the selected article's torrent (opens Add torrent)
 #. the trailing ... means it opens a window: keep it
 	Download...	Download...
-#. text in a download's progress window
+#. text in flat.rs; text in a download's progress window
 #. label before the amount received so far
 #. column title: bytes this connection received
 	Downloaded	Downloaded
@@ -1245,7 +1249,7 @@
 	Find the next match	Find the next match
 #. text in the Find window
 	Find:	Find:
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are complete
 #. remote control page (on a phone): tab: downloads finished
 	Finished	Finished
@@ -1515,6 +1519,9 @@
 #. text in a download's progress window
 #. the torrent's identifier
 	Info hash	Info hash
+#. text in flat.rs
+#. toolbar button that shows or hides the download inspector
+	Inspector	Inspector
 #. text in extracting archives (a download's log, the Archive password window)
 #. in the "7-Zip needed" window, under why
 	Install 7-Zip (free), then right-click the download and choose Extract.	Install 7-Zip (free), then right-click the download and choose Extract.
@@ -1697,6 +1704,9 @@
 #. text in countries.rs
 #. a country's name (where a download's server is)
 	Liberia	Liberia
+#. message or event log entry in the main window
+#. sidebar section containing the download status filters
+	Library	Library
 #. text in countries.rs
 #. a country's name (where a download's server is)
 	Libya	Libya
@@ -2509,7 +2519,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): a download's state: added, waiting to start
 	Queued	Queued
-#. item in the Categories tree in the main window; text in the Scheduler window
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in the Scheduler window
 #. plural noun: the download queues
 	Queues	Queues
 #. text in the Options window
@@ -2614,6 +2624,9 @@
 	Romania	Romania
 #. window title in rssdlg.rs
 	RSS feeds	RSS feeds
+#. message or event log entry in the main window
+#. {n} = a number (keep the braces as they are)
+	Running, {n} at a time	Running, {n} at a time
 #. text in countries.rs
 #. a country's name (where a download's server is)
 	Russia	Russia
@@ -2669,7 +2682,7 @@
 	Saudi Arabia	Saudi Arabia
 #. text in a dialog box
 	Save As	Save As
-#. text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
+#. text in flat.rs; text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
 #. tab title: where downloads are saved
 	Save to	Save to
 #. group box title in the Options window
@@ -2695,6 +2708,8 @@
 	Search:	Search:
 #. text in the Batch download window
 	Second file:	Second file:
+#. text in flat.rs
+	Segments	Segments
 #. text in a dialog box
 #. title of the folder picker
 	Select a folder	Select a folder
@@ -2935,6 +2950,8 @@
 #. text in countries.rs
 #. a country's name (where a download's server is)
 	Spain	Spain
+#. text in flat.rs
+	Speed	Speed
 #. text in a download's progress window; text in the tray icon's menu
 #. tab title: the tool that limits the download speed
 	Speed Limiter	Speed Limiter
@@ -3018,7 +3035,7 @@
 #. message or event log entry in the main window
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 	Stop {queue}	Stop {queue}
-#. value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
+#. message or event log entry in the main window; value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
 #. a download's status (state it is in, not a command)
 #. a download's status (state it is in, not a command): stopped by the user
 	Stopped	Stopped
@@ -3468,7 +3485,7 @@
 #. text in the Scheduler window
 #. tooltip on the Scheduler's "Wake the computer to run this queue" while "Start download at" is off
 	Tick "Start download at" first: the computer is woken for the start time	Tick "Start download at" first: the computer is woken for the start time
-#. text in a download's progress window; text in the Scheduler window
+#. text in flat.rs; text in a download's progress window; text in the Scheduler window
 	Time left	Time left
 #. text in countries.rs
 #. a country's name (where a download's server is)
@@ -3623,7 +3640,7 @@
 #. text in the Link grabber window
 #. Link grabber button (IDM's): untick every link
 	Uncheck all	Uncheck all
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are not complete yet
 #. remote control page (on a phone): tab: downloads not finished yet
 	Unfinished	Unfinished
@@ -3984,6 +4001,9 @@
 #. text in the Checksum window
 #. {algorithm} = a checksum algorithm such as "SHA-256" (keep the braces as they are)
 	{file}: the file matches its checksum ({algorithm})	{file}: the file matches its checksum ({algorithm})
+#. text in flat.rs
+#. {size} = a file size such as "4.2 MB" (keep the braces as they are)
+	{got} of {size}	{got} of {size}
 #. text in a download's progress window
 #. {have} and {total} = numbers of pieces; {size} = one piece's size
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -4150,7 +4170,7 @@ column	Share ratio	Share ratio
 #. column title in the download list in the download list
 #. noun: the file's size
 column	Size	Size
-#. column title in the download list in the download list
+#. column title in flat.rs; column title in the download list in the download list
 #. noun: where the download comes from (Web or Torrent)
 column	Source	Source
 #. column title in the download list in the download list
@@ -4687,6 +4707,9 @@ menu	Find Next (F3)	Find Next (F3)
 #. right-click → Torrent, a choice with a check mark (with Download in order): each file's first and last pieces first, which a video player needs to start
 menu	First and last pieces first	First and last pieces first
 #. menu command in the main window
+#. View → Theme: a style theme's name (minimal and flat, like a phone's apps)
+menu	Flat	Flat
+#. menu command in the main window
 #. noun: the list's font (submenu)
 menu	Font	Font
 #. menu command in the main window
@@ -4889,7 +4912,7 @@ menubar	&Tasks	&Tasks
 menubar	&View	&View
 #. toolbar button in the main window
 toolbar	Add Torrent	Add Torrent
-#. toolbar button in the main window
+#. toolbar button in the main window; toolbar button in flat.rs
 toolbar	Add URL	Add URL
 #. toolbar button in the main window
 #. verb: delete the selected downloads

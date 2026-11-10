@@ -491,6 +491,10 @@ These ship in a later version, when they're ready.
 
 ### Being built
 
+- 🔄 Flat, a new theme and a new install's default: a clean, flat main window with a sidebar
+  (Library, Categories, Queues), a header with the view's name and buttons, progress bars in the
+  list and a details panel for the selected download; Classic, IDM's layout, stays under
+  **View → Theme**: in review
 - 🔄 The build and release workflows: each job gets only the permissions it needs, and every
   action and release tool is pinned to an exact version: in review
 - 🔄 Videos sent in pieces (HLS, DASH) downloading several pieces at once, as many as a file's

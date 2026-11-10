@@ -159,8 +159,11 @@ window offers them when you first need them. More in [Videos](video.md).
 
 ## The main window
 
-![The main window: the menu bar, the toolbar, the categories on the left and the download list on the right](images/help/main-window.webp)
-*1 the menu bar, 2 the toolbar, 3 the categories, 4 the download list.*
+![The main window: the menu bar, the sidebar on the left, the view's title and buttons at the top, and the download list](images/help/main-window.webp)
+*1 the menu bar, 2 the sidebar, 3 the buttons, 4 the download list.*
+
+This is the **Flat** theme, the default. The layout IDM users know, with a labelled toolbar and a
+Categories tree, is one click away: **View → Theme → Classic** (see [Themes](#themes)).
 
 From top to bottom:
 
@@ -170,9 +173,16 @@ From top to bottom:
   - **Downloads** — **Pause All**, **Stop All**, **Delete All Completed**, **Find**, the **Scheduler**, queues, the **Speed Limiter** and **Options**.
   - **View** — show or hide the categories, sort the list (**Arrange files**), **Dark Mode support**, **Always dark**, **Theme**, **Interface size** (every window larger, 100 % to 200 %; **Ctrl +**, **Ctrl −** and **Ctrl 0** too), **Draw with** (OpenGL, or Direct3D on Windows, Vulkan on Linux, Metal on macOS) and **Language**.
   - **Help** — help pages and tutorials (on the website, in your language when it has it), **Keyboard shortcuts**, **Report a problem**, **Check for updates**, **About**, **Tell a friend** and **Support MDM** (its creator's GitHub Sponsors page: optional, nothing in MDM changes).
-- **Toolbar.** **Add URL**, **Add Torrent**, **Resume**, **Stop**, **Stop All**, **Delete**, **Delete Completed**, **Options**, **Scheduler**, **Start Queue**, **Stop Queue**. The small arrow next to **Add Torrent**, **Start Queue** and **Stop Queue** opens more choices.
-- **Categories** (left). Choose what the list shows: **All Downloads**, **Unfinished**, **Finished** and **Queues**, each with its categories. Drag the gap between the pane and the list to make it wider.
-- **Download list** (right). One row per download. See [The download list](download-list.md).
+- **Sidebar** (left). Choose what the list shows. **Library**: **All Downloads**, **Downloading**, **Waiting**, **Stopped** and **Finished**, each with a count. **Categories**: one per file type, and your own. **Queues**: one per queue. Right-click a row for its menu. Drag the gap between the sidebar and the list to make it wider; **View → Hide categories** hides it.
+- **Header and toolbar** (top). The view's name in large type and, at its right, the toolbar's buttons: **Resume**, **Stop**, **Stop All**, **Delete**, **Delete Completed**, **Scheduler**, **Options** and the details panel's (a queue's view has **Start Queue** and **Stop Queue** instead of the first three). Point at a button to see its name. The blue **Add URL** button is last; its arrow opens **Open torrent file**, **Add magnet link**, **RSS feeds** and **Torrent settings**.
+- **Download list** (middle). One row per download, with its progress under the status. See [The download list](download-list.md).
+- **Details panel** (right). The selected download: its progress, size, speed, time left, connections, source, folder and segments, with **Stop** or **Resume**, **Open folder** and **Delete**. Its button in the header, or the **×** at its corner, hides it; a narrow window hides it by itself.
+
+In the **Classic** theme the header and the sidebar are a toolbar with labelled buttons (**Add
+URL**, **Add Torrent**, **Resume**, **Stop**, **Stop All**, **Delete**, **Delete Completed**,
+**Options**, **Scheduler**, **Start Queue**, **Stop Queue**) and a **Categories** tree (**All
+Downloads**, **Unfinished**, **Finished** and **Queues**, each with its categories), with no
+details panel.
 
 ## Dark mode
 
@@ -183,9 +193,12 @@ MDM follows your system: when Windows (or your desktop's light/dark preference o
 
 ## Themes
 
-**View → Theme** changes MDM's look at once, keeping its layout:
+**View → Theme** changes MDM's look at once:
 
-- **Classic**: MDM's own look, the default.
+- **Flat**: the default. A clean, flat look: a sidebar, a header with the view's name, a download
+  list with progress bars, a details panel, and one-colour icons. The only theme with its own
+  layout of the main window; every other one keeps Classic's.
+- **Classic**: the layout IDM users know: a labelled toolbar and a Categories tree.
 - **Native**: your system's colours. Windows' accent colour (Settings → Personalization →
   Colors) and, when it is on, its contrast theme; the desktop's accent colour and its higher
   contrast setting on Linux (GNOME 47 and later, KDE Plasma); the accent colour on macOS. It
@@ -211,11 +224,13 @@ MDM follows your system: when Windows (or your desktop's light/dark preference o
   boxes, a blue focus ring, a blue gel progress bar, a grey title bar with small round buttons
   (on Windows), and icons drawn for MDM in that manner.
 
-![View → Theme open: Classic, Native, High contrast, Metro, Adwaita, Breeze, Luna, Aero and Aqua, and Open themes folder](images/help/view-theme.webp)
-*View → Theme switches at once, keeping the layout.*
+![View → Theme open: Classic, Flat, Native, High contrast, Metro, Adwaita, Breeze, Luna, Aero and Aqua, and Open themes folder](images/help/view-theme.webp)
+*View → Theme switches at once.*
 
 <!-- pictures -->
 
+- ![The main window's sidebar and header in the Flat theme](images/help/theme-flat.webp)
+  *Flat*
 - ![The main window's toolbar and categories in the Classic theme](images/help/theme-classic.webp)
   *Classic*
 - ![The main window's toolbar and categories in the High contrast theme](images/help/theme-high-contrast.webp)

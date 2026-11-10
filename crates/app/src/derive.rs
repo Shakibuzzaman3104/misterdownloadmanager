@@ -218,6 +218,7 @@ pub fn derive(s: &Seeds) -> Palette {
         reach_far: readable(s.error, bg, 4.5),
         flag_edge: Color32::from_black_alpha(40),
         accent,
+        accent_text,
         focus_ring: toward(bg, 0.85),
         selection,
         selection_text,

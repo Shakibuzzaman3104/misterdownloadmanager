@@ -95,6 +95,14 @@
 #. {n} = a number (keep the braces as they are)
 #, machine
 @plural	{n} selected|{n} selected	{n} निवडले|{n} निवडले
+#. count in the Options window
+#. {n} = a number (keep the braces as they are)
+#, machine
+@plural	{n} site added from the file.|{n} sites added from the file.	फायलींतल्यान {n} साइट जोडली.|फायलींतल्यान {n} साइट जोडल्यात.
+#. count in the Options window
+#. {n} = a number (keep the braces as they are)
+#, machine
+@plural	{n} site saved to the file.|{n} sites saved to the file.	फायलींत {n} साइट सांबाळली.|फायलींत {n} साइट सांबाळल्यात.
 #. count in the main window
 #. event log entry: trackers were added to the torrent
 #. {n} = a number (keep the braces as they are)
@@ -313,6 +321,9 @@
 #. text in a dialog box
 #, machine
 	Add to queue:	रांगेंत जोडचें:
+#. text in flat.rs
+#, machine
+	Add Torrent	टॉरेंट जोडात
 #. message or event log entry in the main window; window title in the Add torrent window
 #, machine
 	Add torrent	टॉरेंट जोडचें
@@ -398,7 +409,7 @@
 #. remote control page (on a phone): tab: every download
 #, machine
 	All	सगळे
-#. item in the Categories tree in the main window
+#. item in the Categories tree in the main window; message or event log entry in the main window
 #, machine
 	All Downloads	सगळीं डाउनलोड
 #. message or event log entry in the main window
@@ -756,7 +767,7 @@
 #. the headline of the window that offers the browser extension
 #, machine
 	Catch downloads from your browser	तुमच्या ब्राउजरांतल्यान डौनलोड्स मेळोवचें
-#. text in the main window (menus, toolbar, Categories pane)
+#. message or event log entry in the main window; text in the main window (menus, toolbar, Categories pane)
 #. title of the side pane that lists the categories
 #, machine
 	Categories	श्रेणी
@@ -906,7 +917,7 @@
 #. text in the Options window
 #, machine
 	Clock:	घड्याळ:
-#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
+#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; text in flat.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
 #. both verbs: Verify = check the file now; Close = close the window
 #. tooltip of the × that closes the Categories pane
 #. verb: closes this window
@@ -976,6 +987,9 @@
 #. tab title: connection settings
 #, machine
 	Connection	जोडणी
+#. text in flat.rs
+#, machine
+	Connections	जोडण्यां
 #. page title in the Options window
 #, machine
 	Connections and Limits	जोडणी आनी मर्यादा
@@ -1296,7 +1310,7 @@
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Download...	डावनलोड करात...
-#. text in a download's progress window
+#. text in flat.rs; text in a download's progress window
 #. label before the amount received so far
 #. column title: bytes this connection received
 #, machine
@@ -1327,6 +1341,11 @@
 #. the trailing ... means it is still going on: keep it
 #, machine
 	Downloading and verifying yt-dlp...	yt-dlp डाउनलोड करता आनी तपासता...
+#. text in helpers.rs
+#. Video helpers: MDM's own yt-dlp is being downloaded
+#. the trailing ... means it is still going on: keep it
+#, machine
+	Downloading MDM's own copy...	MDM ची स्वताची प्रत डाउनलोड करता...
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. Check for updates, while Update now downloads; {percent} like "42%"
 #, machine
@@ -1515,9 +1534,13 @@
 #. Options → Accounts: a note that the debrid services' support (Real-Debrid, AllDebrid, Premiumize) is new and not yet tried with real paid accounts
 #, machine
 	Experimental: built from the services' public API documentation, not yet confirmed with real accounts.	प्रयोगात्मक: सेवांच्या सार्वजनिक API दस्तऐवजांतल्यान तयार केल्लें, अजून खऱ्या खात्यांनी पुष्टी जावंक ना.
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Export	निर्यात कर
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Export...	निर्यात करात...
 #. text in the Options window
 #, machine
 	Extend the availability of Manifest 2 Chrome extensions	Manifest 2 Chrome विस्तारांची उपलब्धताय वाडयात
@@ -1661,7 +1684,7 @@
 #. text in the Find window
 #, machine
 	Find:	सोद:
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are complete
 #. remote control page (on a phone): tab: downloads finished
 #, machine
@@ -1992,9 +2015,13 @@
 #. checkbox in the Options window
 #, machine
 	Ignore file modification time changes when resuming a download	डाउनलोड परत सुरू करतना फायल बदलपाच्या वेळ बदलांक दुर्लक्ष कर
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Import	आयात कर
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Import...	आयात करात...
 #. value in a column's filter list in the download list
 #, machine
 	In a queue	एका रांकेत
@@ -2025,6 +2052,10 @@
 #. the torrent's identifier
 #, machine
 	Info hash	माहिती हॅश
+#. text in flat.rs
+#. toolbar button that shows or hides the download inspector
+#, machine
+	Inspector	इन्स्पेक्टर
 #. text in extracting archives (a download's log, the Archive password window)
 #. in the "7-Zip needed" window, under why
 #, machine
@@ -2270,6 +2301,10 @@
 #. a country's name (where a download's server is)
 #, machine
 	Liberia	लायबेरिया
+#. message or event log entry in the main window
+#. sidebar section containing the download status filters
+#, machine
+	Library	लायब्ररी
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -3374,7 +3409,7 @@
 #. remote control page (on a phone): a download's state: added, waiting to start
 #, machine
 	Queued	रांगेत
-#. item in the Categories tree in the main window; text in the Scheduler window
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in the Scheduler window
 #. plural noun: the download queues
 #, machine
 	Queues	रांगो
@@ -3514,6 +3549,10 @@
 #. window title in rssdlg.rs
 #, machine
 	RSS feeds	RSS फीड
+#. message or event log entry in the main window
+#. {n} = a number (keep the braces as they are)
+#, machine
+	Running, {n} at a time	चलता, एका वेळार {n}
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -3588,7 +3627,7 @@
 #. text in a dialog box
 #, machine
 	Save As	अशें सांबाळ
-#. text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
+#. text in flat.rs; text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
 #. tab title: where downloads are saved
 #, machine
 	Save to	हांगा सांबाळ
@@ -3623,6 +3662,9 @@
 #. text in the Batch download window
 #, machine
 	Second file:	दुसरी फाइल:
+#. text in flat.rs
+#, machine
+	Segments	विभाग
 #. text in a dialog box
 #. title of the folder picker
 #, machine
@@ -3951,6 +3993,9 @@
 #. a country's name (where a download's server is)
 #, machine
 	Spain	स्पेन
+#. text in flat.rs
+#, machine
+	Speed	गती
 #. text in a download's progress window; text in the tray icon's menu
 #. tab title: the tool that limits the download speed
 #, machine
@@ -4064,7 +4109,7 @@
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
 	Stop {queue}	{queue} थांबयात
-#. value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
+#. message or event log entry in the main window; value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
 #. a download's status (state it is in, not a command)
 #. a download's status (state it is in, not a command): stopped by the user
 #, machine
@@ -4330,7 +4375,7 @@
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be moved: {error}	फायल हालोवंक शकली ना: {error}
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be read: {error}	फाइल वाचूंक शकली ना: {error}
@@ -4379,7 +4424,7 @@
 #. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	ब्राउझर सुरू करपी मदतगार प्रोग्राम मेळना
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The list could not be saved: {error}	यादी सांबाळपाक शकली ना: {error}
@@ -4456,6 +4501,18 @@
 #. the Download video window: the site asked for a sign-in although yt-dlp had the cookies of the browser chosen in Options; {browser} = its name
 #, machine
 	The site wants you signed in, even with {browser}'s cookies. Sign in to it in {browser}, then look the page up again.	{browser} च्या कुकीज आसल्यो तरीय, सायटीक तुमी सायन इन केल्ले जाय. {browser} त सायन इन करात, मागीर परत पान सोदून काडात.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though the browser's extension passed the page's cookies
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with your browser's cookies for this page. Try again later, or from another browser.	साइटच्या बॉट तपासणीन (Cloudflare) yt-dlp न्हयकारलें, ह्या पानाखातीर तुमच्या ब्राउझराचीं कुकीज आसून लेगीत. उपरांत परतून यत्न करात, वा दुसऱ्या ब्राउझरांतल्यान यत्न करात.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though it had the cookies of the browser chosen in Options; {browser} = its name
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with {browser}'s cookies. Use the Download video button over the video in {browser}, or try the page again later.	साइटच्या बॉट तपासणीन (Cloudflare) yt-dlp न्हयकारलें, {browser} च्या कुकीज आसून लेगीत. {browser} भितरल्या व्हिडिओ वयलें “व्हिडिओ डाउनलोड करात” बटण वापरचें, वा उपरांत पानाचो परतून यत्न करात.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away and no browser cookies were used
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp. If the page opens in your browser, choose that browser in Options → Sites Logins → Cookies for video sites and look the page up again, or use the Download video button over the video.	साइटच्या बॉट तपासणीन (Cloudflare) yt-dlp न्हयकारलें. जर पान तुमच्या ब्राउझरांत उगडटा, जाल्यार पर्याय → साइट लॉगइन → व्हिडिओ साइटांखातीर कुकीज हातूंत तो ब्राउझर निवडात आनी पान परतून सोदात, वा व्हिडिओ वयलें “व्हिडिओ डाउनलोड करात” बटण वापरचें.
 #. text in crashui.rs
 #. crash report window: the symbols couldn't be downloaded; the report still works
 #, machine
@@ -4638,6 +4695,11 @@
 #. the Download video window: the video needs the user to be signed in
 #, machine
 	This video needs you to be signed in. Use the Download video button over it in your browser, which passes your sign-in on, or choose your browser in Options → Sites Logins → Cookies for video sites.	ह्या व्हिडियोक तुमकां सायन इन करपाक जाय. तुमच्या ब्राउझरांतल्यान ताचेर आशिल्लें 'व्हिडियो डाउनलोड करात' बटण वापरा, जें तुमचें सायन इन पास करता, वा ऑप्शन्स → सायटीं लॉगइन्स → व्हिडियो सायटीं खातीर कुकीज हातूंत तुमचो ब्राउझर वेंचून काडात.
+#. text in errors.rs
+#. a download's error: the address is a site's web page that needs a browser, not the file; {site} = the site's name (gofile)
+#. {site} = a web site's name such as "example.com" (keep the braces as they are)
+#, machine
+	this {site} link is a web page, not the file: open it in your browser and download from there	ही {site} लिंक वेब पान आसा, फायल न्हय: ती तुमच्या ब्राउझरांत उगडात आनी थंयच्यान डाउनलोड करात
 #. text in whereis.rs
 #. where a download's server is, when a proxy carries it (the proxy's place not known)
 #, machine
@@ -4661,7 +4723,7 @@
 #. tooltip on the Scheduler's "Wake the computer to run this queue" while "Start download at" is off
 #, machine
 	Tick "Start download at" first: the computer is woken for the start time	पयलीं "डावनलोड सुरू करात" हें टिक करात: सुरू जावपाच्या वेळार संगणकाक जाग येता
-#. text in a download's progress window; text in the Scheduler window
+#. text in flat.rs; text in a download's progress window; text in the Scheduler window
 #, machine
 	Time left	वेळ उरला
 #. text in countries.rs
@@ -4870,7 +4932,7 @@
 #. Link grabber button (IDM's): untick every link
 #, machine
 	Uncheck all	सगळे अनचेक करा
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are not complete yet
 #. remote control page (on a phone): tab: downloads not finished yet
 #, machine
@@ -5356,6 +5418,10 @@
 #. {algorithm} = a checksum algorithm such as "SHA-256" (keep the braces as they are)
 #, machine
 	{file}: the file matches its checksum ({algorithm})	{file}: फायल तिच्या चेकसमाक ({algorithm}) जुळटा
+#. text in flat.rs
+#. {size} = a file size such as "4.2 MB" (keep the braces as they are)
+#, machine
+	{got} of {size}	{size} पैकी {got}
 #. text in a download's progress window
 #. {have} and {total} = numbers of pieces; {size} = one piece's size
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5575,7 +5641,7 @@ column	Share ratio	शेअर गुणोत्तर
 #. noun: the file's size
 #, machine
 column	Size	आकार
-#. column title in the download list in the download list
+#. column title in flat.rs; column title in the download list in the download list
 #. noun: where the download comes from (Web or Torrent)
 #, machine
 column	Source	स्रोत
@@ -6070,6 +6136,11 @@ menu	&RSS feeds...	&RSS फीड्स...
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
 menu	&Scheduler and queues	शेड्युलर आनी रांको (&S)
+#. menu command in a download's progress window
+#. right-click menu of a download window's tab row: bring back the tabs taken off with "Hide tab"
+#. & marks the keyboard shortcut letter: keep one & before a letter of the translation
+#, machine
+menu	&Show hidden tabs	लिपोवन दवरिल्लीं टॅब दाखोवचें(&S)
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6280,6 +6351,10 @@ menu	Find Next (F3)	फुडलें सोदात (F3)
 #. right-click → Torrent, a choice with a check mark (with Download in order): each file's first and last pieces first, which a video player needs to start
 #, machine
 menu	First and last pieces first	पयलीं आनी निमाणीं कुडके पयलीं
+#. menu command in the main window
+#. View → Theme: a style theme's name (minimal and flat, like a phone's apps)
+#, machine
+menu	Flat	फ्लॅट
 #. menu command in the main window
 #. noun: the list's font (submenu)
 #, machine
@@ -6550,7 +6625,7 @@ menubar	&View	&पळोवचें
 #. toolbar button in the main window
 #, machine
 toolbar	Add Torrent	टॉरेंट जोडात
-#. toolbar button in the main window
+#. toolbar button in the main window; toolbar button in flat.rs
 #, machine
 toolbar	Add URL	URL जोडात
 #. toolbar button in the main window

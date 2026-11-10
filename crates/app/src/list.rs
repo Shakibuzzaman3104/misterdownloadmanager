@@ -21,6 +21,51 @@ pub fn row_h() -> f32 {
     crate::theme::metrics().list_row
 }
 
+/// Is the active theme's layout the flat one?
+fn flat() -> bool {
+    crate::theme::current().controls.layout == crate::palette::MainLayout::Flat
+}
+
+/// The list's cell text in Flat: Tahoma at 13 px.
+fn cell_font() -> egui::FontId {
+    egui::FontId::proportional(13.0)
+}
+
+/// `s` shortened in the middle (the extension stays), cut on characters, not bytes.
+fn ellipsize_middle(p: &egui::Painter, font: &egui::FontId, s: &str, max: f32) -> String {
+    ellipsize_middle_with(s, max, |t| winui::text_width_font(p, font.clone(), t))
+}
+
+/// [`ellipsize_middle`] with the measuring passed in, so the cutting is pure.
+fn ellipsize_middle_with(s: &str, max: f32, measure: impl Fn(&str) -> f32) -> String {
+    if measure(s) <= max {
+        return s.to_owned();
+    }
+    let chars: Vec<char> = s.chars().collect();
+    // The extension is the part from the last dot; it is always kept whole.
+    let ext = s
+        .rfind('.')
+        .filter(|i| *i > 0)
+        .map_or(0, |i| s[i..].chars().count());
+    let cut = |n: usize| {
+        let head = (n * 2 / 5).min(chars.len().saturating_sub(ext));
+        let tail = (n.saturating_sub(head)).max(ext).min(chars.len() - head);
+        chars[..head].iter().collect::<String>()
+            + "…"
+            + &chars[chars.len() - tail..].iter().collect::<String>()
+    };
+    let (mut lo, mut hi) = (0, chars.len());
+    while lo < hi {
+        let mid = (lo + hi).div_ceil(2);
+        if measure(&cut(mid)) <= max {
+            lo = mid;
+        } else {
+            hi = mid - 1;
+        }
+    }
+    cut(lo)
+}
+
 // The active theme's colours (crate::palette, #45).
 themed! {
     /// The list's border (it was #828790 in dark too): the lists' and tables' one edge.
@@ -191,6 +236,8 @@ pub struct ListState {
     /// A menu is open: its keys (and letters) are its own, not the list's.
     pub menu_open: bool,
     typed_at: f64,
+    /// Flat only: columns hidden to fit the room (recomputed every frame, never saved).
+    flat_hidden: [bool; COLS],
 }
 
 impl Default for ListState {
@@ -213,6 +260,7 @@ impl Default for ListState {
             typed: String::new(),
             menu_open: false,
             typed_at: 0.0,
+            flat_hidden: [false; COLS],
         }
     }
 }
@@ -313,12 +361,13 @@ impl ListState {
         self.sort = l.sort.filter(|(c, _)| *c < COLS);
     }
 
-    /// Visible columns in display order.
+    /// Visible columns in display order (Flat also drops the ones that don't fit).
     fn shown(&self) -> Vec<usize> {
+        let is_flat = flat();
         self.order
             .iter()
             .copied()
-            .filter(|c| self.visible[*c])
+            .filter(|c| self.visible[*c] && !(is_flat && self.flat_hidden[*c]))
             .collect()
     }
 }
@@ -330,6 +379,8 @@ pub struct Row {
     /// In a queue: the Q column shows a queue icon (IDM: stacked files).
     pub queued: bool,
     pub cells: [String; COLS],
+    /// How much of the download is here (Flat draws a capsule under the Status text).
+    pub progress: Option<f32>,
 }
 
 #[derive(Default)]
@@ -498,6 +549,14 @@ pub fn show(
     status_tip: &dyn Fn(usize) -> String,
 ) -> ListResponse {
     let mut out = ListResponse::default();
+    if flat() {
+        // Flat's rows need room for the progress capsule and the whole file name.
+        st.widths[3] = st.widths[3].max(130.0);
+        st.widths[0] = st.widths[0].max(220.0);
+        st.widths[4] = st.widths[4].max(110.0);
+        st.widths[2] = st.widths[2].max(100.0);
+        st.widths[5] = st.widths[5].max(130.0);
+    }
     // `outer` and everything below are English (the main window's layout): each part is made where
     // it is on screen (`screen`, `fill`, `text_font`), and the pointer is read in English to find
     // the column or row under it.
@@ -517,11 +576,39 @@ pub fn show(
         outer.right() - 1.0,
         outer.bottom() - 1.0,
     );
-    winui::solid(&p, screen(outer), FRAME());
-    fill(&p, l + 1.0, t + 1.0, r - 1.0, b - 1.0, BG());
+    let is_flat = flat();
+    if is_flat {
+        // Flat: no frame and no inner ring, one background across the whole list.
+        fill(&p, l, t, r, b, BG());
+    } else {
+        winui::solid(&p, screen(outer), FRAME());
+        fill(&p, l + 1.0, t + 1.0, r - 1.0, b - 1.0, BG());
+    }
     let (cl, ct, cr, cb) = (l + 2.0, t + 2.0, r - 2.0, b - 2.0);
-    let font = winui::tahoma();
+    let font = if is_flat {
+        cell_font()
+    } else {
+        winui::tahoma()
+    };
 
+    if is_flat {
+        // Flat fits the columns to the room: torrent-only columns with nothing to show, then
+        // the optional ones in a fixed order, never File Name, Size, Status, Time left or Rate.
+        st.flat_hidden = [false; COLS];
+        for c in [UPLOAD, PEERS, RATIO] {
+            if rows.iter().all(|r| r.cells[c].is_empty()) {
+                st.flat_hidden[c] = true;
+            }
+        }
+        let client_w = cr - cl + 1.0;
+        for c in [7usize, RATIO, PEERS, UPLOAD, 6, ADDED, SOURCE, 1] {
+            let content: f32 = st.shown().iter().map(|c| st.widths[*c]).sum();
+            if content <= client_w {
+                break;
+            }
+            st.flat_hidden[c] = true;
+        }
+    }
     // Scroll bars (notes/ui-spec/scrollbars.md), decided like Win32: each one shows when the
     // content overflows the room the other one leaves.
     let content_w: f32 = st.shown().iter().map(|c| st.widths[*c]).sum();
@@ -668,7 +755,19 @@ pub fn show(
     let cols = spans(st);
     let p_all = p.clone();
     let p = p.with_clip_rect(screen(header));
-    fill(&p, cl, ct, rr, ct + header_h() - 1.0, HEADER_BG());
+    fill(
+        &p,
+        cl,
+        ct,
+        rr,
+        ct + header_h() - 1.0,
+        if is_flat { BG() } else { HEADER_BG() },
+    );
+    let hfont = if is_flat {
+        egui::FontId::proportional(12.0)
+    } else {
+        font.clone()
+    };
     for (c, x0, x1) in &cols {
         let hovered = hresp
             .hover_pos()
@@ -687,14 +786,16 @@ pub fn show(
         if let Some((sc, asc)) = st.sort
             && sc == *c
         {
-            fill(
-                &p,
-                *x0,
-                ct,
-                x1 - 1.0,
-                ct + header_h() - 1.0,
-                tint.unwrap_or(SORTED_BG()),
-            );
+            if !is_flat {
+                fill(
+                    &p,
+                    *x0,
+                    ct,
+                    x1 - 1.0,
+                    ct + header_h() - 1.0,
+                    tint.unwrap_or(SORTED_BG()),
+                );
+            }
             // At the cell's right edge, vertically centred in the header.
             let cx = x1 - 9.0;
             let mid = ct + (header_h() / 2.0).floor() - 2.0;
@@ -703,10 +804,14 @@ pub fn show(
                 let half = i as f32;
                 fill(&p, cx - half, y, cx + half, y, SORT_ARROW());
             }
-        } else if let Some(t) = tint {
+        } else if let Some(t) = tint
+            && !is_flat
+        {
             fill(&p, *x0, ct, x1 - 1.0, ct + header_h() - 1.0, t);
         }
-        fill(&p, *x1, ct, *x1, ct + header_h() - 1.0, HEADER_SEP());
+        if !is_flat {
+            fill(&p, *x1, ct, *x1, ct + header_h() - 1.0, HEADER_SEP());
+        }
         let mut arrow_room = if st.sort.is_some_and(|(sc, _)| sc == *c) {
             14.0
         } else {
@@ -718,7 +823,12 @@ pub fn show(
         let filtered = st.filters[*c].is_some();
         let open = st.filter_open.is_some_and(|(fc, _)| fc == *c);
         let roomy = x1 - x0 >= 44.0;
-        if roomy || filtered || hovered || open {
+        let show = if is_flat {
+            filtered || hovered || open
+        } else {
+            roomy || filtered || hovered || open
+        };
+        if show {
             let fr = funnel_rect(st, *c, *x0, *x1, ct);
             let color = if filtered {
                 FILTER_ON()
@@ -727,7 +837,7 @@ pub fn show(
             } else {
                 SORT_ARROW().gamma_multiply(0.45)
             };
-            if !roomy {
+            if !roomy && !is_flat {
                 p.rect_filled(screen(fr), crate::theme::metrics().part_radius, HEADER_BG());
             }
             funnel(&p, fr, color);
@@ -736,7 +846,7 @@ pub fn show(
             }
         }
         let full = crate::i18n::tc("column", TITLES[*c]);
-        let label = winui::ellipsize(&p, &font, full, x1 - x0 - 10.0 - arrow_room);
+        let label = winui::ellipsize(&p, &hfont, full, x1 - x0 - 10.0 - arrow_room);
         // A cut title shows whole under the pointer; the one-letter Q says what it is.
         if hovered && st.drag.is_none() {
             let tip = if TITLES[*c] == "Q" {
@@ -753,7 +863,24 @@ pub fn show(
             *x0..=*x1,
             ct..=ct + header_h(),
         )));
-        text_font(&clip, font.clone(), x0 + 6.0, ct + 15.0, &label, TEXT());
+        let baseline = if is_flat {
+            ct + 15.0 + (header_h() - 24.0) / 2.0
+        } else {
+            ct + 15.0
+        };
+        let ink = if is_flat { winui::MUTED() } else { TEXT() };
+        text_font(&clip, hfont.clone(), x0 + 6.0, baseline, &label, ink);
+    }
+    if is_flat {
+        // One hairline under the header, no raised edge.
+        fill(
+            &p,
+            cl,
+            ct + header_h() - 1.0,
+            rr,
+            ct + header_h() - 1.0,
+            GRID_H(),
+        );
     }
 
     // ---- body ------------------------------------------------------------------------------
@@ -884,7 +1011,29 @@ pub fn show(
             // The focused row's dotted outline only once the keyboard is in use, as every
             // control's focus (winui::keyboard_in_use).
             let has_focus = focus == Some(idx) && st.focused && keys_in_use;
-            if sel || has_focus {
+            if is_flat {
+                // A rounded pill inset in the row; the text keeps its own colour.
+                let shape = Rect::from_min_max(
+                    pos2(cl + 4.0, top + 2.0),
+                    pos2(rr - 4.0, top + row_h() - 2.0),
+                );
+                if picked {
+                    let color = if st.focused {
+                        SELECTED()
+                    } else {
+                        winui::SELECTED_INACTIVE()
+                    };
+                    bp.rect_filled(screen(shape), 8.0, color);
+                }
+                if has_focus {
+                    bp.rect_stroke(
+                        screen(shape),
+                        8.0,
+                        egui::Stroke::new(1.0, winui::accent()),
+                        egui::StrokeKind::Inside,
+                    );
+                }
+            } else if sel || has_focus {
                 // The row above its grid line; the focused row has a dotted outline (every other
                 // pixel), in the fill's inverse on a selected row. Both modes alike.
                 let (right, bottom) = (last_right - 1.0, top + row_h() - 2.0);
@@ -912,10 +1061,17 @@ pub fn show(
                     winui::SELECTED_INACTIVE(),
                 );
             }
+            // Icons and text sit in the middle of a Flat row (the classic row's 17 px is
+            // assumed by the old baselines).
+            let iy = if is_flat {
+                top + (row_h() - 16.0) / 2.0
+            } else {
+                top
+            };
             for (c, x0, x1) in &cols {
                 // The file-type icon sits in the File Name column, wherever it is.
                 let tx = if *c == 0 {
-                    icons.paint_in(ui, &bp, row.icon.clone(), pos2(x0 + 4.0, top));
+                    icons.paint_in(ui, &bp, row.icon.clone(), pos2(x0 + 4.0, iy));
                     x0 + 22.0
                 } else {
                     x0 + 6.0
@@ -925,7 +1081,7 @@ pub fn show(
                         ui,
                         &bp,
                         IconKey::Silk("page_white_stack"),
-                        pos2(x0 + 2.0, top),
+                        pos2(x0 + 2.0, iy),
                     );
                 }
                 let cell = Rect::from_min_max(pos2(*x0, top), pos2(*x1 - 1.0, top + row_h()));
@@ -947,7 +1103,12 @@ pub fn show(
                     continue;
                 }
                 let value = cell_text(*c, &row.cells[*c]);
-                let s = winui::ellipsize(&bp, &font, &value, x1 - tx - 3.0);
+                let s = if is_flat && *c == 0 {
+                    // A file name keeps its extension in sight.
+                    ellipsize_middle(&bp, &font, &value, x1 - tx - 3.0)
+                } else {
+                    winui::ellipsize(&bp, &font, &value, x1 - tx - 3.0)
+                };
                 // A cut cell shows its whole text on hover (Windows' list label tip); the
                 // Status cell shows the download's recent events.
                 if resp
@@ -969,21 +1130,60 @@ pub fn show(
                 let clip = bp.with_clip_rect(screen(cell.intersect(body)));
                 // A failed download's Status and Description (the reason) in the error colour.
                 let failed = row.status_group == "Error" && (*c == 3 || *c == 7);
-                let ink = if sel {
+                if is_flat
+                    && *c == 3
+                    && let Some(f) = row.progress
+                {
+                    // Status above, a capsule of progress under it.
+                    let ink = if failed { winui::ERROR() } else { TEXT() };
+                    text_font(&clip, font.clone(), tx, top + 17.0, &s, ink);
+                    let w = ((x1 - x0) - 16.0).clamp(0.0, 150.0);
+                    let ty = top + row_h() - 14.0;
+                    let track = Rect::from_min_max(pos2(tx, ty), pos2(tx + w, ty + 4.0));
+                    bp.rect_filled(screen(track), 2.0, crate::theme::colors().meter_track);
+                    let filled = w * f.clamp(0.0, 1.0);
+                    if filled > 0.0 {
+                        let bar = Rect::from_min_max(pos2(tx, ty), pos2(tx + filled, ty + 4.0));
+                        let color = if row.status_group == "Stopped" {
+                            winui::MUTED()
+                        } else {
+                            winui::accent()
+                        };
+                        bp.rect_filled(screen(bar), 2.0, color);
+                    }
+                    continue;
+                }
+                let ink = if is_flat {
+                    if failed {
+                        winui::ERROR()
+                    } else if *c == 3 {
+                        winui::MUTED()
+                    } else {
+                        TEXT()
+                    }
+                } else if sel {
                     winui::SELECTION_TEXT()
                 } else if failed {
                     winui::ERROR()
                 } else {
                     TEXT()
                 };
-                text_font(&clip, font.clone(), tx, top + 12.0, &s, ink);
+                let baseline = if is_flat {
+                    top + 12.0 + (row_h() - 17.0) / 2.0
+                } else {
+                    top + 12.0
+                };
+                text_font(&clip, font.clone(), tx, baseline, &s, ink);
+            }
+            // Flat: a line under a real row only, nothing in the empty area below.
+            if is_flat {
+                let gy = top + row_h() - 1.0;
+                fill(&bp, cl + 12.0, gy, rr, gy, GRID_H());
             }
         }
-        // The grid line is the item's own last row (top + 16), so icons are not clipped; in
-        // both modes (dark changes only colours).
-        let gy = top + row_h() - 1.0;
-        // An empty list has no grid (the empty state stands alone).
-        if !rows.is_empty() {
+        // Classic draws its grid for every visible slot, even past the last row.
+        if !is_flat && !rows.is_empty() {
+            let gy = top + row_h() - 1.0;
             fill(&bp, cl, gy, rr, gy, GRID_H());
         }
     }
@@ -994,9 +1194,11 @@ pub fn show(
         resp.clone().on_hover_text_at_pointer(full);
     }
     filter_box(ui, st);
-    for (_, _, x1) in cols.iter().filter(|_| !rows.is_empty()) {
-        // One line at col.right + 1.
-        fill(&bp, x1 + 1.0, body_top, x1 + 1.0, rb, GRID_V_RIGHT());
+    if !is_flat {
+        for (_, _, x1) in cols.iter().filter(|_| !rows.is_empty()) {
+            // One line at col.right + 1.
+            fill(&bp, x1 + 1.0, body_top, x1 + 1.0, rb, GRID_V_RIGHT());
+        }
     }
     // While a column is dragged: a translucent copy of its header follows the pointer, and a
     // 2 px mark shows where it will land.
@@ -1008,13 +1210,18 @@ pub fn show(
             egui::Id::unique("col-ghost"),
         ));
         top.rect_filled(screen(ghost), 0.0, crate::theme::colors().drag_ghost);
+        let baseline = if is_flat {
+            ct + 15.0 + (header_h() - 24.0) / 2.0
+        } else {
+            ct + 15.0
+        };
         text_font(
             &top,
-            font.clone(),
+            hfont.clone(),
             ghost.left() + 6.0,
-            ct + 15.0,
+            baseline,
             crate::i18n::tc("column", TITLES[col]),
-            TEXT(),
+            if is_flat { winui::MUTED() } else { TEXT() },
         );
         let mark = drop_x(&cols, pp.x);
         fill(
@@ -1248,7 +1455,10 @@ fn chip(
     if label.is_empty() {
         return false;
     }
-    let fill = if label == "Torrent" {
+    let is_flat = flat();
+    let fill = if is_flat {
+        crate::theme::colors().meter_track
+    } else if label == "Torrent" {
         crate::theme::colors().chip_torrent
     } else {
         crate::theme::colors().chip_web
@@ -1258,19 +1468,21 @@ fn chip(
     // Room: the pill starts 5 px in, pads its text 6 px each side, and ends 3 px before the cell.
     let label = &winui::ellipsize(p, font, full, (x1 - x0 - 5.0 - 12.0 - 3.0).max(0.0));
     let w = winui::text_width_font(p, font.clone(), label).round();
-    let pill = Rect::from_min_size(
-        pos2(x0 + 5.0, top + 2.0),
-        egui::vec2(w + 12.0, row_h() - 4.0),
-    );
-    p.rect_filled(winui::rect(pill), (row_h() - 4.0) / 2.0, fill);
-    text_font(
-        p,
-        font.clone(),
-        pill.left() + 6.0,
-        top + 12.0,
-        label,
-        crate::theme::colors().chip_text,
-    );
+    // Flat's chip is a fixed 20 px capsule, centred in the row; the classic one fills it.
+    let (py, ph, radius) = if is_flat {
+        (top + (row_h() - 20.0) / 2.0, 20.0, 10.0)
+    } else {
+        (top + 2.0, row_h() - 4.0, (row_h() - 4.0) / 2.0)
+    };
+    let pill = Rect::from_min_size(pos2(x0 + 5.0, py), egui::vec2(w + 12.0, ph));
+    p.rect_filled(winui::rect(pill), radius, fill);
+    let baseline = if is_flat { py + 12.0 } else { top + 12.0 };
+    let ink = if is_flat {
+        winui::MUTED()
+    } else {
+        crate::theme::colors().chip_text
+    };
+    text_font(p, font.clone(), pill.left() + 6.0, baseline, label, ink);
     label != full
 }
 
@@ -1557,7 +1769,22 @@ mod tests {
             icon: IconKey::Silk("page_white"),
             queued,
             cells,
+            progress: None,
         }
+    }
+
+    #[test]
+    fn a_long_file_name_keeps_its_extension() {
+        let measure = |s: &str| s.chars().count() as f32 * 10.0;
+        let s = ellipsize_middle_with("ubuntu-26.04-desktop-amd64.iso", 200.0, measure);
+        assert!(s.contains('…'), "{s}");
+        assert!(s.ends_with(".iso"), "{s}");
+        assert!(measure(&s) <= 200.0, "{s}");
+        // CJK is cut on character boundaries, never bytes.
+        let s = ellipsize_middle_with("下载的文件名字很长.iso", 100.0, measure);
+        assert!(s.ends_with(".iso"), "{s}");
+        assert!(measure(&s) <= 100.0, "{s}");
+        assert_eq!(ellipsize_middle_with("a.iso", 1000.0, measure), "a.iso");
     }
 
     #[test]

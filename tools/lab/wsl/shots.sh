@@ -107,7 +107,7 @@ write_state() { # write_state <data dir> <lang> <mode>
 import json, os, sys
 path, lang, mode, theme, dl, items = sys.argv[1:7]
 cats = ["General", "Compressed", "Documents", "Music", "Programs", "Video", "Torrents"]
-s = dict(language=lang, language_asked=True, helpers_asked=True, extension_never_ask=True,
+s = dict(language=lang, theme="flat", language_asked=True, helpers_asked=True, extension_never_ask=True,
          dark_mode_support=(mode != "light"), always_dark=(mode == "dark"), theme=theme,
          update_check=False, torrent_incoming=False, torrent_upnp=False, torrent_dht=False,
          torrent_lsd=False, torrent_stop_idle=True,

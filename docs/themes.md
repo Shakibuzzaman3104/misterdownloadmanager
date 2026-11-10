@@ -2,9 +2,10 @@
 
 [← Back to docs index](README.md)
 
-A theme changes how MDM looks and keeps everything where it was: the same windows, menus and
-buttons in the same places, drawn in other colours, shapes and icons. Each theme has a light and
-a dark side.
+A theme changes how MDM looks: the same windows, menus and buttons, drawn in other colours,
+shapes and icons. Each theme has a light and a dark side. Most keep everything where it was;
+**Flat**, the default, also lays the main window out its own way (a sidebar, a header and a
+details panel instead of the toolbar and the Categories tree).
 
 ## Pick one
 
@@ -12,7 +13,7 @@ Open **View → Theme** and click a theme: the whole window changes at once, not
 **View → Dark Mode support** and **View → Always dark** then choose its light or dark side, as
 for the classic look ([Dark mode](getting-started.md#dark-mode)).
 
-The built-in themes are **Classic** (MDM's own look, the default), **Native** (your system's
+The built-in themes are **Flat** (the default), **Classic** (the layout IDM users know), **Native** (your system's
 accent colour and contrast), **High contrast**, and the style themes **Metro**, **Adwaita**,
 **Breeze**, **Luna**, **Aero** and **Aqua**, each with its own control shapes and icons, and on
 Windows its own title bar. [Getting started](getting-started.md#themes) describes each one; the
@@ -128,7 +129,7 @@ focus = "ring"
 
 - **`name`** — what **View → Theme** lists; the file's name when there is none.
 - **`inherits`** — the theme yours starts from: `classic` (the default when it's left out), a
-  built-in theme's id (`metro`, `adwaita`, `breeze`, `luna`, `aero`, `aqua`, `high-contrast`), or
+  built-in theme's id (`flat`, `metro`, `adwaita`, `breeze`, `luna`, `aero`, `aqua`, `high-contrast`), or
   another theme file in the same folder, by its file name without `.toml`. A file that inherits
   another can be inherited in turn; a theme can't inherit itself.
 - **`[seeds]`** — a handful of colours (`background`, `surface`, `header`, `text`, `accent`,
@@ -139,7 +140,9 @@ focus = "ring"
   with transparency. The roles a file sets win over its seeds.
 - **`[sizes]`** — corner radii, border widths, font sizes and row heights, in pixels.
 - **`[controls]`** — the shape of text boxes, check boxes, buttons, progress bars, scroll bars,
-  the focus mark and the title bar.
+  the focus mark and the title bar, and the main window's `layout`: `classic` (the toolbar and the
+  Categories tree) or `flat` (the sidebar, header and details panel). A theme that inherits
+  `flat` keeps its layout.
 - **`icons`** — `color`, `mono` (one colour) or `accent`.
 - **`contrast = "high"`** — strengthens every edge and text colour on top of the rest.
 

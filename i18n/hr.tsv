@@ -95,6 +95,14 @@
 #. {n} = a number (keep the braces as they are)
 #, machine
 @plural	{n} selected|{n} selected	{n} odabrano|{n} odabrana|{n} odabrano
+#. count in the Options window
+#. {n} = a number (keep the braces as they are)
+#, machine
+@plural	{n} site added from the file.|{n} sites added from the file.	{n} web-mjesto dodano iz datoteke.|{n} web-mjesta dodana iz datoteke.|{n} web-mjesta dodano iz datoteke.
+#. count in the Options window
+#. {n} = a number (keep the braces as they are)
+#, machine
+@plural	{n} site saved to the file.|{n} sites saved to the file.	{n} web-mjesto spremljeno u datoteku.|{n} web-mjesta spremljena u datoteku.|{n} web-mjesta spremljeno u datoteku.
 #. count in the main window
 #. event log entry: trackers were added to the torrent
 #. {n} = a number (keep the braces as they are)
@@ -313,6 +321,9 @@
 #. text in a dialog box
 #, machine
 	Add to queue:	Dodaj u red čekanja:
+#. text in flat.rs
+#, machine
+	Add Torrent	Dodaj torrent
 #. message or event log entry in the main window; window title in the Add torrent window
 #, machine
 	Add torrent	Dodaj torrent
@@ -398,7 +409,7 @@
 #. remote control page (on a phone): tab: every download
 #, machine
 	All	Sve
-#. item in the Categories tree in the main window
+#. item in the Categories tree in the main window; message or event log entry in the main window
 #, machine
 	All Downloads	Sva preuzimanja
 #. message or event log entry in the main window
@@ -756,7 +767,7 @@
 #. the headline of the window that offers the browser extension
 #, machine
 	Catch downloads from your browser	Preuzmite datoteke iz preglednika
-#. text in the main window (menus, toolbar, Categories pane)
+#. message or event log entry in the main window; text in the main window (menus, toolbar, Categories pane)
 #. title of the side pane that lists the categories
 #, machine
 	Categories	Kategorije
@@ -906,7 +917,7 @@
 #. text in the Options window
 #, machine
 	Clock:	Sat:
-#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
+#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; text in flat.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
 #. both verbs: Verify = check the file now; Close = close the window
 #. tooltip of the × that closes the Categories pane
 #. verb: closes this window
@@ -976,6 +987,9 @@
 #. tab title: connection settings
 #, machine
 	Connection	Veza
+#. text in flat.rs
+#, machine
+	Connections	Veze
 #. page title in the Options window
 #, machine
 	Connections and Limits	Veze i ograničenja
@@ -1296,7 +1310,7 @@
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Download...	Preuzmi...
-#. text in a download's progress window
+#. text in flat.rs; text in a download's progress window
 #. label before the amount received so far
 #. column title: bytes this connection received
 #, machine
@@ -1327,6 +1341,11 @@
 #. the trailing ... means it is still going on: keep it
 #, machine
 	Downloading and verifying yt-dlp...	Preuzimanje i provjera yt-dlp-a...
+#. text in helpers.rs
+#. Video helpers: MDM's own yt-dlp is being downloaded
+#. the trailing ... means it is still going on: keep it
+#, machine
+	Downloading MDM's own copy...	Preuzimanje MDM-ove vlastite kopije...
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. Check for updates, while Update now downloads; {percent} like "42%"
 #, machine
@@ -1515,9 +1534,13 @@
 #. Options → Accounts: a note that the debrid services' support (Real-Debrid, AllDebrid, Premiumize) is new and not yet tried with real paid accounts
 #, machine
 	Experimental: built from the services' public API documentation, not yet confirmed with real accounts.	Eksperimentalno: izrađeno iz javne API dokumentacije usluga, još nije potvrđeno sa stvarnim računima.
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Export	Izvoz
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Export...	Izvezi...
 #. text in the Options window
 #, machine
 	Extend the availability of Manifest 2 Chrome extensions	Proširite dostupnost Manifest 2 Chrome proširenja
@@ -1661,7 +1684,7 @@
 #. text in the Find window
 #, machine
 	Find:	Pronađi:
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are complete
 #. remote control page (on a phone): tab: downloads finished
 #, machine
@@ -1992,9 +2015,13 @@
 #. checkbox in the Options window
 #, machine
 	Ignore file modification time changes when resuming a download	Zanemari promjene vremena izmjene datoteke prilikom nastavka preuzimanja
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Import	Uvezi
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Import...	Uvezi...
 #. value in a column's filter list in the download list
 #, machine
 	In a queue	U redu čekanja
@@ -2025,6 +2052,10 @@
 #. the torrent's identifier
 #, machine
 	Info hash	Informacijski hash
+#. text in flat.rs
+#. toolbar button that shows or hides the download inspector
+#, machine
+	Inspector	Inspektor
 #. text in extracting archives (a download's log, the Archive password window)
 #. in the "7-Zip needed" window, under why
 #, machine
@@ -2270,6 +2301,10 @@
 #. a country's name (where a download's server is)
 #, machine
 	Liberia	Liberija
+#. message or event log entry in the main window
+#. sidebar section containing the download status filters
+#, machine
+	Library	Biblioteka
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -3374,7 +3409,7 @@
 #. remote control page (on a phone): a download's state: added, waiting to start
 #, machine
 	Queued	U redu čekanja
-#. item in the Categories tree in the main window; text in the Scheduler window
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in the Scheduler window
 #. plural noun: the download queues
 #, machine
 	Queues	Redovi čekanja
@@ -3514,6 +3549,10 @@
 #. window title in rssdlg.rs
 #, machine
 	RSS feeds	RSS feedovi
+#. message or event log entry in the main window
+#. {n} = a number (keep the braces as they are)
+#, machine
+	Running, {n} at a time	U tijeku, {n} istodobno
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -3588,7 +3627,7 @@
 #. text in a dialog box
 #, machine
 	Save As	Spremi kao
-#. text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
+#. text in flat.rs; text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
 #. tab title: where downloads are saved
 #, machine
 	Save to	Spremi u
@@ -3623,6 +3662,9 @@
 #. text in the Batch download window
 #, machine
 	Second file:	Druga datoteka:
+#. text in flat.rs
+#, machine
+	Segments	Segmenti
 #. text in a dialog box
 #. title of the folder picker
 #, machine
@@ -3951,6 +3993,9 @@
 #. a country's name (where a download's server is)
 #, machine
 	Spain	Španjolska
+#. text in flat.rs
+#, machine
+	Speed	Brzina
 #. text in a download's progress window; text in the tray icon's menu
 #. tab title: the tool that limits the download speed
 #, machine
@@ -4064,7 +4109,7 @@
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
 	Stop {queue}	Zaustavi {queue}
-#. value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
+#. message or event log entry in the main window; value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
 #. a download's status (state it is in, not a command)
 #. a download's status (state it is in, not a command): stopped by the user
 #, machine
@@ -4330,7 +4375,7 @@
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be moved: {error}	Datoteka se nije mogla premjestiti: {error}
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be read: {error}	Datoteka se nije mogla pročitati: {error}
@@ -4379,7 +4424,7 @@
 #. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	Nedostaje pomoćni program koji pokreću preglednici
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The list could not be saved: {error}	Popis se nije mogao spremiti: {error}
@@ -4456,6 +4501,18 @@
 #. the Download video window: the site asked for a sign-in although yt-dlp had the cookies of the browser chosen in Options; {browser} = its name
 #, machine
 	The site wants you signed in, even with {browser}'s cookies. Sign in to it in {browser}, then look the page up again.	Web-mjesto traži da se prijavite, čak i s kolačićima preglednika {browser}. Prijavite se na njega u pregledniku {browser}, a zatim ponovno potražite stranicu.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though the browser's extension passed the page's cookies
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with your browser's cookies for this page. Try again later, or from another browser.	Provjera bota web-mjesta (Cloudflare) odbila je yt-dlp, čak i s kolačićima vašeg preglednika za ovu stranicu. Pokušajte ponovno kasnije ili iz drugog preglednika.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though it had the cookies of the browser chosen in Options; {browser} = its name
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with {browser}'s cookies. Use the Download video button over the video in {browser}, or try the page again later.	Provjera bota web-mjesta (Cloudflare) odbila je yt-dlp, čak i s kolačićima preglednika {browser}. Upotrijebite gumb Preuzmi videozapis iznad videozapisa u pregledniku {browser} ili pokušajte ponovno kasnije.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away and no browser cookies were used
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp. If the page opens in your browser, choose that browser in Options → Sites Logins → Cookies for video sites and look the page up again, or use the Download video button over the video.	Provjera bota web-mjesta (Cloudflare) odbila je yt-dlp. Ako se stranica otvori u vašem pregledniku, odaberite taj preglednik u Mogućnosti → Prijave na web-mjesta → Kolačići za video web-mjesta i ponovno potražite stranicu ili upotrijebite gumb Preuzmi videozapis iznad videozapisa.
 #. text in crashui.rs
 #. crash report window: the symbols couldn't be downloaded; the report still works
 #, machine
@@ -4638,6 +4695,11 @@
 #. the Download video window: the video needs the user to be signed in
 #, machine
 	This video needs you to be signed in. Use the Download video button over it in your browser, which passes your sign-in on, or choose your browser in Options → Sites Logins → Cookies for video sites.	Za ovaj videozapis morate biti prijavljeni. Koristite gumb Preuzmi videozapis iznad njega u svom pregledniku, koji prosljeđuje vašu prijavu, ili odaberite svoj preglednik u Mogućnosti → Prijave na web-mjesta → Kolačići za videozapise.
+#. text in errors.rs
+#. a download's error: the address is a site's web page that needs a browser, not the file; {site} = the site's name (gofile)
+#. {site} = a web site's name such as "example.com" (keep the braces as they are)
+#, machine
+	this {site} link is a web page, not the file: open it in your browser and download from there	ova veza {site} je web-stranica, a ne datoteka: otvorite je u pregledniku i preuzmite odande
 #. text in whereis.rs
 #. where a download's server is, when a proxy carries it (the proxy's place not known)
 #, machine
@@ -4661,7 +4723,7 @@
 #. tooltip on the Scheduler's "Wake the computer to run this queue" while "Start download at" is off
 #, machine
 	Tick "Start download at" first: the computer is woken for the start time	Najprije označite „Započni preuzimanje u”: računalo se budi u vrijeme početka
-#. text in a download's progress window; text in the Scheduler window
+#. text in flat.rs; text in a download's progress window; text in the Scheduler window
 #, machine
 	Time left	Preostalo vrijeme
 #. text in countries.rs
@@ -4870,7 +4932,7 @@
 #. Link grabber button (IDM's): untick every link
 #, machine
 	Uncheck all	Poništi odabir svih
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are not complete yet
 #. remote control page (on a phone): tab: downloads not finished yet
 #, machine
@@ -5356,6 +5418,10 @@
 #. {algorithm} = a checksum algorithm such as "SHA-256" (keep the braces as they are)
 #, machine
 	{file}: the file matches its checksum ({algorithm})	{file}: datoteka se podudara s kontrolnim zbrojem ({algorithm})
+#. text in flat.rs
+#. {size} = a file size such as "4.2 MB" (keep the braces as they are)
+#, machine
+	{got} of {size}	{got} od {size}
 #. text in a download's progress window
 #. {have} and {total} = numbers of pieces; {size} = one piece's size
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5575,7 +5641,7 @@ column	Share ratio	Omjer dijeljenja
 #. noun: the file's size
 #, machine
 column	Size	Veličina
-#. column title in the download list in the download list
+#. column title in flat.rs; column title in the download list in the download list
 #. noun: where the download comes from (Web or Torrent)
 #, machine
 column	Source	Izvor
@@ -6286,6 +6352,10 @@ menu	Find Next (F3)	Pronađi sljedeće (F3)
 #, machine
 menu	First and last pieces first	Prvi i zadnji dijelovi prvi
 #. menu command in the main window
+#. View → Theme: a style theme's name (minimal and flat, like a phone's apps)
+#, machine
+menu	Flat	Flat
+#. menu command in the main window
 #. noun: the list's font (submenu)
 #, machine
 menu	Font	Font
@@ -6555,7 +6625,7 @@ menubar	&View	P&rikaz
 #. toolbar button in the main window
 #, machine
 toolbar	Add Torrent	Dodaj torrent
-#. toolbar button in the main window
+#. toolbar button in the main window; toolbar button in flat.rs
 #, machine
 toolbar	Add URL	Dodaj URL
 #. toolbar button in the main window
