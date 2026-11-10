@@ -95,6 +95,14 @@
 #. {n} = a number (keep the braces as they are)
 #, machine
 @plural	{n} selected|{n} selected	{n} valgt|{n} valgte
+#. count in the Options window
+#. {n} = a number (keep the braces as they are)
+#, machine
+@plural	{n} site added from the file.|{n} sites added from the file.	{n} websted tilføjet fra filen.|{n} websteder tilføjet fra filen.
+#. count in the Options window
+#. {n} = a number (keep the braces as they are)
+#, machine
+@plural	{n} site saved to the file.|{n} sites saved to the file.	{n} websted gemt i filen.|{n} websteder gemt i filen.
 #. count in the main window
 #. event log entry: trackers were added to the torrent
 #. {n} = a number (keep the braces as they are)
@@ -313,6 +321,9 @@
 #. text in a dialog box
 #, machine
 	Add to queue:	Tilføj til kø:
+#. text in flat.rs
+#, machine
+	Add Torrent	Tilføj torrent
 #. message or event log entry in the main window; window title in the Add torrent window
 #, machine
 	Add torrent	Tilføj torrent
@@ -398,7 +409,7 @@
 #. remote control page (on a phone): tab: every download
 #, machine
 	All	Alle
-#. item in the Categories tree in the main window
+#. item in the Categories tree in the main window; message or event log entry in the main window
 #, machine
 	All Downloads	Alle downloads
 #. message or event log entry in the main window
@@ -756,7 +767,7 @@
 #. the headline of the window that offers the browser extension
 #, machine
 	Catch downloads from your browser	Opsnap downloads fra din browser
-#. text in the main window (menus, toolbar, Categories pane)
+#. message or event log entry in the main window; text in the main window (menus, toolbar, Categories pane)
 #. title of the side pane that lists the categories
 #, machine
 	Categories	Kategorier
@@ -906,7 +917,7 @@
 #. text in the Options window
 #, machine
 	Clock:	Ur:
-#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
+#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; text in flat.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
 #. both verbs: Verify = check the file now; Close = close the window
 #. tooltip of the × that closes the Categories pane
 #. verb: closes this window
@@ -976,6 +987,9 @@
 #. tab title: connection settings
 #, machine
 	Connection	Forbindelse
+#. text in flat.rs
+#, machine
+	Connections	Forbindelser
 #. page title in the Options window
 #, machine
 	Connections and Limits	Forbindelser og begrænsninger
@@ -1296,7 +1310,7 @@
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Download...	Download...
-#. text in a download's progress window
+#. text in flat.rs; text in a download's progress window
 #. label before the amount received so far
 #. column title: bytes this connection received
 #, machine
@@ -1327,6 +1341,11 @@
 #. the trailing ... means it is still going on: keep it
 #, machine
 	Downloading and verifying yt-dlp...	Downloader og verificerer yt-dlp...
+#. text in helpers.rs
+#. Video helpers: MDM's own yt-dlp is being downloaded
+#. the trailing ... means it is still going on: keep it
+#, machine
+	Downloading MDM's own copy...	Henter MDM's egen kopi...
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. Check for updates, while Update now downloads; {percent} like "42%"
 #, machine
@@ -1515,9 +1534,13 @@
 #. Options → Accounts: a note that the debrid services' support (Real-Debrid, AllDebrid, Premiumize) is new and not yet tried with real paid accounts
 #, machine
 	Experimental: built from the services' public API documentation, not yet confirmed with real accounts.	Eksperimentel: bygget ud fra tjenesternes offentlige API-dokumentation, endnu ikke bekræftet med rigtige konti.
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Export	Eksporter
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Export...	Eksporter...
 #. text in the Options window
 #, machine
 	Extend the availability of Manifest 2 Chrome extensions	Udvid tilgængeligheden af Manifest 2 Chrome-udvidelser
@@ -1661,7 +1684,7 @@
 #. text in the Find window
 #, machine
 	Find:	Find:
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are complete
 #. remote control page (on a phone): tab: downloads finished
 #, machine
@@ -1992,9 +2015,13 @@
 #. checkbox in the Options window
 #, machine
 	Ignore file modification time changes when resuming a download	Ignorer ændringer af filens ændringstidspunkt, når en download genoptages
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Import	Importer
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Import...	Importer...
 #. value in a column's filter list in the download list
 #, machine
 	In a queue	I en kø
@@ -2025,6 +2052,10 @@
 #. the torrent's identifier
 #, machine
 	Info hash	Info-hash
+#. text in flat.rs
+#. toolbar button that shows or hides the download inspector
+#, machine
+	Inspector	Inspektør
 #. text in extracting archives (a download's log, the Archive password window)
 #. in the "7-Zip needed" window, under why
 #, machine
@@ -2270,6 +2301,10 @@
 #. a country's name (where a download's server is)
 #, machine
 	Liberia	Liberia
+#. message or event log entry in the main window
+#. sidebar section containing the download status filters
+#, machine
+	Library	Bibliotek
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -3374,7 +3409,7 @@
 #. remote control page (on a phone): a download's state: added, waiting to start
 #, machine
 	Queued	I kø
-#. item in the Categories tree in the main window; text in the Scheduler window
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in the Scheduler window
 #. plural noun: the download queues
 #, machine
 	Queues	Køer
@@ -3514,6 +3549,10 @@
 #. window title in rssdlg.rs
 #, machine
 	RSS feeds	RSS-feeds
+#. message or event log entry in the main window
+#. {n} = a number (keep the braces as they are)
+#, machine
+	Running, {n} at a time	Kører, {n} ad gangen
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -3588,7 +3627,7 @@
 #. text in a dialog box
 #, machine
 	Save As	Gem som
-#. text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
+#. text in flat.rs; text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
 #. tab title: where downloads are saved
 #, machine
 	Save to	Gem i
@@ -3623,6 +3662,9 @@
 #. text in the Batch download window
 #, machine
 	Second file:	Anden fil:
+#. text in flat.rs
+#, machine
+	Segments	Segmenter
 #. text in a dialog box
 #. title of the folder picker
 #, machine
@@ -3951,6 +3993,9 @@
 #. a country's name (where a download's server is)
 #, machine
 	Spain	Spanien
+#. text in flat.rs
+#, machine
+	Speed	Hastighed
 #. text in a download's progress window; text in the tray icon's menu
 #. tab title: the tool that limits the download speed
 #, machine
@@ -4064,7 +4109,7 @@
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
 	Stop {queue}	Stop {queue}
-#. value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
+#. message or event log entry in the main window; value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
 #. a download's status (state it is in, not a command)
 #. a download's status (state it is in, not a command): stopped by the user
 #, machine
@@ -4330,7 +4375,7 @@
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be moved: {error}	Filen kunne ikke flyttes: {error}
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be read: {error}	Filen kunne ikke læses: {error}
@@ -4379,7 +4424,7 @@
 #. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	Hjælpeprogrammet, som browserne starter, mangler
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The list could not be saved: {error}	Listen kunne ikke gemmes: {error}
@@ -4456,6 +4501,18 @@
 #. the Download video window: the site asked for a sign-in although yt-dlp had the cookies of the browser chosen in Options; {browser} = its name
 #, machine
 	The site wants you signed in, even with {browser}'s cookies. Sign in to it in {browser}, then look the page up again.	Siden kræver, at du er logget ind, selvom {browser} har sidens cookies. Log ind på siden i {browser}, og slå derefter siden op igen.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though the browser's extension passed the page's cookies
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with your browser's cookies for this page. Try again later, or from another browser.	Webstedets botkontrol (Cloudflare) afviste yt-dlp, selv med din browsers cookies til denne side. Prøv igen senere, eller fra en anden browser.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though it had the cookies of the browser chosen in Options; {browser} = its name
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with {browser}'s cookies. Use the Download video button over the video in {browser}, or try the page again later.	Webstedets botkontrol (Cloudflare) afviste yt-dlp, selv med {browser}s cookies. Brug knappen Hent video over videoen i {browser}, eller prøv siden igen senere.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away and no browser cookies were used
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp. If the page opens in your browser, choose that browser in Options → Sites Logins → Cookies for video sites and look the page up again, or use the Download video button over the video.	Webstedets botkontrol (Cloudflare) afviste yt-dlp. Hvis siden åbnes i din browser, skal du vælge den browser i Indstillinger → Webstedslogins → Cookies til videosider og søge siden op igen, eller bruge knappen Hent video over videoen.
 #. text in crashui.rs
 #. crash report window: the symbols couldn't be downloaded; the report still works
 #, machine
@@ -4638,6 +4695,11 @@
 #. the Download video window: the video needs the user to be signed in
 #, machine
 	This video needs you to be signed in. Use the Download video button over it in your browser, which passes your sign-in on, or choose your browser in Options → Sites Logins → Cookies for video sites.	Denne video kræver, at du er logget ind. Brug knappen Download video over den i din browser, som sender dit login videre, eller vælg din browser i Indstillinger → Login til websteder → Cookies til videosider.
+#. text in errors.rs
+#. a download's error: the address is a site's web page that needs a browser, not the file; {site} = the site's name (gofile)
+#. {site} = a web site's name such as "example.com" (keep the braces as they are)
+#, machine
+	this {site} link is a web page, not the file: open it in your browser and download from there	Dette {site}-link er en webside, ikke filen: Åbn det i din browser, og hent filen derfra
 #. text in whereis.rs
 #. where a download's server is, when a proxy carries it (the proxy's place not known)
 #, machine
@@ -4661,7 +4723,7 @@
 #. tooltip on the Scheduler's "Wake the computer to run this queue" while "Start download at" is off
 #, machine
 	Tick "Start download at" first: the computer is woken for the start time	Markér "Start download kl." først: computeren vækkes på starttidspunktet
-#. text in a download's progress window; text in the Scheduler window
+#. text in flat.rs; text in a download's progress window; text in the Scheduler window
 #, machine
 	Time left	Tid tilbage
 #. text in countries.rs
@@ -4870,7 +4932,7 @@
 #. Link grabber button (IDM's): untick every link
 #, machine
 	Uncheck all	Fjern markeringen af alle
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are not complete yet
 #. remote control page (on a phone): tab: downloads not finished yet
 #, machine
@@ -5356,6 +5418,10 @@
 #. {algorithm} = a checksum algorithm such as "SHA-256" (keep the braces as they are)
 #, machine
 	{file}: the file matches its checksum ({algorithm})	{file}: filen stemmer overens med dens kontrolsum ({algorithm})
+#. text in flat.rs
+#. {size} = a file size such as "4.2 MB" (keep the braces as they are)
+#, machine
+	{got} of {size}	{got} af {size}
 #. text in a download's progress window
 #. {have} and {total} = numbers of pieces; {size} = one piece's size
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5575,7 +5641,7 @@ column	Share ratio	Delingsforhold
 #. noun: the file's size
 #, machine
 column	Size	Størrelse
-#. column title in the download list in the download list
+#. column title in flat.rs; column title in the download list in the download list
 #. noun: where the download comes from (Web or Torrent)
 #, machine
 column	Source	Kilde
@@ -6286,6 +6352,10 @@ menu	Find Next (F3)	Find næste (F3)
 #, machine
 menu	First and last pieces first	Første og sidste dele først
 #. menu command in the main window
+#. View → Theme: a style theme's name (minimal and flat, like a phone's apps)
+#, machine
+menu	Flat	Flad
+#. menu command in the main window
 #. noun: the list's font (submenu)
 #, machine
 menu	Font	Skrifttype
@@ -6555,7 +6625,7 @@ menubar	&View	&Vis
 #. toolbar button in the main window
 #, machine
 toolbar	Add Torrent	Tilføj torrent
-#. toolbar button in the main window
+#. toolbar button in the main window; toolbar button in flat.rs
 #, machine
 toolbar	Add URL	Tilføj URL
 #. toolbar button in the main window

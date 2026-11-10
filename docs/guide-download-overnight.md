@@ -55,7 +55,7 @@ Back on the **Schedule** tab:
 2. Leave MDM running. Closing the main window is fine: MDM keeps going in the tray. Don't use **Tasks → Exit**.
 3. Make sure the computer doesn't go to sleep before the start time.
 
-At the start time the queue starts on its own. In the morning, the finished files are under **Finished** in the categories.
+At the start time the queue starts on its own. In the morning, the finished files are under **Finished** in the sidebar.
 
 ## Next steps
 

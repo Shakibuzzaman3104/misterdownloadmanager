@@ -44,7 +44,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/images/main-dark.webp">
-    <img src="docs/images/main-light.webp" alt="Mister Download Manager's main window: categories, toolbar and a list of downloads" width="920">
+    <img src="docs/images/main-light.webp" alt="Mister Download Manager's main window: a sidebar of categories, the view's buttons and a list of downloads with progress bars" width="920">
   </picture>
 </p>
 
@@ -63,7 +63,7 @@
 
 ## Why switch from IDM?
 
-**Same window you know. Your downloads finish sooner. And it costs nothing.**
+**Same workflow you know. Your downloads finish sooner. And it costs nothing.**
 
 <p align="center">
   <picture>
@@ -84,8 +84,9 @@
 | Open source | **Yes** (GPL) | No |
 <!-- compare:end -->
 
-Nothing new to learn: the toolbar, the categories, the list of downloads, the progress window and
-the browser button are where you expect them. Measured on the same computer, same files, both
+Nothing new to learn: the menus, the categories, the list of downloads, the progress window and
+the browser button work the way you expect, in a cleaner, flat window. Prefer IDM's own layout,
+with its toolbar and Categories tree? **View → Theme → Classic**. Measured on the same computer, same files, both
 programs at their default settings ([how we measured](#the-benchmark-in-detail)).
 
 ## Download
@@ -293,8 +294,8 @@ right-to-left window.
 - **Works from scripts too**: IDM's command-line switches, a command-line tool, and a local API for other programs ([how](docs/command-line.md)).
 - **Works with your AI assistant**: an MCP server lets Claude, Cursor or VS Code list, add, pause and remove your downloads ([set it up](docs/ai-assistants.md)).
 - **Leaves you some speed**: limit one download or all of them, only while you're at the computer.
-- **Day and dark mode, and themes**: Classic, Native, High contrast, Metro, Adwaita, Breeze,
-  Luna, Aero and Aqua, or your own in a text file ([how](docs/themes.md)). Everything larger, up
+- **Day and dark mode, and themes**: Flat (the default), Classic (IDM's layout), Native, High
+  contrast, Metro, Adwaita, Breeze, Luna, Aero and Aqua, or your own in a text file ([how](docs/themes.md)). Everything larger, up
   to 200 %, with **View → Interface size**. 86 languages, and a portable version for USB sticks.
 - **Works from the keyboard and with screen readers** (Narrator, NVDA): every window, dialog and
   menu ([the keys](docs/keyboard-shortcuts.md)).

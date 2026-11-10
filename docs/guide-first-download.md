@@ -7,7 +7,7 @@ From a copied link to an opened file in a minute or two.
 ## Steps
 
 1. In your browser, right-click the link to the file and choose **Copy link**.
-2. In MDM, click **Add URL** on the toolbar (or press **Ctrl+N**). The address is already filled in.
+2. In MDM, click **Add URL** at the top right (or press **Ctrl+N**). The address is already filled in.
 3. Click **OK**.
 4. **Download File Info** shows the file's name, its size and where it will be saved. The folder depends on the file's type: a ZIP goes to `Downloads\Compressed`, a video to `Downloads\Video`, and so on. Change the folder or the category if you like.
 5. Click **Start Download**.
@@ -25,7 +25,7 @@ From a copied link to an opened file in a minute or two.
 4. ![Download complete with Open and Open folder](images/help/first-complete.webp)
    *Done: Open the file, or Open folder.*
 
-The download stays in the list under **Finished**. To get rid of the entry later, select it and press **Delete**; tick **Also delete the file from disk** only if you want the file gone too.
+The download stays in the list, under **Finished** in the sidebar. To get rid of the entry later, select it and press **Delete**; tick **Also delete the file from disk** only if you want the file gone too.
 
 ## If something goes differently
 

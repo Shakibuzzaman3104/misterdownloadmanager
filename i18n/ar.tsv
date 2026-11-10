@@ -243,6 +243,9 @@
 	Add to queue	إضافة إلى قائمة الانتظار
 #. text in a dialog box
 	Add to queue:	إضافة إلى قائمة الانتظار:
+#. text in flat.rs
+#, machine
+	Add Torrent	إضافة تورنت
 #. message or event log entry in the main window; window title in the Add torrent window
 	Add torrent	إضافة تورنت
 #. window title in the Add torrent window
@@ -311,7 +314,7 @@
 #. remote control page (on a phone): tab: every download
 #, machine
 	All	الكل
-#. item in the Categories tree in the main window
+#. item in the Categories tree in the main window; message or event log entry in the main window
 	All Downloads	جميع التنزيلات
 #. message or event log entry in the main window
 	All files	جميع الملفات
@@ -576,7 +579,7 @@
 #. text in extension.rs
 #. the headline of the window that offers the browser extension
 	Catch downloads from your browser	التقاط التنزيلات من مستعرضك
-#. text in the main window (menus, toolbar, Categories pane)
+#. message or event log entry in the main window; text in the main window (menus, toolbar, Categories pane)
 #. title of the side pane that lists the categories
 	Categories	الفئات
 #. page title in the Options window
@@ -692,7 +695,7 @@
 	Client	العميل
 #. text in the Options window
 	Clock:	الساعة:
-#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
+#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; text in flat.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
 #. both verbs: Verify = check the file now; Close = close the window
 #. tooltip of the × that closes the Categories pane
 #. verb: closes this window
@@ -747,6 +750,9 @@
 #. text in the Options window
 #. tab title: connection settings
 	Connection	الاتصال
+#. text in flat.rs
+#, machine
+	Connections	الاتصالات
 #. page title in the Options window
 	Connections and Limits	الاتصالات والحدود
 #. text in the Options window
@@ -981,7 +987,7 @@
 #. RSS feeds window: add the selected article's torrent (opens Add torrent)
 #. the trailing ... means it opens a window: keep it
 	Download...	تنزيل...
-#. text in a download's progress window
+#. text in flat.rs; text in a download's progress window
 #. label before the amount received so far
 #. column title: bytes this connection received
 	Downloaded	تم التنزيل
@@ -1004,6 +1010,11 @@
 #. text in the Download video window
 #. the trailing ... means it is still going on: keep it
 	Downloading and verifying yt-dlp...	قيد تنزيل yt-dlp والتحقق منه...
+#. text in helpers.rs
+#. Video helpers: MDM's own yt-dlp is being downloaded
+#. the trailing ... means it is still going on: keep it
+#, machine
+	Downloading MDM's own copy...	قيد تنزيل نسخة MDM الخاصة...
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. Check for updates, while Update now downloads; {percent} like "42%"
 	Downloading the update... {percent}	قيد تنزيل التحديث... {percent}
@@ -1145,8 +1156,12 @@
 #. text in the Options window
 #. Options → Accounts: a note that the debrid services' support (Real-Debrid, AllDebrid, Premiumize) is new and not yet tried with real paid accounts
 	Experimental: built from the services' public API documentation, not yet confirmed with real accounts.	تجريبي: مبني على وثائق API العامة للخدمات، ولم يتم تأكيده بعد بحسابات حقيقية.
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 	Export	تصدير
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Export...	تصدير...
 #. text in the Options window
 	Extend the availability of Manifest 2 Chrome extensions	توسيع إتاحة ملحقات Chrome Manifest 2
 #. text in categories.rs
@@ -1252,7 +1267,7 @@
 	Find the next match	البحث عن النتيجة التالية
 #. text in the Find window
 	Find:	بحث:
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are complete
 #. remote control page (on a phone): tab: downloads finished
 	Finished	مكتمل
@@ -1499,8 +1514,12 @@
 	If it can't be reached, use the system's DNS	إذا تعذر الوصول إليه، فاستخدم DNS الخاص بالنظام
 #. checkbox in the Options window
 	Ignore file modification time changes when resuming a download	تجاهل تغييرات وقت تعديل الملف عند متابعة التنزيل
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 	Import	استيراد
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Import...	استيراد...
 #. value in a column's filter list in the download list
 	In a queue	في قائمة انتظار
 #. what a keyboard shortcut does in the Help menu's windows (About, updates, shortcuts, Tell a friend)
@@ -1523,6 +1542,10 @@
 #. text in a download's progress window
 #. the torrent's identifier
 	Info hash	تجزئة المعلومات
+#. text in flat.rs
+#. toolbar button that shows or hides the download inspector
+#, machine
+	Inspector	المفتش
 #. text in extracting archives (a download's log, the Archive password window)
 #. in the "7-Zip needed" window, under why
 	Install 7-Zip (free), then right-click the download and choose Extract.	ثبت 7-Zip (مجاني)، ثم انقر بزر الماوس الأيمن فوق التنزيل واختر استخراج.
@@ -1710,6 +1733,10 @@
 #. text in countries.rs
 #. a country's name (where a download's server is)
 	Liberia	ليبيريا
+#. message or event log entry in the main window
+#. sidebar section containing the download status filters
+#, machine
+	Library	المكتبة
 #. text in countries.rs
 #. a country's name (where a download's server is)
 	Libya	ليبيا
@@ -2553,7 +2580,7 @@
 #. remote control page (on a phone): a download's state: added, waiting to start
 #, machine
 	Queued	في قائمة الانتظار
-#. item in the Categories tree in the main window; text in the Scheduler window
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in the Scheduler window
 #. plural noun: the download queues
 	Queues	قوائم الانتظار
 #. text in the Options window
@@ -2661,6 +2688,10 @@
 	Romania	رومانيا
 #. window title in rssdlg.rs
 	RSS feeds	موجزات RSS
+#. message or event log entry in the main window
+#. {n} = a number (keep the braces as they are)
+#, machine
+	Running, {n} at a time	قيد التشغيل، {n} في المرة الواحدة
 #. text in countries.rs
 #. a country's name (where a download's server is)
 	Russia	روسيا
@@ -2717,7 +2748,7 @@
 	Saudi Arabia	المملكة العربية السعودية
 #. text in a dialog box
 	Save As	حفظ باسم
-#. text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
+#. text in flat.rs; text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
 #. tab title: where downloads are saved
 	Save to	حفظ في
 #. group box title in the Options window
@@ -2743,6 +2774,9 @@
 	Search:	بحث:
 #. text in the Batch download window
 	Second file:	الملف الثاني:
+#. text in flat.rs
+#, machine
+	Segments	الأجزاء
 #. text in a dialog box
 #. title of the folder picker
 	Select a folder	تحديد مجلد
@@ -2984,6 +3018,9 @@
 #. text in countries.rs
 #. a country's name (where a download's server is)
 	Spain	إسبانيا
+#. text in flat.rs
+#, machine
+	Speed	السرعة
 #. text in a download's progress window; text in the tray icon's menu
 #. tab title: the tool that limits the download speed
 	Speed Limiter	محدد السرعة
@@ -3068,7 +3105,7 @@
 #. message or event log entry in the main window
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 	Stop {queue}	إيقاف {queue}
-#. value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
+#. message or event log entry in the main window; value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
 #. a download's status (state it is in, not a command)
 #. a download's status (state it is in, not a command): stopped by the user
 	Stopped	متوقف
@@ -3268,7 +3305,7 @@
 #. message or event log entry in the main window
 #. {error} = an error message (keep the braces as they are)
 	The file could not be moved: {error}	تعذر نقل الملف: {error}
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 	The file could not be read: {error}	تعذر قراءة الملف: {error}
 #. text in the Checksum window
@@ -3305,7 +3342,7 @@
 #. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	برنامج المساعد الذي تبدأه المستعرضات مفقود
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 	The list could not be saved: {error}	تعذر حفظ القائمة: {error}
 #. text in whereis.rs
@@ -3361,6 +3398,18 @@
 #. text in the Download video window
 #. the Download video window: the site asked for a sign-in although yt-dlp had the cookies of the browser chosen in Options; {browser} = its name
 	The site wants you signed in, even with {browser}'s cookies. Sign in to it in {browser}, then look the page up again.	يطلب الموقع تسجيل الدخول، حتى مع ملفات تعريف الارتباط الخاصة بـ {browser}. سجل الدخول إليه في {browser}، ثم ابحث عن الصفحة مرة أخرى.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though the browser's extension passed the page's cookies
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with your browser's cookies for this page. Try again later, or from another browser.	رفض فحص الروبوت الخاص بالموقع (Cloudflare) برنامج yt-dlp، حتى مع ملفات تعريف الارتباط الخاصة بمستعرضك لهذه الصفحة. حاول مرة أخرى لاحقا، أو من مستعرض آخر.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though it had the cookies of the browser chosen in Options; {browser} = its name
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with {browser}'s cookies. Use the Download video button over the video in {browser}, or try the page again later.	رفض فحص الروبوت الخاص بالموقع (Cloudflare) برنامج yt-dlp، حتى مع ملفات تعريف الارتباط الخاصة بـ {browser}. استخدم زر تنزيل الفيديو الموجود فوق الفيديو في {browser}، أو حاول فتح الصفحة مرة أخرى لاحقا.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away and no browser cookies were used
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp. If the page opens in your browser, choose that browser in Options → Sites Logins → Cookies for video sites and look the page up again, or use the Download video button over the video.	رفض فحص الروبوت الخاص بالموقع (Cloudflare) برنامج yt-dlp. إذا فتحت الصفحة في مستعرضك، فاختر هذا المستعرض في الخيارات ← تسجيلات دخول المواقع ← ملفات تعريف الارتباط لمواقع الفيديو وابحث عن الصفحة مرة أخرى، أو استخدم زر تنزيل الفيديو الموجود فوق الفيديو.
 #. text in crashui.rs
 #. crash report window: the symbols couldn't be downloaded; the report still works
 	The symbols couldn't be fetched: some lines of the report show addresses instead of names (the developers can still read them).	تعذر جلب الرموز: تظهر بعض أسطر التقرير عناوين بدلا من الأسماء (لا يزال بإمكان المطورين قراءتها).
@@ -3505,6 +3554,11 @@
 #. text in the Download video window
 #. the Download video window: the video needs the user to be signed in
 	This video needs you to be signed in. Use the Download video button over it in your browser, which passes your sign-in on, or choose your browser in Options → Sites Logins → Cookies for video sites.	يتطلب هذا الفيديو تسجيل دخولك. استخدم زر تنزيل الفيديو الموجود فوقه في مستعرضك، والذي ينقل تسجيل دخولك، أو اختر مستعرضك في الخيارات ← تسجيلات دخول المواقع ← ملفات تعريف الارتباط لمواقع الفيديو.
+#. text in errors.rs
+#. a download's error: the address is a site's web page that needs a browser, not the file; {site} = the site's name (gofile)
+#. {site} = a web site's name such as "example.com" (keep the braces as they are)
+#, machine
+	this {site} link is a web page, not the file: open it in your browser and download from there	رابط {site} هذا هو صفحة ويب، وليس الملف: افتحه في مستعرضك ونزل من هناك
 #. text in whereis.rs
 #. where a download's server is, when a proxy carries it (the proxy's place not known)
 	through a proxy	عبر وكيل
@@ -3522,7 +3576,7 @@
 #. text in the Scheduler window
 #. tooltip on the Scheduler's "Wake the computer to run this queue" while "Start download at" is off
 	Tick "Start download at" first: the computer is woken for the start time	حدد "بدء التنزيل في" أولا: يتم إيقاظ الكمبيوتر لوقت البدء
-#. text in a download's progress window; text in the Scheduler window
+#. text in flat.rs; text in a download's progress window; text in the Scheduler window
 	Time left	الوقت المتبقي
 #. text in countries.rs
 #. a country's name (where a download's server is)
@@ -3683,7 +3737,7 @@
 #. text in the Link grabber window
 #. Link grabber button (IDM's): untick every link
 	Uncheck all	إلغاء تحديد الكل
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are not complete yet
 #. remote control page (on a phone): tab: downloads not finished yet
 	Unfinished	غير مكتمل
@@ -4054,6 +4108,10 @@
 #. text in the Checksum window
 #. {algorithm} = a checksum algorithm such as "SHA-256" (keep the braces as they are)
 	{file}: the file matches its checksum ({algorithm})	{file}: الملف يطابق بصمته ({algorithm})
+#. text in flat.rs
+#. {size} = a file size such as "4.2 MB" (keep the braces as they are)
+#, machine
+	{got} of {size}	{got} من {size}
 #. text in a download's progress window
 #. {have} and {total} = numbers of pieces; {size} = one piece's size
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -4224,7 +4282,7 @@ column	Share ratio	نسبة المشاركة
 #. column title in the download list in the download list
 #. noun: the file's size
 column	Size	الحجم
-#. column title in the download list in the download list
+#. column title in flat.rs; column title in the download list in the download list
 #. noun: where the download comes from (Web or Torrent)
 column	Source	المصدر
 #. column title in the download list in the download list
@@ -4799,6 +4857,10 @@ menu	Find Next (F3)	بحث عن التالي (F3)
 #. right-click → Torrent, a choice with a check mark (with Download in order): each file's first and last pieces first, which a video player needs to start
 menu	First and last pieces first	القطع الأولى والأخيرة أولا
 #. menu command in the main window
+#. View → Theme: a style theme's name (minimal and flat, like a phone's apps)
+#, machine
+menu	Flat	مسطح
+#. menu command in the main window
 #. noun: the list's font (submenu)
 menu	Font	الخط
 #. menu command in the main window
@@ -5003,7 +5065,7 @@ menubar	&Tasks	&المهام
 menubar	&View	&عرض
 #. toolbar button in the main window
 toolbar	Add Torrent	إضافة تورنت
-#. toolbar button in the main window
+#. toolbar button in the main window; toolbar button in flat.rs
 toolbar	Add URL	إضافة URL
 #. toolbar button in the main window
 #. verb: delete the selected downloads

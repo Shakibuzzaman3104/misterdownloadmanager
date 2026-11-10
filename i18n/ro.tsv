@@ -313,6 +313,9 @@
 #. text in a dialog box
 #, machine
 	Add to queue:	Adăugare la coadă:
+#. text in flat.rs
+#, machine
+	Add Torrent	Adăugare torrent
 #. message or event log entry in the main window; window title in the Add torrent window
 #, machine
 	Add torrent	Adăugare torrent
@@ -398,7 +401,7 @@
 #. remote control page (on a phone): tab: every download
 #, machine
 	All	Toate
-#. item in the Categories tree in the main window
+#. item in the Categories tree in the main window; message or event log entry in the main window
 #, machine
 	All Downloads	Toate descărcările
 #. message or event log entry in the main window
@@ -756,7 +759,7 @@
 #. the headline of the window that offers the browser extension
 #, machine
 	Catch downloads from your browser	Preluare descărcări din browserul dvs.
-#. text in the main window (menus, toolbar, Categories pane)
+#. message or event log entry in the main window; text in the main window (menus, toolbar, Categories pane)
 #. title of the side pane that lists the categories
 #, machine
 	Categories	Categorii
@@ -906,7 +909,7 @@
 #. text in the Options window
 #, machine
 	Clock:	Ceas:
-#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
+#. text in the Checksum window; text in the main window (menus, toolbar, Categories pane); button in crashui.rs; button in a dialog box; button in extension.rs; text in flat.rs; button in the Help menu's windows (About, updates, shortcuts, Tell a friend); button in helpers.rs; button in the download list; button in the Options window; button in rssdlg.rs; button in torrentfiles.rs; text in standard windows
 #. both verbs: Verify = check the file now; Close = close the window
 #. tooltip of the × that closes the Categories pane
 #. verb: closes this window
@@ -976,6 +979,9 @@
 #. tab title: connection settings
 #, machine
 	Connection	Conexiune
+#. text in flat.rs
+#, machine
+	Connections	Conexiuni
 #. page title in the Options window
 #, machine
 	Connections and Limits	Conexiuni și limite
@@ -1296,7 +1302,7 @@
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Download...	Descărcare...
-#. text in a download's progress window
+#. text in flat.rs; text in a download's progress window
 #. label before the amount received so far
 #. column title: bytes this connection received
 #, machine
@@ -1327,6 +1333,11 @@
 #. the trailing ... means it is still going on: keep it
 #, machine
 	Downloading and verifying yt-dlp...	Se descarcă și se verifică yt-dlp...
+#. text in helpers.rs
+#. Video helpers: MDM's own yt-dlp is being downloaded
+#. the trailing ... means it is still going on: keep it
+#, machine
+	Downloading MDM's own copy...	Se descarcă propria copie MDM...
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. Check for updates, while Update now downloads; {percent} like "42%"
 #, machine
@@ -1515,9 +1526,13 @@
 #. Options → Accounts: a note that the debrid services' support (Real-Debrid, AllDebrid, Premiumize) is new and not yet tried with real paid accounts
 #, machine
 	Experimental: built from the services' public API documentation, not yet confirmed with real accounts.	Experimental: construit pe baza documentației API publice a serviciilor, încă neconfirmat cu conturi reale.
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Export	Export
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Export...	Export...
 #. text in the Options window
 #, machine
 	Extend the availability of Manifest 2 Chrome extensions	Extindeți disponibilitatea extensiilor Chrome Manifest 2
@@ -1661,7 +1676,7 @@
 #. text in the Find window
 #, machine
 	Find:	Găsiți:
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are complete
 #. remote control page (on a phone): tab: downloads finished
 #, machine
@@ -1992,9 +2007,13 @@
 #. checkbox in the Options window
 #, machine
 	Ignore file modification time changes when resuming a download	Ignorați modificările orei de modificare a fișierului la reluarea unei descărcări
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #, machine
 	Import	Import
+#. button in the Options window
+#. the trailing ... means it opens a window: keep it
+#, machine
+	Import...	Import...
 #. value in a column's filter list in the download list
 #, machine
 	In a queue	Într-o coadă
@@ -2025,6 +2044,10 @@
 #. the torrent's identifier
 #, machine
 	Info hash	Hash informații
+#. text in flat.rs
+#. toolbar button that shows or hides the download inspector
+#, machine
+	Inspector	Inspector
 #. text in extracting archives (a download's log, the Archive password window)
 #. in the "7-Zip needed" window, under why
 #, machine
@@ -2269,6 +2292,10 @@
 #. a country's name (where a download's server is)
 #, machine
 	Liberia	Liberia
+#. message or event log entry in the main window
+#. sidebar section containing the download status filters
+#, machine
+	Library	Bibliotecă
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -3373,7 +3400,7 @@
 #. remote control page (on a phone): a download's state: added, waiting to start
 #, machine
 	Queued	În așteptare
-#. item in the Categories tree in the main window; text in the Scheduler window
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in the Scheduler window
 #. plural noun: the download queues
 #, machine
 	Queues	Cozi
@@ -3513,6 +3540,10 @@
 #. window title in rssdlg.rs
 #, machine
 	RSS feeds	Fluxuri RSS
+#. message or event log entry in the main window
+#. {n} = a number (keep the braces as they are)
+#, machine
+	Running, {n} at a time	Se rulează, {n} simultan
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -3587,7 +3618,7 @@
 #. text in a dialog box
 #, machine
 	Save As	Salvare ca
-#. text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
+#. text in flat.rs; text in gallerydlg.rs; text in the Options window; text in the Add torrent window; text in the Download video window
 #. tab title: where downloads are saved
 #, machine
 	Save to	Salvare în
@@ -3622,6 +3653,9 @@
 #. text in the Batch download window
 #, machine
 	Second file:	Al doilea fișier:
+#. text in flat.rs
+#, machine
+	Segments	Segmente
 #. text in a dialog box
 #. title of the folder picker
 #, machine
@@ -3950,6 +3984,9 @@
 #. a country's name (where a download's server is)
 #, machine
 	Spain	Spania
+#. text in flat.rs
+#, machine
+	Speed	Viteză
 #. text in a download's progress window; text in the tray icon's menu
 #. tab title: the tool that limits the download speed
 #, machine
@@ -4063,7 +4100,7 @@
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
 	Stop {queue}	Opriți {queue}
-#. value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
+#. message or event log entry in the main window; value in a column's filter list in the download list; text in the download list (sizes, speeds, status); text in remote.rs
 #. a download's status (state it is in, not a command)
 #. a download's status (state it is in, not a command): stopped by the user
 #, machine
@@ -4329,7 +4366,7 @@
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be moved: {error}	Fișierul nu a putut fi mutat: {error}
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The file could not be read: {error}	Fișierul nu a putut fi citit: {error}
@@ -4378,7 +4415,7 @@
 #. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	Programul auxiliar pe care îl pornesc browserele lipsește
-#. message or event log entry in the main window
+#. message or event log entry in the main window; text in the Options window
 #. {error} = an error message (keep the braces as they are)
 #, machine
 	The list could not be saved: {error}	Lista nu a putut fi salvată: {error}
@@ -4455,6 +4492,18 @@
 #. the Download video window: the site asked for a sign-in although yt-dlp had the cookies of the browser chosen in Options; {browser} = its name
 #, machine
 	The site wants you signed in, even with {browser}'s cookies. Sign in to it in {browser}, then look the page up again.	Site-ul dorește să fiți conectat, chiar și cu cookie-urile lui {browser}. Conectați-vă la acesta în {browser}, apoi căutați din nou pagina.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though the browser's extension passed the page's cookies
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with your browser's cookies for this page. Try again later, or from another browser.	Verificarea bot a site-ului (Cloudflare) a refuzat yt-dlp, chiar și cu cookie-urile browserului dvs. pentru această pagină. Încercați din nou mai târziu sau dintr-un alt browser.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away though it had the cookies of the browser chosen in Options; {browser} = its name
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp, even with {browser}'s cookies. Use the Download video button over the video in {browser}, or try the page again later.	Verificarea bot a site-ului (Cloudflare) a refuzat yt-dlp, chiar și cu cookie-urile din {browser}. Utilizați butonul Descărcare video de deasupra videoclipului din {browser} sau încercați din nou pagina mai târziu.
+#. text in the Download video window
+#. the Download video window: the site's bot check (Cloudflare) turned yt-dlp away and no browser cookies were used
+#, machine
+	The site's bot check (Cloudflare) refused yt-dlp. If the page opens in your browser, choose that browser in Options → Sites Logins → Cookies for video sites and look the page up again, or use the Download video button over the video.	Verificarea bot a site-ului (Cloudflare) a refuzat yt-dlp. Dacă pagina se deschide în browserul dvs., alegeți acel browser în Opțiuni → Autentificări site-uri → Cookie-uri pentru site-uri video și căutați din nou pagina, sau utilizați butonul Descărcare video de deasupra videoclipului.
 #. text in crashui.rs
 #. crash report window: the symbols couldn't be downloaded; the report still works
 #, machine
@@ -4637,6 +4686,11 @@
 #. the Download video window: the video needs the user to be signed in
 #, machine
 	This video needs you to be signed in. Use the Download video button over it in your browser, which passes your sign-in on, or choose your browser in Options → Sites Logins → Cookies for video sites.	Acest videoclip necesită să fiți conectat. Utilizați butonul Descărcare video de deasupra acestuia în browser, care transmite datele dvs. de conectare, sau alegeți browserul dvs. în Opțiuni → Autentificări site-uri → Cookie-uri pentru site-uri video.
+#. text in errors.rs
+#. a download's error: the address is a site's web page that needs a browser, not the file; {site} = the site's name (gofile)
+#. {site} = a web site's name such as "example.com" (keep the braces as they are)
+#, machine
+	this {site} link is a web page, not the file: open it in your browser and download from there	acest link {site} este o pagină web, nu fișierul: deschideți-l în browser și descărcați de acolo
 #. text in whereis.rs
 #. where a download's server is, when a proxy carries it (the proxy's place not known)
 #, machine
@@ -4660,7 +4714,7 @@
 #. tooltip on the Scheduler's "Wake the computer to run this queue" while "Start download at" is off
 #, machine
 	Tick "Start download at" first: the computer is woken for the start time	Bifați mai întâi „Pornire descărcare la”: computerul este trezit pentru ora de începere
-#. text in a download's progress window; text in the Scheduler window
+#. text in flat.rs; text in a download's progress window; text in the Scheduler window
 #, machine
 	Time left	Timp rămas
 #. text in countries.rs
@@ -4869,7 +4923,7 @@
 #. Link grabber button (IDM's): untick every link
 #, machine
 	Uncheck all	Debifați tot
-#. item in the Categories tree in the main window; text in remote.rs
+#. item in the Categories tree in the main window; message or event log entry in the main window; text in remote.rs
 #. adjective: the downloads that are not complete yet
 #. remote control page (on a phone): tab: downloads not finished yet
 #, machine
@@ -5355,6 +5409,10 @@
 #. {algorithm} = a checksum algorithm such as "SHA-256" (keep the braces as they are)
 #, machine
 	{file}: the file matches its checksum ({algorithm})	{file}: fișierul corespunde sumei de control ({algorithm})
+#. text in flat.rs
+#. {size} = a file size such as "4.2 MB" (keep the braces as they are)
+#, machine
+	{got} of {size}	{got} din {size}
 #. text in a download's progress window
 #. {have} and {total} = numbers of pieces; {size} = one piece's size
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5574,7 +5632,7 @@ column	Share ratio	Raport de partajare
 #. noun: the file's size
 #, machine
 column	Size	Dimensiune
-#. column title in the download list in the download list
+#. column title in flat.rs; column title in the download list in the download list
 #. noun: where the download comes from (Web or Torrent)
 #, machine
 column	Source	Sursă
@@ -6285,6 +6343,10 @@ menu	Find Next (F3)	Găsiți următorul (F3)
 #, machine
 menu	First and last pieces first	Primele și ultimele fragmente mai întâi
 #. menu command in the main window
+#. View → Theme: a style theme's name (minimal and flat, like a phone's apps)
+#, machine
+menu	Flat	Simplu
+#. menu command in the main window
 #. noun: the list's font (submenu)
 #, machine
 menu	Font	Font
@@ -6554,7 +6616,7 @@ menubar	&View	&Vizualizare
 #. toolbar button in the main window
 #, machine
 toolbar	Add Torrent	Adăugare torrent
-#. toolbar button in the main window
+#. toolbar button in the main window; toolbar button in flat.rs
 #, machine
 toolbar	Add URL	Adăugare URL
 #. toolbar button in the main window

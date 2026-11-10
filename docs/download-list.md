@@ -2,15 +2,16 @@
 
 [← Back to docs index](README.md)
 
-Every download, finished or not, has a row in the list. The categories on the left choose which rows you see.
+Every download, finished or not, has a row in the list. The sidebar on the left (the Categories
+pane in the Classic theme) chooses which rows you see.
 
 The strip under the list says how many downloads it shows and how many are selected, and while
 downloads run, how many and how fast in all (the tray icon's tip says the same). When the list
 is empty it says why: nothing in this category or queue, or the column filters hide everything
 (with **Clear all filters**).
 
-MDM opens where you left it: the window's place and size, the Categories pane, its open
-branches and the category or queue you were looking at.
+MDM opens where you left it: the window's place and size, the sidebar (or the Categories pane
+and its open branches), the details panel, and the category or queue you were looking at.
 
 ## Columns
 
@@ -42,6 +43,12 @@ branches and the category or queue you were looking at.
 
 MDM remembers the columns, their widths and the sort order.
 
+In the Flat theme a running download's **Status** has a progress bar under its percentage, and
+columns give way to the list when it is narrow: the torrent columns while no torrent shows a
+value in them, then **Description**, **Share ratio**, **Peers**, **Upload speed**, **Last Try
+Date**, **Added**, **Source** and **Q**, until the rest fit. Widen the window, or hide the details
+panel, and they come back.
+
 ## Filters
 
 Each column title has a faint funnel. Click it to filter the list by that column:
@@ -53,15 +60,20 @@ A filtered column's funnel turns blue. To remove every filter, right-click a col
 
 ## Categories
 
-The pane on the left has four branches:
+The sidebar on the left has three sections:
 
-![The Categories pane: All Downloads with a category per file type, Unfinished, Finished and Queues](images/help/list-categories.webp)
-*All Downloads, Unfinished, Finished and Queues, each by category.*
+![The sidebar: Library with All Downloads, Downloading, Waiting, Stopped and Finished; Categories with one per file type; and Queues](images/help/list-categories.webp)
+*Library, Categories and Queues.*
 
-- **All Downloads** — everything, with a node per category below it.
-- **Unfinished** — downloads that aren't complete yet, by category.
-- **Finished** — complete downloads, by category.
-- **Queues** — each queue; select one to see only its downloads.
+- **Library** — **All Downloads** (everything), **Downloading** (running now), **Waiting** (waiting
+  their turn to start), **Stopped** (stopped, or ended with an error) and
+  **Finished** (complete), each with how many downloads it holds.
+- **Categories** — one per file type, and your own: only the downloads of that category.
+- **Queues** — each queue; select one to see only its downloads, and start or stop it from the
+  header.
+
+The **Classic** theme shows a tree instead, with four branches: **All Downloads**, with a node per
+category below it; **Unfinished** and **Finished**, each by category; and **Queues**.
 
 Each download falls into a category by its file type: **General**, **Compressed**, **Documents**, **Music**, **Programs** or **Video**. Torrents have their own **Torrents** category. Each category has its own folder, by default inside your Downloads folder (`Downloads\Compressed`, `Downloads\Video` and so on; General uses `Downloads` itself).
 
@@ -77,8 +89,8 @@ Right-click a category for:
 
 To bring the built-in categories back as they came, with their names, file types and folders, use **Options → Save to → Restore the built-in categories**. Your own categories, General and Torrents stay as they are.
 
-The top branches show how many downloads they hold. **View → Hide categories** gives the list
-the whole window.
+**View → Hide categories** hides the sidebar (or the Categories pane) and gives the list the
+whole width.
 
 ## Dropping links and files
 

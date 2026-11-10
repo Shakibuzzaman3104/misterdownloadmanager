@@ -88,6 +88,8 @@ pub struct Settings {
     pub delete_files_too: bool,
     /// Categories pane frame width (IDM: 143, frame x 6..149); dragged with the splitter.
     pub categories_width: u32,
+    /// Whether the Flat layout's inspector is enabled.
+    pub show_inspector: bool,
     /// The main window as last left: position and size (x, y, width, height, in points at 100 %
     /// interface size: the system's own logical pixels), and maximized.
     pub window: Option<[i32; 4]>,
@@ -102,8 +104,10 @@ pub struct Settings {
     /// View → Always dark (#60): dark whatever the system says (a desktop that reports no
     /// preference, or a dark MDM on a light desktop).
     pub always_dark: bool,
-    /// The look (#45): a built-in theme's id ("classic", the default) or a theme file's name in
-    /// the data folder's `themes` folder (crate::themefile).
+    /// The look (#45): a built-in theme's id ("flat", a new install's) or a theme file's name in
+    /// the data folder's `themes` folder (crate::themefile). Settings saved before themes keep
+    /// the look they had: "classic".
+    #[serde(default = "classic_theme")]
     pub theme: String,
     /// View → Draw with (#89): OpenGL or Direct3D (Windows only), used from the next start.
     /// None: MDM's default (`renderer::DEFAULT`), which may change.
@@ -359,6 +363,7 @@ impl Default for Settings {
             confirm_delete: true,
             delete_files_too: false,
             categories_width: 143,
+            show_inspector: true,
             window: None,
             window_maximized: false,
             show_categories: true,
@@ -366,7 +371,7 @@ impl Default for Settings {
             view: None,
             dark_mode_support: true,
             always_dark: false,
-            theme: "classic".into(),
+            theme: "flat".into(),
             renderer: None,
             interface_size: 100,
             limits_on: false,
@@ -1013,9 +1018,22 @@ pub fn own_net() -> mdm_engine::Options {
     }
 }
 
+fn classic_theme() -> String {
+    "classic".into()
+}
+
 #[cfg(test)]
 mod tests {
     use std::path::Path;
+
+    #[test]
+    fn a_new_install_is_flat_and_old_settings_stay_classic() {
+        assert_eq!(super::Settings::default().theme, "flat");
+        let old: super::Settings = serde_json::from_str(r#"{"speed_limit_on":false}"#).unwrap();
+        assert_eq!(old.theme, "classic");
+        let chosen: super::Settings = serde_json::from_str(r#"{"theme":"metro"}"#).unwrap();
+        assert_eq!(chosen.theme, "metro");
+    }
 
     /// #475: a folder chosen for a video is the Video category's next time; the category's own
     /// folder stays "the default", following Downloads, and other categories stay as they were.

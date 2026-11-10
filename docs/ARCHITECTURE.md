@@ -99,7 +99,12 @@ light and a dark palette, metrics, control styles and an icon style (`palette.rs
   `cat-music`…, SVG or PNG at 16, 24, 32 and 48 px, `-symbolic` ones inked in the text colour)
   where the classic look draws its own; a need the set lacks keeps the classic icon.
 
-Where a window puts its controls stays its layout. So do the icons
+- **Layout.** `palette::Controls::layout` chooses the main window's layout: Classic (the
+  toolbar and the Categories tree, `chrome.rs`) or Flat (`flat.rs`: a sidebar, a header with the
+  view's buttons, and a details panel; the list draws its own Flat rows in `list.rs`). Flat, the
+  built-in `flat.toml`, is a new install's theme; a theme that inherits it keeps its layout.
+
+Every other window keeps its layout in every theme. So do the icons
 before file names (`fileicons.rs`): the Windows shell's system image lists, macOS Finder's
 (NSWorkspace), the Linux desktop's icon theme (`xdgicons.rs`, shared-mime-info and the Icon
 Theme Specification). Each type is looked up once per pixel size, on a background thread. Tango's

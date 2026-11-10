@@ -8,8 +8,9 @@ keys beside it. On a Mac, **⌘** (Command) takes the place of **Ctrl**: **⌘N*
 Everything can be done from the keyboard, and MDM works with screen readers (such as
 Narrator and NVDA on Windows): its windows, dialogs and menus tell them what each control is
 and its state, and the download list reads each download's name, status and size. The
-**Categories** pane reads as a tree (each category with its count, open or shut, selected or
-not), and the menu bar and every right-click menu as menus whose items can be run from there.
+**sidebar** reads each row by its name, selected or not (the Classic theme's **Categories** tree
+reads as a tree, each category with its count, open or shut), and the menu bar and every
+right-click menu as menus whose items can be run from there.
 On Linux, screen readers (Orca) don't read MDM's windows yet; the keyboard works there as
 everywhere.
 
@@ -47,10 +48,10 @@ everywhere.
 | **Ctrl+Space** | Select or unselect the download with the dotted outline |
 | **Page Up** / **Page Down** | Move a page up / down |
 | **Home** / **End** | Select the first / last download |
-| **Tab** / **Shift+Tab** | Move between the download list and the Categories tree |
+| **Tab** / **Shift+Tab** | Move between the download list and the sidebar |
 
-In the **Categories** tree, **Up** / **Down** choose a node, **Left** / **Right** close and open
-a branch, and **Home** / **End** go to the first / last node.
+In the **sidebar**, **Up** / **Down** choose a row, and **Home** / **End** go to the first / last
+row (in the Classic theme, **Left** / **Right** close and open a branch).
 
 ## Menus and windows
 
@@ -64,9 +65,9 @@ a branch, and **Home** / **End** go to the first / last node.
 | **Enter**, or an item's underlined letter | Run the highlighted item |
 | **Esc** | Close a menu or dialog (an open drop-down list first) |
 | **Enter** | In **Download File Info**: **Start Download** |
-| **Tab** | Move between the **Categories** pane and the download list |
-| **Up** / **Down**, **Left** / **Right** | In the **Categories** pane: the next category; close or open a branch |
-| **Shift+F10** or the **Menu** key | In the **Categories** pane: the selected category's menu (**Properties**, **Add category**, **Delete**) |
+| **Tab** | Move between the **sidebar** and the download list |
+| **Up** / **Down**, **Left** / **Right** | In the **sidebar**: the next row (in the Classic theme, **Left** / **Right** close or open a branch) |
+| **Shift+F10** or the **Menu** key | In the **sidebar**: the selected category's menu (**Properties**, **Add category**, **Delete**) |
 | **Ctrl++** / **Ctrl+−** | Make everything larger / smaller, in every window (**View → Interface size**, 100 % to 200 %) |
 | **Ctrl+0** | Everything at its normal size (100 %) |
 

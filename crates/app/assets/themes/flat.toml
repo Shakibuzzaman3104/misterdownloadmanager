@@ -1,0 +1,92 @@
+# Flat: one of Mister Download Manager's built-in themes, a minimal look after a phone's apps
+# (colours and shapes only: nothing of anyone's artwork but its MIT-licensed Fluent icons).
+
+name = "Flat"
+icon-set = "metro"
+icons = "mono"
+
+[controls]
+layout = "flat"
+field-focus = "border"
+check = "square"
+progress = "bar"
+scroll = "overlay"
+
+[sizes]
+radius = 8
+"radius.part" = 6
+"radius.check" = 4
+"radius.flyout" = 10
+"radius.menu-item" = 6
+"radius.popup" = 8
+"radius.egui" = 6
+"list.row" = 40
+"list.header" = 32
+
+[seeds.light]
+background = "#f2f2f7"
+surface = "#ffffff"
+header = "#ffffff"
+text = "#000000"
+accent = "#0066cc"
+selection = "#dce9f7"
+error = "#c42b1c"
+warning = "#9d5d00"
+success = "#1a7f37"
+
+[seeds.dark]
+background = "#1c1c1e"
+surface = "#000000"
+header = "#000000"
+text = "#ffffff"
+accent = "#0a84ff"
+selection = "#1f3a5f"
+error = "#ff6961"
+warning = "#ffd60a"
+success = "#30d158"
+
+[light]
+"text.muted" = "#6c6c70"
+"accent.text" = "#ffffff"
+# Flat buttons: a white face, a quiet edge, a pale tint under the pointer and pressed.
+button = "#ffffff"
+"button.border" = "#d1d1d6"
+"button.bottom" = "#d1d1d6"
+"button.hot" = "#f2f2f7"
+"button.pressed" = "#e5e5ea"
+# The menu bar and toolbar in the window's colour, with no line between them.
+menubar = "#f2f2f7"
+"menubar.bottom" = "#f2f2f7"
+"menubar.line" = "#f2f2f7"
+"toolbar.line" = "#f2f2f7"
+"toolbar.line.light" = "#f2f2f7"
+# Hairline grid lines, the list's frame the same.
+"list.grid" = "#e5e5ea"
+"list.frame" = "#e5e5ea"
+# The selection is a pale tint here, so its text stays dark.
+"selection.text" = "#000000"
+"selection.muted" = "#3c3c43"
+"selection.inactive" = "#e5e5ea"
+"progress.bar" = "#0066cc"
+"meter.track" = "#e5e5ea"
+
+[dark]
+"text.muted" = "#98989d"
+"accent.text" = "#ffffff"
+button = "#2c2c2e"
+"button.border" = "#38383a"
+"button.bottom" = "#38383a"
+"button.hot" = "#3a3a3c"
+"button.pressed" = "#48484a"
+menubar = "#1c1c1e"
+"menubar.bottom" = "#1c1c1e"
+"menubar.line" = "#1c1c1e"
+"toolbar.line" = "#1c1c1e"
+"toolbar.line.light" = "#1c1c1e"
+"list.grid" = "#38383a"
+"list.frame" = "#38383a"
+"selection.text" = "#ffffff"
+"selection.muted" = "#c7c7cc"
+"selection.inactive" = "#3a3a3c"
+"progress.bar" = "#0a84ff"
+"meter.track" = "#38383a"

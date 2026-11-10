@@ -109,7 +109,7 @@ fn system_says(ctx: &egui::Context) -> System {
 pub fn theme(sys: &System) -> Theme {
     if let Some([bg, text, selection, _selection_text, link, _greyed]) = sys.high_contrast {
         // Windows' own high-contrast colours, the same in both modes (Windows has one set).
-        let mut t = crate::palette::builtins()[1].clone();
+        let mut t = crate::palette::builtins()[2].clone();
         let mut p = crate::derive::derive(&crate::derive::Seeds {
             background: bg,
             surface: bg,
@@ -129,7 +129,7 @@ pub fn theme(sys: &System) -> Theme {
         return t;
     }
     if sys.more_contrast {
-        let mut t = crate::palette::builtins()[1].clone();
+        let mut t = crate::palette::builtins()[2].clone();
         t.id = "native".into();
         t.name = "Native".into();
         return t;

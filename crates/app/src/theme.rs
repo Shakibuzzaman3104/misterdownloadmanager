@@ -662,6 +662,9 @@ fn add_script_fallback(ctx: &egui::Context) {
     ADDED.call_once(|| ctx.add_font_provider(std::sync::Arc::new(ScriptFallback)));
 }
 
+/// The font family of the interface font in bold (Flat's titles).
+pub const UI_BOLD: &str = "ui-bold";
+
 /// The interface font: Segoe UI as IDM has it on Windows, the system's own elsewhere.
 fn ui_font() -> Option<Vec<u8>> {
     #[cfg(windows)]
@@ -673,6 +676,36 @@ fn ui_font() -> Option<Vec<u8>> {
     #[cfg(not(any(windows, target_os = "macos")))]
     return fc_match("sans-serif").and_then(|f| std::fs::read(f).ok());
 }
+
+/// The interface font in bold: Segoe UI Bold, or the system's bold sans; the same file at weight
+/// 700 when it is a variable font (macOS' SF).
+fn ui_bold_font() -> Option<egui::FontData> {
+    #[cfg(windows)]
+    let bytes = std::fs::read(font_dir().join("segoeuib.ttf")).ok()?;
+    #[cfg(target_os = "macos")]
+    let bytes = std::fs::read(font_dir().join("SFNS.ttf")).ok()?;
+    #[cfg(not(any(windows, target_os = "macos")))]
+    let bytes = fc_match(UI_BOLD_PATTERN).and_then(|f| std::fs::read(f).ok())?;
+    let data = egui::FontData::from_owned(bytes);
+    let variable = data
+        .variation_axes()
+        .iter()
+        .any(|a| a.tag.to_be_bytes() == *b"wght");
+    if !variable {
+        // Helvetica's first face is the regular one: no bold to be had from it.
+        #[cfg(target_os = "macos")]
+        return None;
+        #[cfg(not(target_os = "macos"))]
+        return Some(data);
+    }
+    Some(data.tweak(egui::FontTweak {
+        coords: egui::epaint::text::VariationCoords::new([(b"wght", 700.0)]),
+        ..Default::default()
+    }))
+}
+
+#[cfg(not(any(windows, target_os = "macos")))]
+const UI_BOLD_PATTERN: &str = "sans-serif:bold";
 
 /// The script fonts for `code` (every language's with `all`): (key, bytes), in fallback order.
 fn script_fonts(code: &str, all: bool) -> Vec<(String, Vec<u8>)> {
@@ -728,7 +761,7 @@ fn fc_files() -> &'static std::collections::HashMap<String, std::path::PathBuf> 
     static FILES: std::sync::OnceLock<std::collections::HashMap<String, std::path::PathBuf>> =
         std::sync::OnceLock::new();
     FILES.get_or_init(|| {
-        let running: Vec<_> = ["sans-serif", SYMBOL_PATTERN]
+        let running: Vec<_> = ["sans-serif", UI_BOLD_PATTERN, SYMBOL_PATTERN]
             .into_iter()
             .map(str::to_owned)
             .chain(SCRIPT_LANGS.iter().map(|(_, fc)| format!(":lang={fc}")))
@@ -839,6 +872,18 @@ fn fonts(ctx: &egui::Context, code: &str, all: bool) {
     crate::winui::install_fonts(&mut defs, Some(&font_dir()));
     #[cfg(not(windows))]
     crate::winui::install_fonts(&mut defs, None);
+    let mut bold = defs
+        .families
+        .get(&egui::FontFamily::Proportional)
+        .cloned()
+        .unwrap_or_default();
+    if let Some(data) = ui_bold_font() {
+        defs.font_data
+            .insert("ui-bold".into(), std::sync::Arc::new(data));
+        bold.insert(0, "ui-bold".into());
+    }
+    defs.families
+        .insert(egui::FontFamily::Name(UI_BOLD.into()), bold);
     // A fallback's glyphs sit on the baseline of the family's first font (Japanese next to
     // Latin digits, Georgian in a Tahoma line), not centred in its row.
     let on_baseline = |bytes: Vec<u8>| {

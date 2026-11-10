@@ -19,11 +19,11 @@ You can add your own queues in the Scheduler, or with **Create new queue** in a 
 - Or select downloads in the list, right-click and choose **Add to queue**, then the queue. A download that is already in a queue shows **Move to queue** instead.
 - To take a download out of its queue, right-click it and choose **Delete from queue**. The download stays in the list.
 
-The **Q** column shows which downloads are in a queue. Under **Queues** in the categories pane, select a queue to see only its downloads.
+The **Q** column shows which downloads are in a queue. Under **Queues** in the sidebar, select a queue to see only its downloads.
 
 ### Start and stop a queue
 
-- **Start Queue** and **Stop Queue** on the toolbar start and stop the **Main download queue**. The arrow next to each button lists every queue.
+- Select a queue under **Queues** in the sidebar: **Start Queue** and **Stop Queue** at the top start and stop it, and the arrow next to each lists every queue. In the Classic theme they are on the toolbar, start and stop the **Main download queue**, and their arrows list the others.
 - **Downloads → Start queue** and **Downloads → Stop queue** list them too.
 - Or right-click a queue under **Queues** and choose **Start now** or **Stop**.
 

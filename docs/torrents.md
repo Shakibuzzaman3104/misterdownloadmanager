@@ -6,7 +6,7 @@ MDM downloads BitTorrent files from magnet links and `.torrent` files. Torrents 
 
 ## Add a torrent
 
-1. Click **Add Torrent** on the toolbar to choose a `.torrent` file. Or click the arrow next to it and choose **Open torrent file...** or **Add magnet link...** (also under **Tasks**).
+1. Click the arrow beside **Add URL** at the top right and choose **Open torrent file...** to choose a `.torrent` file, or **Add magnet link...** (also under **Tasks**).
 2. **Add torrent** opens. Paste a magnet link into **Torrent**, or click **...** to choose a `.torrent` file, then click **Look up**.
 3. MDM reads the torrent and shows its files as a folder tree. A `.torrent` file is read at once. A magnet link first has to get the file list from other peers, usually within seconds. While it waits, **Add torrent** shows how many peers it found, from the trackers, the DHT or your local network, and how many answered. After 30 seconds without an answer, it says what may be in the way: a link with no trackers while the DHT is off, or a firewall, a VPN or a network that blocks BitTorrent.
 4. Untick the folders or files you don't want. **Select all** and **Select none** help with big torrents. **Selected** shows how many files and how much data you picked.
@@ -72,7 +72,7 @@ A torrent in order isn't faster to finish, and it helps the swarm less: use it f
 
 ## RSS feeds
 
-Many sites publish their new torrents as an RSS or Atom feed. MDM can watch feeds, list what they hold, and add the new torrents you want by itself. Choose **Tasks → RSS feeds...**, or click the arrow next to **Add Torrent**.
+Many sites publish their new torrents as an RSS or Atom feed. MDM can watch feeds, list what they hold, and add the new torrents you want by itself. Choose **Tasks → RSS feeds...**, or click the arrow beside **Add URL**.
 
 ![RSS feeds: the feeds MDM follows and their items](images/help/rss-feeds.webp)
 *RSS feeds, and the rules that pick what to download.*
@@ -98,7 +98,7 @@ Feeds and rules are kept in `rss.json` in MDM's data folder. MDM reads at most 5
 
 ## Torrent settings
 
-Choose **Tasks → Torrent settings...** (or the arrow next to **Add Torrent**):
+Choose **Tasks → Torrent settings...** (or the arrow beside **Add URL**):
 
 ![Torrent settings: sharing, limits and what others can see](images/help/torrent-settings.webp)
 *Tasks → Torrent settings...*

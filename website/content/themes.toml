@@ -6,8 +6,14 @@
 [[theme]]
 id = "classic"
 name = "Classic"
-feel = "MDM's own look and the default: the layout IDM users know, with Windows 11's controls."
+feel = "The layout IDM users know: a labelled toolbar and a Categories tree, with Windows 11's controls."
 shot = "images/help/site-theme-classic.webp"
+
+[[theme]]
+id = "flat"
+name = "Flat"
+feel = "The default: a clean, flat window with a sidebar, a header, progress bars in the list and a details panel."
+shot = "images/help/site-theme-flat.webp"
 
 [[theme]]
 id = "native"

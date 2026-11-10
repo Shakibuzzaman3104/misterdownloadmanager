@@ -7,6 +7,8 @@ Each release's notes on GitHub come from its section here (`## [X.Y.Z]`, see
 
 ### Added
 
+- **Flat**, a new theme and the default for new installs: a clean, flat main window with a sidebar (**Library**: All Downloads, Downloading, Waiting, Stopped and Finished, with their counts; **Categories**; **Queues**), a header with the view's name and its buttons, a progress bar under each running download's status, and a details panel for the selected download (its speed, time left, connections, folder and segments). Columns give way to the list in a narrow window, and the panel hides itself. Settings you already have keep your theme; IDM's layout, with the toolbar and the Categories tree, is **View → Theme → Classic**. Theme files can choose the layout too (`[controls] layout = "flat"`).
+
 - Videos a site sends in pieces (HLS and DASH streams, as many sites other than YouTube do) download several pieces at once, as many as **Options → Connection** gives a file (8 by default): against a test server that slows each connection, 4 at once took under a third of the time, 8 under a fifth. With a speed limit on, they still come one at a time, so the limit holds; a video in one file, as most of YouTube's are, is unchanged. The command line's `video-get` and `playlist-get` take `-c` for it ([#531](https://github.com/anefzaoui/misterdownloadmanager/issues/531)).
 - Linux and macOS: a yt-dlp installed by the system (a package manager, Homebrew) is found and used when MDM has none of its own; **Helpers** can still switch to MDM's own copy, kept up to date ([#452](https://github.com/anefzaoui/misterdownloadmanager/issues/452)).
 
